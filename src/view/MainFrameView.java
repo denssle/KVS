@@ -29,16 +29,16 @@ public class MainFrameView extends JFrame
 	
 	private JMenu createUserMenu() {
 		JMenu userMenu = new JMenu("Clienten");
-		
-		menuItem = new JMenuItem("Neuen Klienten anlegen");
+		//Neuer Klient
+		menuItem = new JMenuItem(statics.label.menuItemNewClient);
 		userMenu.add(menuItem);
-		
-		menuItem = new JMenuItem("Klient suchen");
+		// Klient Suchen
+		menuItem = new JMenuItem(statics.label.menuItemSearchClient);
 		userMenu.add(menuItem);
 		
 		userMenu.addSeparator();
 		
-		menuItem = new JMenuItem("Beenden");
+		menuItem = new JMenuItem(statics.label.menuItemQuit);
 		menuItem.getAccessibleContext().setAccessibleDescription("Quit KVS");
 		userMenu.add(menuItem);
 		return userMenu;
@@ -46,11 +46,11 @@ public class MainFrameView extends JFrame
 	
 	private JMenu createEditMenu() {
 		JMenu editMenu = new JMenu("Bearbeiten");
-		
-		menuItem = new JMenuItem("Klient bearbeiten");
+		//Bearbeiten
+		menuItem = new JMenuItem(statics.label.menuItemUpdateClient);
 		editMenu.add(menuItem);
-		
-		menuItem = new JMenuItem("Klient löschen");
+		//Löschen
+		menuItem = new JMenuItem(statics.label.menuItemDeleteClient);
 		editMenu.add(menuItem);
 		
 		return editMenu;
