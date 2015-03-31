@@ -13,7 +13,7 @@ public class MainFrameView extends JFrame
 {
 	private JMenuItem menuItem;
 	
-	public MainFrameView(ActionListener hauptrahmenController)
+	public MainFrameView(ActionListener mainControll)
 	{
 		this.setTitle("KVS");
 		this.setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize());
@@ -22,18 +22,21 @@ public class MainFrameView extends JFrame
 		
 		JMenuBar menuBar = new JMenuBar();
 		
-		menuBar.add(createUserMenu());
-		menuBar.add(createEditMenu());
+		
+		menuBar.add(createUserMenu(mainControll));
+		menuBar.add(createEditMenu(mainControll));
 		this.setJMenuBar(menuBar);
 	}
 	
-	private JMenu createUserMenu() {
+	private JMenu createUserMenu(ActionListener mainControll) {
 		JMenu userMenu = new JMenu("Clienten");
 		//Neuer Klient
 		menuItem = new JMenuItem(statics.label.menuItemNewClient);
+		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		// Klient Suchen
 		menuItem = new JMenuItem(statics.label.menuItemSearchClient);
+		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		
 		userMenu.addSeparator();
@@ -44,13 +47,15 @@ public class MainFrameView extends JFrame
 		return userMenu;
 	}
 	
-	private JMenu createEditMenu() {
+	private JMenu createEditMenu(ActionListener mainControll) {
 		JMenu editMenu = new JMenu("Bearbeiten");
 		//Bearbeiten
 		menuItem = new JMenuItem(statics.label.menuItemUpdateClient);
+		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		//Löschen
 		menuItem = new JMenuItem(statics.label.menuItemDeleteClient);
+		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		
 		return editMenu;

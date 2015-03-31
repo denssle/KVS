@@ -18,7 +18,7 @@ public class MainFrameController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		String command = e.getActionCommand();
+		System.out.println(command);
 	}
 }
