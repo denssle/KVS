@@ -9,11 +9,13 @@ public class MainFrameController implements ActionListener {
 	private MainFrameView mainFrame;
 	private SearchUserController searchUserController;
 	private CreateUserController createUserController;
-
+	private UpdateUserController updateUserController;
+	
 	public MainFrameController() {
 		mainFrame = new MainFrameView(this);
 		createUserController = new CreateUserController();
 		searchUserController = new SearchUserController();
+		updateUserController = new UpdateUserController();
 	}
 	
 	public void start() {
@@ -32,10 +34,17 @@ public class MainFrameController implements ActionListener {
 		if(command.equals(statics.label.newClient)) {
 			mainFrame.updatePanel(createUserController.getPanel());
 		}
-		
 		//Client suchen
 		if(command.equals(statics.label.searchClient)) {
 			mainFrame.updatePanel(searchUserController.getPanel());
+		}
+		//Client löschen
+		if(command.equals(statics.label.deleteClient)) {
+		}
+		//Client bearbeiten. 
+		if(command.equals(statics.label.updateClient))
+		{
+			mainFrame.updatePanel(updateUserController.getPanel());
 		}
 	}
 }
