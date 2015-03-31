@@ -7,11 +7,13 @@ import view.MainFrameView;
 
 public class MainFrameController implements ActionListener {
 	private MainFrameView mainFrame;
+	private SearchUserController searchUserController;
 	private CreateUserController createUserController;
 
 	public MainFrameController() {
 		mainFrame = new MainFrameView(this);
 		createUserController = new CreateUserController();
+		searchUserController = new SearchUserController();
 	}
 	
 	public void start() {
@@ -29,6 +31,11 @@ public class MainFrameController implements ActionListener {
 		//Neuer Klient
 		if(command.equals(statics.label.newClient)) {
 			mainFrame.updatePanel(createUserController.getPanel());
+		}
+		
+		//Client suchen
+		if(command.equals(statics.label.searchClient)) {
+			mainFrame.updatePanel(searchUserController.getPanel());
 		}
 	}
 }
