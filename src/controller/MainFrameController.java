@@ -7,9 +7,11 @@ import view.MainFrameView;
 
 public class MainFrameController implements ActionListener {
 	private MainFrameView mainFrame;
-	
+	private CreateUserController createUserController;
+
 	public MainFrameController() {
 		mainFrame = new MainFrameView(this);
+		createUserController = new CreateUserController();
 	}
 	
 	public void start() {
@@ -20,5 +22,13 @@ public class MainFrameController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		System.out.println(command);
+		//Beenden
+		if(command.equals(statics.label.menuItemQuit)) {
+			mainFrame.quit();
+		}
+		//Neuer Klient
+		if(command.equals(statics.label.menuItemNewClient)) {
+			mainFrame.updatePanel(createUserController.getPanel());
+		}
 	}
 }
