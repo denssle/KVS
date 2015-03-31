@@ -12,12 +12,12 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class CreateUserView extends JPanel {
-
+	private JTextField[] inputTextFields;
+	
 	public CreateUserView(ActionListener createUserController) {
+		inputTextFields = new JTextField[statics.label.userLabels.length];
 		this.setLayout(new FlowLayout());
-		
 		buildView(createUserController);
-		
 		this.setVisible(true);
 	}
 	
@@ -30,10 +30,10 @@ public class CreateUserView extends JPanel {
 			
 			JTextField textfield = new JTextField("Hier " + statics.label.userLabels[i] + " eingeben.");
 			textfield.setName(statics.label.userLabels[i]);
+			inputTextFields[i] = textfield;	
 			
 			line.add(label);
 			line.add(textfield);
-			
 		}
 		JButton okButton = new JButton(statics.label.ok);
 		okButton.addActionListener(actionListener);
@@ -44,5 +44,13 @@ public class CreateUserView extends JPanel {
 		line.add(okButton);
 		line.add(cancelButton);
 		this.add(line);
+	}
+	
+	public String[] getInput() {
+		String[] reponse = new String[inputTextFields.length];
+		for(int i = 0; i < inputTextFields.length; i++) {
+			reponse[i] = inputTextFields[i].getText();
+		}
+		return reponse;
 	}
 }

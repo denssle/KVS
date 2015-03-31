@@ -23,11 +23,11 @@ public class MainFrameController implements ActionListener {
 		String command = e.getActionCommand();
 		System.out.println(command);
 		//Beenden
-		if(command.equals(statics.label.menuItemQuit)) {
+		if(command.equals(statics.label.quit)) {
 			mainFrame.quit();
 		}
 		//Neuer Klient
-		if(command.equals(statics.label.NewClient)) {
+		if(command.equals(statics.label.newClient)) {
 			mainFrame.updatePanel(createUserController.getPanel());
 		}
 	}

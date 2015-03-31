@@ -10,7 +10,7 @@ public final class label {
 	public final static String delete = "Löschen";
 	public final static String deleteClient = "Klient löschen";
 	
-	public final static String[] userLabels = {"Vorname", "Nachname", "Strasse", "Stadt"};
+	public final static String[] userLabels = {"Vorname", "Nachname", "Strasse", "Postleitzahl", "Stadt"};
 	public final static String cancel = "Abbrechen";
 	public final static String titel = "KVS";
 	
