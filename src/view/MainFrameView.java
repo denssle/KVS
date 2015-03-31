@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -36,17 +35,17 @@ public class MainFrameView extends JFrame
 	private JMenu createUserMenu(ActionListener mainControll) {
 		JMenu userMenu = new JMenu("Klienten");
 		//Neuer Klient
-		menuItem = new JMenuItem(statics.label.menuItemNewClient);
+		menuItem = new JMenuItem(statics.label.newClient);
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		// Klient Suchen
-		menuItem = new JMenuItem(statics.label.menuItemSearchClient);
+		menuItem = new JMenuItem(statics.label.searchClient);
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		
 		userMenu.addSeparator();
 		
-		menuItem = new JMenuItem(statics.label.menuItemQuit);
+		menuItem = new JMenuItem(statics.label.quit);
 		menuItem.getAccessibleContext().setAccessibleDescription("Quit KVS");
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
@@ -56,11 +55,11 @@ public class MainFrameView extends JFrame
 	private JMenu createEditMenu(ActionListener mainControll) {
 		JMenu editMenu = new JMenu("Bearbeiten");
 		//Bearbeiten
-		menuItem = new JMenuItem(statics.label.menuItemUpdateClient);
+		menuItem = new JMenuItem(statics.label.updateClient);
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		//Löschen
-		menuItem = new JMenuItem(statics.label.menuItemDeleteClient);
+		menuItem = new JMenuItem(statics.label.deleteClient);
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		

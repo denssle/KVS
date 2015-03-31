@@ -27,7 +27,7 @@ public class MainFrameController implements ActionListener {
 			mainFrame.quit();
 		}
 		//Neuer Klient
-		if(command.equals(statics.label.menuItemNewClient)) {
+		if(command.equals(statics.label.NewClient)) {
 			mainFrame.updatePanel(createUserController.getPanel());
 		}
 	}
