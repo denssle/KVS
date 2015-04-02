@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 public class UpdateUserView extends JPanel {
 
 	public UpdateUserView(ActionListener actionListener) {
+		this.setName(statics.label.updateClient);
 		this.setLayout(new FlowLayout());
 		
 		this.add(new JLabel("Hier kommt das bearbeiten von Klienten hin. "));

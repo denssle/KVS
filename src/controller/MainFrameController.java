@@ -25,7 +25,7 @@ public class MainFrameController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		System.out.println(command);
+		statics.debug.debugMessage("MainFrameController",command);
 		//Beenden
 		if(command.equals(statics.label.quit)) {
 			mainFrame.quit();
@@ -42,8 +42,7 @@ public class MainFrameController implements ActionListener {
 		if(command.equals(statics.label.deleteClient)) {
 		}
 		//Client bearbeiten. 
-		if(command.equals(statics.label.updateClient))
-		{
+		if(command.equals(statics.label.updateClient)) {
 			mainFrame.updatePanel(updateUserController.getPanel());
 		}
 	}

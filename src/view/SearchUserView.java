@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 public class SearchUserView extends JPanel {
 
 	public SearchUserView(ActionListener actionListener) {
+		this.setName(statics.label.searchClient);
 		this.setLayout(new FlowLayout());
 		
 		JLabel label = new JLabel("Suche… ");

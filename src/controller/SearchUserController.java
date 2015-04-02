@@ -16,7 +16,7 @@ public class SearchUserController implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		System.out.println(command);
+		statics.debug.debugMessage("SearchUserController", command);
 		if(command.equals(statics.label.ok))
 		{
 			System.out.println("Suche wird gestartet. Oder so. ");

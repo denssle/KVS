@@ -17,7 +17,7 @@ public class UpdateUserController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		System.out.println(command);
+		statics.debug.debugMessage("UpdateUserController",command);
 	}
 
 	public JPanel getPanel() {

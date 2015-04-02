@@ -18,7 +18,7 @@ public class MainFrameView extends JFrame
 	
 	public MainFrameView(ActionListener mainControll)
 	{
-		this.setTitle("KVS");
+		this.setTitle(statics.label.titel);
 		this.setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize());
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
@@ -33,7 +33,7 @@ public class MainFrameView extends JFrame
 	}
 	
 	private JMenu createUserMenu(ActionListener mainControll) {
-		JMenu userMenu = new JMenu("Klienten");
+		JMenu userMenu = new JMenu(statics.label.clients);
 		//Neuer Klient
 		menuItem = new JMenuItem(statics.label.newClient);
 		menuItem.addActionListener(mainControll);
@@ -46,14 +46,14 @@ public class MainFrameView extends JFrame
 		userMenu.addSeparator();
 		
 		menuItem = new JMenuItem(statics.label.quit);
-		menuItem.getAccessibleContext().setAccessibleDescription("Quit KVS");
+		menuItem.getAccessibleContext().setAccessibleDescription(statics.label.quit);
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		return userMenu;
 	}
 	
 	private JMenu createEditMenu(ActionListener mainControll) {
-		JMenu editMenu = new JMenu("Bearbeiten");
+		JMenu editMenu = new JMenu(statics.label.updateClient);
 		//Bearbeiten
 		menuItem = new JMenuItem(statics.label.updateClient);
 		menuItem.addActionListener(mainControll);
@@ -76,8 +76,10 @@ public class MainFrameView extends JFrame
 	}
 	
 	public void updatePanel(JPanel newPanel) {
+		String debug = mainPanel.getName();
 		mainPanel.removeAll();
 		mainPanel = newPanel;
+		statics.debug.debugMessage("MainFrameView","Wechsel von "+debug+" zu "+ mainPanel.getName());
 		this.add(mainPanel);
 		this.validate();
 	}
