@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import view.UpdateUserView;
 
 public class UpdateUserController implements ActionListener {
-	private UpdateUserView updateUserView;
+	private static UpdateUserView updateUserView;
 	
 	public UpdateUserController() {
 		updateUserView = new UpdateUserView(this);
@@ -20,7 +20,7 @@ public class UpdateUserController implements ActionListener {
 		statics.debug.debugMessage("UpdateUserController",command);
 	}
 
-	public JPanel getPanel() {
+	public static JPanel getPanel() {
 		return updateUserView;
 	}
 

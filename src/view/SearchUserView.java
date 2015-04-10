@@ -17,11 +17,13 @@ public class SearchUserView extends JPanel {
 		
 		JLabel label = new JLabel("Suche… ");
 		JTextField textfield = new JTextField("… nach Klienten. ");
+		
 		JButton button = new JButton(statics.label.ok);
 		button.addActionListener(actionListener);
 		
 		this.add(label);
 		this.add(textfield);
+		this.add(button);
 		this.setVisible(true);
 	}
 }

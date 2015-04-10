@@ -14,7 +14,7 @@ public class CreateUserView extends JPanel {
 	private JTextField[] inputTextFields;
 	
 	public CreateUserView(ActionListener createUserController) {
-		this.setName(statics.label.updateClient);
+		this.setName(statics.label.newClient);
 		inputTextFields = new JTextField[statics.label.userLabels.length];
 		this.setLayout(new FlowLayout());
 		buildView(createUserController);

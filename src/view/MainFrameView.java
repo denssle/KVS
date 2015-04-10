@@ -16,12 +16,9 @@ public class MainFrameView extends JFrame
 	private JMenuItem menuItem;
 	private JPanel mainPanel;
 	
-	public MainFrameView(ActionListener mainControll)
-	{
-		this.setTitle(statics.label.titel);
-		this.setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize());
-		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-		this.setLayout(new BorderLayout());
+	
+	public MainFrameView(ActionListener mainControll) {
+		this.setSettings();
 		
 		mainPanel = new JPanel();
 		this.add(mainPanel, BorderLayout.NORTH);
@@ -31,7 +28,13 @@ public class MainFrameView extends JFrame
 		menuBar.add(createEditMenu(mainControll));
 		this.setJMenuBar(menuBar);
 	}
-	
+	private void setSettings() {
+		this.setTitle(statics.label.titel);
+		this.setSize(700, 700);//java.awt.Toolkit.getDefaultToolkit().getScreenSize()
+		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+		this.setLayout(new BorderLayout());
+		
+	}
 	private JMenu createUserMenu(ActionListener mainControll) {
 		JMenu userMenu = new JMenu(statics.label.clients);
 		//Neuer Klient
@@ -77,10 +80,11 @@ public class MainFrameView extends JFrame
 	
 	public void updatePanel(JPanel newPanel) {
 		String debug = mainPanel.getName();
-		mainPanel.removeAll();
+		mainPanel.setVisible(false);
 		mainPanel = newPanel;
+		mainPanel.setVisible(true);
 		statics.debug.debugMessage("MainFrameView","Wechsel von "+debug+" zu "+ mainPanel.getName());
-		this.add(mainPanel);
+		this.add(mainPanel, BorderLayout.NORTH);
 		this.validate();
 	}
 }

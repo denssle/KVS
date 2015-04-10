@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import view.SearchUserView;
 
 public class SearchUserController implements ActionListener {
-	private SearchUserView searchUserView;
+	private static SearchUserView searchUserView;
 	
 	public SearchUserController() {
 		searchUserView = new SearchUserView(this);
@@ -23,7 +23,7 @@ public class SearchUserController implements ActionListener {
 		}
 	}
 
-	public JPanel getPanel() {
+	public static JPanel getPanel() {
 		return searchUserView;
 	}
 

@@ -9,13 +9,13 @@ import model.User;
 import view.CreateUserView;
 
 public class CreateUserController implements ActionListener {
-	private CreateUserView createUserView;
+	private static CreateUserView createUserView;
 	
 	public CreateUserController() {
 		createUserView = new CreateUserView(this);
 	}
 	
-	public JPanel getPanel() {
+	public static JPanel getPanel() {
 		return createUserView;
 	}
 	

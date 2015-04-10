@@ -3,19 +3,21 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JPanel;
+
+import model.DataBase;
+import model.User;
 import view.MainFrameView;
+import view.ProgressBarView;
 
 public class MainFrameController implements ActionListener {
 	private MainFrameView mainFrame;
-	private SearchUserController searchUserController;
-	private CreateUserController createUserController;
-	private UpdateUserController updateUserController;
+	private ProgressBarView progressBarView;
+	public DataBase dataBase;
 	
 	public MainFrameController() {
 		mainFrame = new MainFrameView(this);
-		createUserController = new CreateUserController();
-		searchUserController = new SearchUserController();
-		updateUserController = new UpdateUserController();
+		progressBarView = new ProgressBarView();
 	}
 	
 	public void start() {
@@ -26,24 +28,39 @@ public class MainFrameController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("MainFrameController",command);
+		
+		if(command != null) {
+			startProgressBar();
+		}
 		//Beenden
 		if(command.equals(statics.label.quit)) {
 			mainFrame.quit();
 		}
 		//Neuer Klient
 		if(command.equals(statics.label.newClient)) {
-			mainFrame.updatePanel(createUserController.getPanel());
+			mainFrame.updatePanel(CreateUserController.getPanel());
 		}
 		//Client suchen
 		if(command.equals(statics.label.searchClient)) {
-			mainFrame.updatePanel(searchUserController.getPanel());
+			mainFrame.updatePanel(SearchUserController.getPanel());
 		}
 		//Client löschen
 		if(command.equals(statics.label.deleteClient)) {
 		}
 		//Client bearbeiten. 
 		if(command.equals(statics.label.updateClient)) {
-			mainFrame.updatePanel(updateUserController.getPanel());
+			mainFrame.updatePanel(UpdateUserController.getPanel());
 		}
+	}
+	
+	private void startProgressBar() {
+		mainFrame.updatePanel(progressBarView);
+		progressBarView.start();
+		while(progressBarView.isRunning()) {
+			if(progressBarView.updateBar()) {
+				mainFrame.updatePanel(progressBarView);
+			}
+		}
+		progressBarView.stop();
 	}
 }

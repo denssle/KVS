@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class User {
@@ -10,21 +9,20 @@ public class User {
 	private String street;
 	private String zip;
 	private String city;
-	private static ArrayList<User> allUsers;
-	
+		
 	public User(String[] inputs) {
-		allUsers = new ArrayList<User>();
 		this.id = UUID.randomUUID();
 		forname = inputs[0];
 		lastName = inputs[1];
 		street = inputs[2];
 		zip = inputs[3];
 		city = inputs[4];
-		allUsers.add(this);
 	}
 	public boolean saveUser() {
-		allUsers.add(this);
-		return true;
+		if(DataBase.saveUser(this)){
+			return true;
+		}
+		return false;
 	}
 	
 	public User getUserByName() {
@@ -33,14 +31,6 @@ public class User {
 	
 	public User getUserByID() {
 		return null;
-	}
-	
-	public ArrayList<User> getAllUsers() {
-		return allUsers;
-	}
-	
-	public int getNumberOfAllUsers() {
-		return allUsers.size();
 	}
 	
 	public String getForname() {
