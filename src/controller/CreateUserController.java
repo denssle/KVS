@@ -22,13 +22,14 @@ public class CreateUserController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		System.out.println(command);
+		statics.debug.debugMessage("CreateUserController",command);
 		
 		if(command.equals(statics.label.ok)) {
 			String[] inputs = createUserView.getInput();
 			User user = new User(inputs);
 			if(user.saveUser()) {
 				System.out.println(user.getForname()+" wurde gespeichert.");
+				ShowUserController.showUser(user);
 			}
 		}
 	}

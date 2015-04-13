@@ -13,7 +13,7 @@ public class ProgressBarView extends JPanel {
 	private Date date;
 	private long start;
 	private final int minBorder = 1;
-	private final int maxBorder = 5000;
+	private final int maxBorder = 2000;
 	
 	public ProgressBarView() {
 		this.setLayout(new BorderLayout());

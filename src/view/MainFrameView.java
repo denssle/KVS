@@ -82,9 +82,11 @@ public class MainFrameView extends JFrame
 		String debug = mainPanel.getName();
 		mainPanel.setVisible(false);
 		mainPanel = newPanel;
-		mainPanel.setVisible(true);
-		statics.debug.debugMessage("MainFrameView","Wechsel von "+debug+" zu "+ mainPanel.getName());
-		this.add(mainPanel, BorderLayout.NORTH);
-		this.validate();
+		if(mainPanel != null) {
+			mainPanel.setVisible(true);
+			statics.debug.debugMessage("MainFrameView","Wechsel von "+debug+" zu "+ mainPanel.getName());
+			this.add(mainPanel, BorderLayout.NORTH);
+			this.validate();
+		}
 	}
 }

@@ -11,7 +11,7 @@ import view.MainFrameView;
 import view.ProgressBarView;
 
 public class MainFrameController implements ActionListener {
-	private MainFrameView mainFrame;
+	private static MainFrameView mainFrame;
 	private ProgressBarView progressBarView;
 	public DataBase dataBase;
 	
@@ -52,7 +52,9 @@ public class MainFrameController implements ActionListener {
 			mainFrame.updatePanel(UpdateUserController.getPanel());
 		}
 	}
-	
+	public static void changeJPanel(JPanel newJPanel) {
+		mainFrame.updatePanel(newJPanel);
+	}
 	private void startProgressBar() {
 		mainFrame.updatePanel(progressBarView);
 		progressBarView.start();

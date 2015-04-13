@@ -9,14 +9,15 @@ import view.ShowUserView;
 import model.User;
 
 public class ShowUserController implements ActionListener {
-	private ShowUserView showUserView;
+	private static ShowUserView showUserView;
 	
 	public ShowUserController() {
 		showUserView = new ShowUserView(this);
 	}
 	
 	public static void showUser(User user) {
-		ShowUserView.showUser(user);
+		showUserView.showUser(user);
+		MainFrameController.changeJPanel(showUserView);
 	}
 	
 	public JPanel getPanel() {

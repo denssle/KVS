@@ -41,7 +41,7 @@ public class User {
 		this.forname = forname;
 	}
 
-	public String getLastName() {
+	public String getLastname() {
 		return lastName;
 	}
 
