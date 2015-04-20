@@ -19,6 +19,9 @@ public final class label {
 	public final static String street = "Straße";
 	public final static String zip ="PLZ";
 	public final static String city = "Stadt";
-	public final static String[] userLabels = {forname, lastname, street, zip, city};
+	public final static String birthdate = "Geburtsdatum";
+	public final static String lastVisit = "Letzter Besuch";
+	public final static String fistVisit = "Erster Besuch";
+	public final static String[] userLabels = {forname, lastname, street, zip, city, birthdate, lastVisit, fistVisit};
 }
 

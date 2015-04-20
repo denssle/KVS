@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
@@ -17,7 +16,7 @@ public class ShowUserView extends JPanel  {
 	private JButton deleteButton;
 	public ShowUserView(ActionListener showUserController) {
 		this.setName(statics.label.showClient);
-		this.setLayout(new BorderLayout());
+		this.setLayout(new FlowLayout());
 		
 		updateButton = new JButton(statics.label.update);
 		updateButton.addActionListener(showUserController);
@@ -29,7 +28,6 @@ public class ShowUserView extends JPanel  {
 	}
 
 	public void showUser(User user) {
-		
 		String[][] rowData = {
 				{statics.label.forname, user.getForname() }, 
 				{statics.label.lastname, user.getLastname() },
@@ -40,19 +38,7 @@ public class ShowUserView extends JPanel  {
 		String[] columnNames =  {
 			      "XXX", "YYY"
 			    };
-		
-		JTable table = new JTable( rowData, columnNames );
-
-		JPanel northPanel = new JPanel();
-		northPanel.setLayout(new FlowLayout());
-		northPanel.add(table);
-		
-		JPanel southPanel = new JPanel();
-		southPanel.setLayout(new FlowLayout());
-		southPanel.add(updateButton);
-		southPanel.add(deleteButton);
-		
-		this.add(northPanel, BorderLayout.NORTH);
-		this.add(southPanel, BorderLayout.SOUTH);
+		JTable table = new JTable(rowData, columnNames);
+		this.add(table);
 	}
 }

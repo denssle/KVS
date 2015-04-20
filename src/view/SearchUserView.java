@@ -10,7 +10,9 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class SearchUserView extends JPanel {
-
+	/*
+	 * Suche nach allen Attributen; mehrere Suchfelder nötig. 
+	 */
 	public SearchUserView(ActionListener actionListener) {
 		this.setName(statics.label.searchClient);
 		this.setLayout(new FlowLayout());

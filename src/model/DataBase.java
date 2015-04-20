@@ -33,7 +33,7 @@ public class DataBase {
     	    statics.debug.debugMessage("DB", "Database connected!");
     	    st = con.createStatement();
     	    String sql = "CREATE TABLE User" +
-    	                   "(id int(36) NOT NULL, " +
+    	                   "(id CHAR(36) NOT NULL, " +
     	                   " forname VARCHAR(200), " + 
     	                   " lastname VARCHAR(200), " + 
     	                   " PRIMARY KEY ( id ))"; 

@@ -13,6 +13,7 @@ public class KVS
 	private static CreateUserController createUserController;
 	private static UpdateUserController updateUserController;
 	private static ShowUserController showUserController;
+	
 	public static void main(String[] args)
 	{
 		mainControll = new MainFrameController();
