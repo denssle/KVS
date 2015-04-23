@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.JPanel;
 
@@ -10,14 +11,15 @@ import model.User;
 import view.MainFrameView;
 import view.ProgressBarView;
 
-public class MainFrameController implements ActionListener {
-	private static MainFrameView mainFrame;
+public class MainFrameController extends Observable implements ActionListener{
+	private MainFrameView mainFrame;
 	private ProgressBarView progressBarView;
-	public DataBase dataBase;
+	private DataBase dataBase;
 	
 	public MainFrameController() {
 		mainFrame = new MainFrameView(this);
 		progressBarView = new ProgressBarView();
+		this.addObserver(mainFrame); 
 	}
 	
 	public void start() {
@@ -28,33 +30,35 @@ public class MainFrameController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("MainFrameController",command);
-		
+		JPanel panel = null;
+		/*
 		if(command != null) {
 			startProgressBar();
 		}
+		*/
 		//Beenden
 		if(command.equals(statics.label.quit)) {
 			mainFrame.quit();
 		}
 		//Neuer Klient
 		if(command.equals(statics.label.newClient)) {
-			mainFrame.updatePanel(CreateUserController.getPanel());
+			panel = CreateUserController.getPanel();
 		}
 		//Client suchen
 		if(command.equals(statics.label.searchClient)) {
-			mainFrame.updatePanel(SearchUserController.getPanel());
+			panel = SearchUserController.getPanel();
 		}
 		//Client löschen
 		if(command.equals(statics.label.deleteClient)) {
 		}
 		//Client bearbeiten. 
 		if(command.equals(statics.label.updateClient)) {
-			mainFrame.updatePanel(UpdateUserController.getPanel());
+			panel = UpdateUserController.getPanel();
 		}
+		setChanged(); 
+		notifyObservers(panel); 
 	}
-	public static void changeJPanel(JPanel newJPanel) {
-		mainFrame.updatePanel(newJPanel);
-	}
+	/*
 	private void startProgressBar() {
 		mainFrame.updatePanel(progressBarView);
 		progressBarView.start();
@@ -65,4 +69,6 @@ public class MainFrameController implements ActionListener {
 		}
 		progressBarView.stop();
 	}
+	*/
 }
+	

@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -11,15 +13,13 @@ import javax.swing.JPanel;
 
 
 @SuppressWarnings("serial")
-public class MainFrameView extends JFrame
-{
+public class MainFrameView extends JFrame implements Observer{
 	private JMenuItem menuItem;
 	private JPanel mainPanel;
 	
-	
 	public MainFrameView(ActionListener mainControll) {
 		this.setSettings();
-		
+
 		mainPanel = new JPanel();
 		this.add(mainPanel, BorderLayout.NORTH);
 		
@@ -78,7 +78,7 @@ public class MainFrameView extends JFrame
 		this.dispose();
 	}
 	
-	public void updatePanel(JPanel newPanel) {
+	private void updatePanel(JPanel newPanel) {
 		String debug = mainPanel.getName();
 		mainPanel.setVisible(false);
 		mainPanel = newPanel;
@@ -88,5 +88,9 @@ public class MainFrameView extends JFrame
 			this.add(mainPanel, BorderLayout.NORTH);
 			this.validate();
 		}
+	}
+	@Override
+	public void update(Observable o, Object arg) {
+		updatePanel((JPanel) arg);
 	}
 }

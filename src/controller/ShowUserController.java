@@ -17,7 +17,6 @@ public class ShowUserController implements ActionListener {
 	
 	public static void showUser(User user) {
 		showUserView.showUser(user);
-		MainFrameController.changeJPanel(showUserView);
 	}
 	
 	public JPanel getPanel() {
