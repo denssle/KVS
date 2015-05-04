@@ -66,7 +66,7 @@ public class CreateUserView implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg.equals(statics.label.ok)) {
-			CreateUserController.crateUser(getInput());
+			CreateUserController.createUser(getInput());
 		}
 	}
 }

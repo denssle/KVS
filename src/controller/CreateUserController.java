@@ -41,7 +41,7 @@ public class CreateUserController extends Observable implements ActionListener {
 		}
 	}
 	
-	public static void crateUser(String[] input) {
+	public static void createUser(String[] input) {
 		newUser = new User(input);
 		newUser.saveUser();
 		statics.debug.debugMessage("CreateUserController", newUser.getForname());
