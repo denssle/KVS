@@ -1,24 +1,29 @@
-package view;
+	package view;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-@SuppressWarnings("serial")
-public class CreateUserView extends JPanel {
+import controller.CreateUserController;
+
+public class CreateUserView implements Observer{
+	private static JPanel createUserPanel;
 	private JTextField[] inputTextFields;
 	
 	public CreateUserView(ActionListener createUserController) {
-		this.setName(statics.label.newClient);
+		createUserPanel = new JPanel();
+		createUserPanel.setName(statics.label.newClient);
 		inputTextFields = new JTextField[statics.label.userLabels.length];
-		this.setLayout(new FlowLayout());
+		createUserPanel.setLayout(new FlowLayout());
 		buildView(createUserController);
-		this.setVisible(true);
+		createUserPanel.setVisible(true);
 	}
 	
 	private void buildView(ActionListener actionListener) {
@@ -43,7 +48,7 @@ public class CreateUserView extends JPanel {
 		
 		line.add(okButton);
 		line.add(cancelButton);
-		this.add(line);
+		createUserPanel.add(line);
 	}
 	
 	public String[] getInput() {
@@ -52,5 +57,16 @@ public class CreateUserView extends JPanel {
 			reponse[i] = inputTextFields[i].getText();
 		}
 		return reponse;
+	}
+	
+	public static JPanel getPanel() {
+		return createUserPanel;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if(arg.equals(statics.label.ok)) {
+			CreateUserController.crateUser(getInput());
+		}
 	}
 }

@@ -2,21 +2,21 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 
 import model.User;
 import view.CreateUserView;
+import view.MainFrameView;
+import view.ShowUserView;
 
-public class CreateUserController implements ActionListener {
-	private static CreateUserView createUserView;
+public class CreateUserController extends Observable implements ActionListener {
+	private static User newUser;
 	
-	public CreateUserController() {
-		createUserView = new CreateUserView(this);
-	}
-	
-	public static JPanel getPanel() {
-		return createUserView;
+	public CreateUserController(Observer mainFrameView) {
+		this.addObserver((Observer) mainFrameView); 
 	}
 	
 	@Override
@@ -25,12 +25,25 @@ public class CreateUserController implements ActionListener {
 		statics.debug.debugMessage("CreateUserController",command);
 		
 		if(command.equals(statics.label.ok)) {
-			String[] inputs = createUserView.getInput();
-			User user = new User(inputs);
-			if(user.saveUser()) {
-				System.out.println(user.getForname()+" wurde gespeichert.");
-				ShowUserController.showUser(user);
-			}
+			setChanged(); 
+			notifyObservers(statics.label.ok);
+			
+			ShowUserView.showUser(newUser);
+			setChanged(); 
+			notifyObservers(ShowUserView.getPanel());
 		}
+		
+		if(command.equals(statics.label.cancel)) {
+			setChanged(); 
+			JPanel panel = new JPanel();
+			panel.setVisible(true);
+			notifyObservers(panel);
+		}
+	}
+	
+	public static void crateUser(String[] input) {
+		newUser = new User(input);
+		newUser.saveUser();
+		statics.debug.debugMessage("CreateUserController", newUser.getForname());
 	}
 }

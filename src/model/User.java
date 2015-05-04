@@ -1,39 +1,87 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 
-public class User {
+@SuppressWarnings("serial")
+public class User implements Serializable {
 	private UUID id;
 	private String forname;
 	private String lastname;
-	private String street;
-	private String zip;
-	private String city;
-	private Date birthdate;
-	private Date lastVisit;
-	private Date fistVisit;
+	private Address address;
+	private String birthdate;
+	private static UserDAO userDAO;
 	
+	public User() {
+		this.id = UUID.randomUUID();
+		userDAO = new UserDAO();
+	}
 	public User(String[] inputs) {
 		this.id = UUID.randomUUID();
 		forname = inputs[0];
 		lastname = inputs[1];
-		street = inputs[2];
-		zip = inputs[3];
-		city = inputs[4];
+		address = new Address();
+		address.setStreet(inputs[2]);
+		address.setZip(inputs[3]);
+		address.setCity(inputs[4]);
+		
+		userDAO = new UserDAO();
+		statics.debug.debugMessage("User", "User erstellt.");
 	}
+	
+	public Map<UUID, User> searchUser(String name) {
+		Map<UUID, User> map = new HashMap<UUID, User>();
+		User user;
+		for(Entry<UUID, User> e : userDAO.getAllUsers().entrySet()) {
+			user = e.getValue();
+			if(user.getForname().equals(name) || user.getLastname().equals(name)) {
+				map.put(user.getId(), user);
+			}
+		}
+		return map;
+	}
+	
 	public boolean saveUser() {
-		if(DataBase.saveUser(this)){
+		if(userDAO.saveUser(this)){
 			return true;
 		}
 		return false;
 	}
 	
-	public User getUserByName() {
+	public User getUserByLastame(String name) {
+		for(Entry<UUID, User> e : userDAO.getAllUsers().entrySet()) {
+			statics.debug.debugMessage("User", "Aktueller User: "+e.getKey()+" "+e.getValue().getLastname());
+			if(name.equals(e.getValue().getLastname())) {
+				return e.getValue();
+			}
+		}
+		return null;
+	}
+	public User getUserByForname(String name) {
+		for(Entry<UUID, User> e : userDAO.getAllUsers().entrySet()) {
+			statics.debug.debugMessage("User", "Aktueller User: "+e.getKey()+" "+e.getValue().getForname());
+			if(name.equals(e.getValue().getLastname())) {
+				return e.getValue();
+			}
+		}
 		return null;
 	}
 	
-	public User getUserByID() {
+	public User getUserByID(String string) {
+		UUID uuid = null;
+		uuid = UUID.fromString(string);
+		
+		for(Entry<UUID, User> e : userDAO.getAllUsers().entrySet()) {
+			statics.debug.debugMessage("User", "Key: "+e.getKey()+" String: "+string);
+			if(uuid.equals(e.getKey())) {
+				return e.getValue();
+			}
+		}
 		return null;
 	}
 	
@@ -52,50 +100,40 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastname = lastName;
 	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getZip() {
-		return zip;
-	}
-
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
 	public UUID getId() {
 		return id;
 	}
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
+	public void setBirthdate(String input) {
+		this.birthdate = input;
 	}
-	public Date getLastVisit() {
-		return lastVisit;
+	public String getStreet() {
+		return address.getStreet();
 	}
-	public void setLastVisit(Date lastVisit) {
-		this.lastVisit = lastVisit;
+
+	public void setStreet(String street) {
+		address.setStreet(street);
 	}
-	public Date getFistVisit() {
-		return fistVisit;
+
+	public String getZip() {
+		return address.getZip();
 	}
-	public void setFistVisit(Date fistVisit) {
-		this.fistVisit = fistVisit;
+
+	public void setZip(String zip) {
+		address.setZip(zip);
 	}
+
+	public String getCity() {
+		return address.getCity();
+	}
+
+	public void setCity(String city) {
+		address.setCity(city);
+	}
+	public void deleteUser() {
+		userDAO.deleteUser(this);
+	}
+	
 }

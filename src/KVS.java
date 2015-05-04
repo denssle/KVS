@@ -1,3 +1,8 @@
+import view.CreateUserView;
+import view.MainFrameView;
+import view.SearchUserView;
+import view.ShowUserView;
+import view.UpdateUserView;
 import model.DataBase;
 import controller.CreateUserController;
 import controller.MainFrameController;
@@ -6,23 +11,44 @@ import controller.ShowUserController;
 import controller.UpdateUserController;
 
 
-public class KVS
-{
+public class KVS {
+	private static CreateUserController createUserController;
 	private static MainFrameController mainControll;
 	private static SearchUserController searchUserController;
-	private static CreateUserController createUserController;
-	private static UpdateUserController updateUserController;
 	private static ShowUserController showUserController;
+	private static UpdateUserController updateUserController;
+	
+	private static CreateUserView createUserView;
+	private static MainFrameView mainFrameView;
+	private static SearchUserView searchUserView;
+	private static ShowUserView showUserView;
+	private static UpdateUserView updateUserView;
 	
 	public static void main(String[] args)
 	{
 		mainControll = new MainFrameController();
-		createUserController = new CreateUserController();
-		searchUserController = new SearchUserController();
-		showUserController = new ShowUserController();
-		updateUserController = new UpdateUserController();
+		mainFrameView = new MainFrameView(mainControll);
+		mainControll.addObserver(mainFrameView);
 		
-		DataBase.start();
-		mainControll.start();
+		createUserController = new CreateUserController(mainFrameView);
+		createUserController.addObserver(mainFrameView);
+		createUserView = new CreateUserView(createUserController);
+		createUserController.addObserver(createUserView);
+		
+		searchUserController = new SearchUserController(mainFrameView);
+		searchUserController.addObserver(mainFrameView);
+		searchUserView = new SearchUserView(searchUserController);
+		searchUserController.addObserver(searchUserView);
+		
+		showUserController = new ShowUserController(mainFrameView);
+		showUserView = new ShowUserView(showUserController);
+		showUserController.addObserver(mainFrameView);
+		
+		updateUserController = new UpdateUserController(mainFrameView);
+		updateUserController.addObserver(mainFrameView);
+		updateUserView = new UpdateUserView(updateUserController);
+		updateUserController.addObserver(updateUserView);
+
+		mainFrameView.start();
 	}
 }

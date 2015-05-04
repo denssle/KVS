@@ -22,6 +22,8 @@ public final class label {
 	public final static String birthdate = "Geburtsdatum";
 	public final static String lastVisit = "Letzter Besuch";
 	public final static String fistVisit = "Erster Besuch";
-	public final static String[] userLabels = {forname, lastname, street, zip, city, birthdate, lastVisit, fistVisit};
+	public final static String[] userLabels = {forname, lastname, street, zip, city, birthdate};
+	
+	public final static String path = "/Users/admin/Dropbox/FH/userSaveFile.txt";
 }
 

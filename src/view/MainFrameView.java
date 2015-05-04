@@ -19,7 +19,7 @@ public class MainFrameView extends JFrame implements Observer{
 	
 	public MainFrameView(ActionListener mainControll) {
 		this.setSettings();
-
+		
 		mainPanel = new JPanel();
 		this.add(mainPanel, BorderLayout.NORTH);
 		
@@ -79,18 +79,29 @@ public class MainFrameView extends JFrame implements Observer{
 	}
 	
 	private void updatePanel(JPanel newPanel) {
-		String debug = mainPanel.getName();
 		mainPanel.setVisible(false);
 		mainPanel = newPanel;
 		if(mainPanel != null) {
+			String debug = mainPanel.getName();
 			mainPanel.setVisible(true);
 			statics.debug.debugMessage("MainFrameView","Wechsel von "+debug+" zu "+ mainPanel.getName());
 			this.add(mainPanel, BorderLayout.NORTH);
 			this.validate();
 		}
 	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
-		updatePanel((JPanel) arg);
+		try {
+			if(arg.equals(statics.label.quit)) {
+				this.quit();
+			} else {
+				updatePanel((JPanel) arg);
+			}
+		} catch(NullPointerException e) {
+			statics.debug.errorMessage("MainFrameView", e.toString());
+		} catch(ClassCastException e) {
+			statics.debug.errorMessage("MainFrameView", e.toString());
+		}
 	}
 }

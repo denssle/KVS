@@ -2,30 +2,47 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import view.ShowUserView;
 import model.User;
 
-public class ShowUserController implements ActionListener {
-	private static ShowUserView showUserView;
+public class ShowUserController extends Observable implements ActionListener {	
+	private static User actualUser;
 	
-	public ShowUserController() {
-		showUserView = new ShowUserView(this);
+	public ShowUserController(Observer mainFrameView) {
+		this.addObserver((Observer) mainFrameView); 
 	}
 	
-	public static void showUser(User user) {
-		showUserView.showUser(user);
+	public void showUser(User user) {
+		actualUser = user;
+		ShowUserView.showUser(user);
+		setChanged(); 
+		notifyObservers(ShowUserView.getPanel());
 	}
 	
-	public JPanel getPanel() {
-		return showUserView;
-	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		String command = e.getActionCommand();
+		JButton pressdButton = (JButton) e.getSource();
+		statics.debug.debugMessage("ShowUserController", command);
+		if(command.equals(statics.label.showClient)) {
+			User user = new User();
+			user = user.getUserByID(pressdButton.getName());
+			actualUser = user;
+			ShowUserView.showUser(user);
+			setChanged(); 
+			notifyObservers(ShowUserView.getPanel());
+		}
 	}
-
+	public static User getUser() {
+		return actualUser;
+	}
+	public static void setUserNull() {
+		actualUser = null;
+	}
 }
