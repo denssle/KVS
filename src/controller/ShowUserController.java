@@ -45,4 +45,7 @@ public class ShowUserController extends Observable implements ActionListener {
 	public static void setUserNull() {
 		actualUser = null;
 	}
+	public static void setUser(User user) {
+		actualUser = user;
+	}
 }

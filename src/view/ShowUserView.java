@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import controller.ShowUserController;
 import model.User;
 
 public class ShowUserView {
@@ -47,6 +48,7 @@ public class ShowUserView {
 		table.setRowMargin(2);
 		table.setShowHorizontalLines(true);
 		table.setPreferredSize(new Dimension(400, 100));
+		ShowUserController.setUser(user);
 		showUserPanel.add(table);
 	}
 
