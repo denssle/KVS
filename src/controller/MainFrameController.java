@@ -42,7 +42,7 @@ public class MainFrameController extends Observable implements ActionListener {
 		}
 		//Client löschen
 		if(command.equals(statics.label.deleteClient)) {
-			UpdateUserController.deleteUser();
+			DeleteUserController.deleteUser();
 			panel = new JPanel();
 		}
 		//Client bearbeiten. 

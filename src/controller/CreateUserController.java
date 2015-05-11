@@ -15,8 +15,7 @@ import view.ShowUserView;
 public class CreateUserController extends Observable implements ActionListener {
 	private static User newUser;
 	
-	public CreateUserController(Observer mainFrameView) {
-		this.addObserver((Observer) mainFrameView); 
+	public CreateUserController() {
 	}
 	
 	@Override

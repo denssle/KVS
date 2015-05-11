@@ -14,8 +14,7 @@ import model.User;
 public class ShowUserController extends Observable implements ActionListener {	
 	private static User actualUser;
 	
-	public ShowUserController(Observer mainFrameView) {
-		this.addObserver((Observer) mainFrameView); 
+	public ShowUserController() {
 	}
 	
 	public void showUser(User user) {

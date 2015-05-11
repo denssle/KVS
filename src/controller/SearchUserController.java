@@ -19,8 +19,7 @@ public class SearchUserController extends Observable implements ActionListener {
 	private static Map<UUID, User> userMap;
 	private static User user;
 	
-	public SearchUserController(Observer mainFrameView) {
-		this.addObserver((Observer) mainFrameView); 
+	public SearchUserController() {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
