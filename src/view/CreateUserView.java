@@ -3,6 +3,7 @@
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,7 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import agiletrack.swing.JDateChooser;
 import controller.CreateUserController;
+
+
 
 public class CreateUserView implements Observer{
 	private static JPanel createUserPanel;
@@ -28,7 +32,7 @@ public class CreateUserView implements Observer{
 	
 	private void buildView(ActionListener actionListener) {
 		JPanel line = new JPanel();
-		line.setLayout(new GridLayout(statics.label.userLabels.length+1,2)); //Spalten, Zeilen
+		line.setLayout(new GridLayout(statics.label.userLabels.length+2,2)); //Spalten, Zeilen
 		
 		for(int i = 0; i < statics.label.userLabels.length; i++) {
 			JLabel label = new JLabel(statics.label.userLabels[i]);
@@ -40,6 +44,13 @@ public class CreateUserView implements Observer{
 			line.add(label);
 			line.add(textfield);
 		}
+		
+		JDateChooser chooser = new JDateChooser();
+		chooser.setLocale(Locale.GERMANY);
+
+		line.add(new JLabel("Date of Birth:"));
+		line.add(chooser);
+		
 		JButton okButton = new JButton(statics.label.ok);
 		okButton.addActionListener(actionListener);
 		
