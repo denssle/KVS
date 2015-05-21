@@ -2,12 +2,14 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
 
 import model.User;
+import statics.CacheUser;
 import view.ShowUserView;
 import view.UpdateUserView;
 
@@ -24,9 +26,11 @@ public class UpdateUserController extends Observable implements ActionListener {
 			setChanged(); 
 			notifyObservers(statics.label.ok);
 			
-			ShowUserView.showUser(updateUser);
-			setChanged(); 
-			notifyObservers(ShowUserView.getPanel());
+			if(updateUser != null) {
+				ShowUserView.showUser(updateUser);
+				setChanged(); 
+				notifyObservers(statics.label.showClient);
+			}
 		}
 		if(command.equals(statics.label.cancel)) {
 			setChanged(); 
@@ -36,19 +40,18 @@ public class UpdateUserController extends Observable implements ActionListener {
 		}
 	}
 	
-	
 	public static User getUser() {
 		return ShowUserController.getUser();
 	}
 
-	public static void updateUser(String[] input) {
+	public static void updateUser(CacheUser cache) {
 		updateUser = getUser();
-		updateUser.setForname(input[0]);
-		updateUser.setLastName(input[1]);
-		updateUser.setStreet(input[2]);
-		updateUser.setZip(input[3]);
-		updateUser.setStreet(input[4]);
-		updateUser.setBirthdate(input[5]);
+		updateUser.setForname(cache.getForname());
+		updateUser.setLastName(cache.getLastname());
+		updateUser.setStreet(cache.getStreet());
+		updateUser.setZip(cache.getZip());
+		updateUser.setCity(cache.getCity());
+		updateUser.setBirthdate(cache.getBirthday());
 		updateUser.saveUser();
 		statics.debug.debugMessage("CreateUserController", updateUser.getForname());
 		

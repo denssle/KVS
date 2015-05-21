@@ -25,15 +25,14 @@ public class SearchUserController extends Observable implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("SearchUserController", command);
-		if(command.equals(statics.label.ok))
-		{
+		if(command.equals(statics.label.ok)) {
 			setChanged(); 
 			notifyObservers(statics.label.ok); 
 			
 			if(user != null) {
 				ShowUserView.showUser(userMap);
 				setChanged(); 
-				notifyObservers(ShowUserView.getPanel());
+				notifyObservers(statics.label.showClient);
 			}
 		}
 	}

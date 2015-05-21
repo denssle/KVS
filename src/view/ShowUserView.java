@@ -23,7 +23,7 @@ public class ShowUserView {
 	private static ActionListener actionListener;
 	
 	public ShowUserView(ActionListener showUserController) {
-		this.actionListener = showUserController;
+		actionListener = showUserController;
 		showUserPanel = new JPanel();
 		showUserPanel.setName(statics.label.showClient);
 		showUserPanel.setLayout(new FlowLayout());
@@ -31,25 +31,27 @@ public class ShowUserView {
 	}
 
 	public static void showUser(User user) {
-		showUserPanel.removeAll();
-		String[][] rowData = {
-				{statics.label.forname, user.getForname() }, 
-				{statics.label.lastname, user.getLastname() },
-				{statics.label.street, user.getStreet()},
-				{statics.label.zip, user.getZip()},
-				{statics.label.city, user.getCity()},
-				{statics.label.birthdate, user.getBirthdate()}
-			    };
-		String[] columnNames =  {
-			      "XXX", "YYY"
-			    };
-		JTable table = new JTable(rowData, columnNames);
-		//table.setRowHeight(25);
-		table.setRowMargin(2);
-		table.setShowHorizontalLines(true);
-		table.setPreferredSize(new Dimension(400, 100));
-		ShowUserController.setUser(user);
-		showUserPanel.add(table);
+		if(user != null) {
+			showUserPanel.removeAll();
+			String[][] rowData = {
+					{statics.label.forname, user.getForname() }, 
+					{statics.label.lastname, user.getLastname() },
+					{statics.label.street, user.getStreet()},
+					{statics.label.zip, user.getZip()},
+					{statics.label.city, user.getCity()},
+					{statics.label.birthdate, user.getNiceBirthday()}
+				    };
+			String[] columnNames =  {
+				      "XXX", "YYY"
+				    };
+			JTable table = new JTable(rowData, columnNames);
+			//table.setRowHeight(25);
+			table.setRowMargin(2);
+			table.setShowHorizontalLines(true);
+			table.setPreferredSize(new Dimension(400, 100));
+			ShowUserController.setUser(user);
+			showUserPanel.add(table);
+		}
 	}
 
 	public static void showUser(Map<UUID, User> userMap) {
@@ -61,8 +63,7 @@ public class ShowUserView {
 
 		Iterator<Entry<UUID, User>> iterator = userMap.entrySet().iterator();
 		
-		while(iterator.hasNext())
-		{	
+		while(iterator.hasNext()) {	
 			Map.Entry<UUID, User> pairs = iterator.next();
 	        UUID uuid = (UUID) pairs.getKey();
 	        User user = (User) pairs.getValue();
@@ -78,6 +79,7 @@ public class ShowUserView {
 	}
 	
 	public static JPanel getPanel() {
+		showUser(ShowUserController.getUser());
 		return showUserPanel;
 	}
 }

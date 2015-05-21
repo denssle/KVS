@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.SearchUserController;
+import controller.ShowUserController;
 
 public class SearchUserView implements Observer{
 	private static JPanel searchUserPanel;
@@ -39,6 +40,7 @@ public class SearchUserView implements Observer{
 		return textfield.getText();
 	}
 	public static JPanel getPanel() {
+		ShowUserController.setUserNull();
 		return searchUserPanel;
 	}
 

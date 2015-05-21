@@ -16,6 +16,7 @@ public class DeleteUserController extends Observable implements ActionListener {
 	public static void deleteUser() {
 		User updateUser = ShowUserController.getUser();
 		if(updateUser != null) {
+			
 			updateUser.deleteUser();
 			ShowUserController.setUserNull();
 		}

@@ -53,7 +53,6 @@ public class KVS {
 		updateUserController.addObserver(updateUserView);
 
 		deleteUserController = new DeleteUserController();
-		deleteUserController.addObserver(mainFrameView);
 		deleteUserView = new DeleteUserView(deleteUserController);
 		deleteUserController.addObserver(deleteUserView);
 		
