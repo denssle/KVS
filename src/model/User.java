@@ -3,21 +3,18 @@ package model;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.UUID;
+import dao.UserDAO;
 
-@SuppressWarnings("serial")
-public class User implements Serializable {
+public class User {
 	private UUID id;
 	private String forname;
 	private String lastname;
 	private Address address;
 	private String birthdate;
-	private static UserDAO userDAO;
 	
 	public User() {
 		this.id = UUID.randomUUID();
-		userDAO = new UserDAO();
 	}
 	public User(String[] inputs) {
 		this.id = UUID.randomUUID();
@@ -27,16 +24,15 @@ public class User implements Serializable {
 		address.setStreet(inputs[2]);
 		address.setZip(inputs[3]);
 		address.setCity(inputs[4]);
-		
-		userDAO = new UserDAO();
+
 		statics.debug.debugMessage("User", "User erstellt.");
 	}
 	
 	public Map<UUID, User> searchUser(String name) {
 		Map<UUID, User> map = new HashMap<UUID, User>();
 		User user;
-		for(Entry<UUID, User> e : userDAO.getAllUsers().entrySet()) {
-			user = e.getValue();
+		for(User e :  UserDAO.getInstance().getAllUsers()) {
+			user = e;
 			if(user.getForname().equals(name) || user.getLastname().equals(name)) {
 				map.put(user.getId(), user);
 			}
@@ -50,42 +46,31 @@ public class User implements Serializable {
 	}
 	
 	public boolean saveUser() {
-		if(userDAO.saveUser(this)){
-			return true;
-		}
-		return false;
+		UserDAO.getInstance().updateUser(this);
+		return true;	
 	}
 	
 	public User getUserByLastame(String name) {
-		for(Entry<UUID, User> e : userDAO.getAllUsers().entrySet()) {
-			statics.debug.debugMessage("User", "Aktueller User: "+e.getKey()+" "+e.getValue().getLastname());
-			if(name.equals(e.getValue().getLastname())) {
-				return e.getValue();
+		for(User e : UserDAO.getInstance().getAllUsers()) {
+			statics.debug.debugMessage("User", "Aktueller User: "+e);
+			if(name.equals(e.getLastname())) {
+				return e;
 			}
 		}
 		return null;
 	}
 	public User getUserByForname(String name) {
-		for(Entry<UUID, User> e : userDAO.getAllUsers().entrySet()) {
-			statics.debug.debugMessage("User", "Aktueller User: "+e.getKey()+" "+e.getValue().getForname());
-			if(name.equals(e.getValue().getLastname())) {
-				return e.getValue();
+		for(User e : UserDAO.getInstance().getAllUsers()) {
+			statics.debug.debugMessage("User", "Aktueller User: "+e);
+			if(name.equals(e.getLastname())) {
+				return e;
 			}
 		}
 		return null;
 	}
 	
 	public User getUserByID(String string) {
-		UUID uuid = null;
-		uuid = UUID.fromString(string);
-		
-		for(Entry<UUID, User> e : userDAO.getAllUsers().entrySet()) {
-			statics.debug.debugMessage("User", "Key: "+e.getKey()+" String: "+string);
-			if(uuid.equals(e.getKey())) {
-				return e.getValue();
-			}
-		}
-		return null;
+		return UserDAO.getInstance().getUserById(string);	
 	}
 	
 	public String getForname() {
@@ -136,7 +121,7 @@ public class User implements Serializable {
 		address.setCity(city);
 	}
 	public void deleteUser() {
-		userDAO.deleteUser(this);
+		UserDAO.getInstance().deleteUser(this.getId().toString());
 	}
 	
 }

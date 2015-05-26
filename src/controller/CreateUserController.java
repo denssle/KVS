@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import dao.UserDAO;
 import model.User;
 import view.CreateUserView;
 import view.MainFrameView;
@@ -42,7 +43,7 @@ public class CreateUserController extends Observable implements ActionListener {
 	
 	public static void createUser(String[] input) {
 		newUser = new User(input);
-		newUser.saveUser();
+		UserDAO.getInstance().addUser(newUser);
 		statics.debug.debugMessage("CreateUserController", newUser.getForname());
 	}
 }

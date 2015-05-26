@@ -17,9 +17,17 @@ import util.DBUtil;
 
 public class UserDAO {
 	private Connection connection;
+	private static UserDAO userDAO;
 
-	public UserDAO() {
+	private UserDAO() {
 		connection = DBUtil.getConnection();
+	}
+	
+	public static UserDAO getInstance() {
+		if(userDAO == null)
+			userDAO = new UserDAO();
+
+		return userDAO;
 	}
 
 	public void addUser(User user) {
