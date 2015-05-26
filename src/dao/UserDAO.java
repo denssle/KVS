@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,25 +24,30 @@ public class UserDAO {
 
 	public void addUser(User user) {
 		try {
-			//TODO: SQL Statement anpassen
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into users() values (?, ?, ?, ? )");
-			preparedStatement.setString(1, user.getForname());
-			preparedStatement.setString(2, user.getLastname());
-			//TODO: Date to TimeStamp und restliche felder ergänzen
-			//Date date = new Date(user.getBirthdate());
-			//preparedStatement.setDate(3, date);
+					.prepareStatement("insert into Users(UUID,FORENAME,LASTNAME,BIRTHDATE,STREET,ZIP,CITY) values (?, ?, ?, ?, ?, ?, ?)");
+			preparedStatement.setString(1, user.getId().toString());
+			preparedStatement.setString(2, user.getForname());
+			preparedStatement.setString(3, user.getLastname());
+			SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
+			java.util.Date d = f.parse(user.getBirthdate());
+			long milliseconds = d.getTime();
+			Date date = new Date(milliseconds);
+			preparedStatement.setDate(4, date);
+			preparedStatement.setString(5, user.getStreet());
+			preparedStatement.setString(6, user.getZip());
+			preparedStatement.setString(7, user.getCity());
 			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void deleteUser(int userId) {
+	public void deleteUser(String userId) {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("delete from users where userid=?");
-			preparedStatement.setInt(1, userId);
+					.prepareStatement("delete from Users where UUID=?");
+			preparedStatement.setString(1, userId);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,12 +58,16 @@ public class UserDAO {
 		List<User> users = new ArrayList<User>();
 		try {
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("select * from users");
+			ResultSet rs = statement.executeQuery("select * from Users");
 			while (rs.next()) {
-				//TODO: Andere Felder ergänzen
 				User user = new User();
-				user.setForname(rs.getString("firstname"));
-				user.setLastName(rs.getString("lastname"));
+				user.setId(rs.getString("UUID"));
+				user.setForname(rs.getString("FORENAME"));
+				user.setLastName(rs.getString("LASTNAME"));
+				user.setBirthdate(rs.getString("BIRTHDATE"));
+				user.setStreet(rs.getString("STREET"));
+				user.setZip(rs.getString("ZIP"));
+				user.setCity(rs.getString("CITY"));
 				users.add(user);
 			}
 		} catch (SQLException e) {
@@ -65,18 +76,22 @@ public class UserDAO {
 		return users;
 	}
 
-	public User getUserById(int userId) {
+	public User getUserById(String userId) {
 
 		User user = new User();
 		try {
 			PreparedStatement preparedStatement = connection.
-					prepareStatement("select * from users where userid=?");
-			preparedStatement.setInt(1, userId);
+					prepareStatement("select * from Users where UUID=?");
+			preparedStatement.setString(1, userId);
 			ResultSet rs = preparedStatement.executeQuery();
 			if (rs.next()) {
-				//TODO: Andere Felder ergänzen
-				user.setForname(rs.getString("firstname"));
-				user.setLastName(rs.getString("lastname"));
+				user.setId(rs.getString("UUID"));
+				user.setForname(rs.getString("FORENAME"));
+				user.setLastName(rs.getString("LASTNAME"));
+				user.setBirthdate(rs.getString("BIRTHDATE"));
+				user.setStreet(rs.getString("STREET"));
+				user.setZip(rs.getString("ZIP"));
+				user.setCity(rs.getString("CITY"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -86,17 +101,22 @@ public class UserDAO {
 
 	public void updateUser(User user) {
 		try {
-			//TODO: SQL Statement anpassen
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("update users set firstname=?, lastname=?, dob=?, email=?"
-							+"where userid=?");
+					.prepareStatement("update Users set FORENAME=?, LASTNAME=?, BIRTHDATE=?, STREET=?, ZIP=?, CITY=?"
+							+"where UUID=?");
 			preparedStatement.setString(1, user.getForname());
 			preparedStatement.setString(2, user.getLastname());
-			//TODO: Date to TimeStamp und restliche felder ergänzen
-			//Date date = new Date(user.getBirthdate());
-			//preparedStatement.setDate(3, date);
+			SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
+			java.util.Date d = f.parse(user.getBirthdate());
+			long milliseconds = d.getTime();
+			Date date = new Date(milliseconds);
+			preparedStatement.setDate(3, date);
+			preparedStatement.setString(4, user.getStreet());
+			preparedStatement.setString(5, user.getZip());
+			preparedStatement.setString(6, user.getCity());
+			preparedStatement.setString(7, user.getId().toString());
 			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			e.printStackTrace();
 		}
 	}

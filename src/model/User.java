@@ -1,8 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -44,6 +42,11 @@ public class User implements Serializable {
 			}
 		}
 		return map;
+	}
+	
+	public void setId(String id)
+	{
+		this.id = UUID.fromString(id);
 	}
 	
 	public boolean saveUser() {
