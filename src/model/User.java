@@ -1,6 +1,5 @@
 package model;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -24,8 +23,9 @@ public class User {
 		address.setStreet(inputs[2]);
 		address.setZip(inputs[3]);
 		address.setCity(inputs[4]);
-
-		statics.debug.debugMessage("User", "User erstellt.");
+		//TODO: Geburtstag reibringen ?!
+		birthdate = "01.01.1990";
+		statics.debug.debugMessage("User", "User erstellt. "+this.id.toString());
 	}
 	
 	public Map<UUID, User> searchUser(String name) {
