@@ -22,8 +22,8 @@ public class SearchUserView implements Observer{
 		searchUserPanel.setName(statics.label.searchClient);
 		searchUserPanel.setLayout(new FlowLayout());
 		
-		JLabel label = new JLabel("Suche… ");
-		textfield = new JTextField("… nach Max Mustermann. ");
+		JLabel label = new JLabel("Suche");
+		textfield = new JTextField("nach Max Mustermann. ");
 		textfield.setToolTipText("Hier Name eingeben. ");
 		textfield.setPreferredSize( new Dimension( 200, 20 ) );
 		

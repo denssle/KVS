@@ -15,6 +15,25 @@ public class User {
 	public User() {
 		this.id = UUID.randomUUID();
 	}
+	
+	public User(UUID id, String forname, String lastname, String birthdate, Address address) {
+		this.id = id;
+		this.forname = forname;
+		this.lastname = lastname;
+		this.birthdate = birthdate;
+		this.address = address;
+		statics.debug.debugMessage("User", "User erstellt. "+this.id.toString());
+	}
+	
+	public User(UUID id, String forname, String lastname, String birthdate, String street, String zip, String city) {
+		this.id = id;
+		this.forname = forname;
+		this.lastname = lastname;
+		this.birthdate = birthdate;
+		this.address = new Address(street,zip,city);
+		statics.debug.debugMessage("User", "User erstellt. "+this.id.toString());
+	}
+	
 	public User(String[] inputs) {
 		this.id = UUID.randomUUID();
 		forname = inputs[0];
@@ -123,5 +142,8 @@ public class User {
 	public void deleteUser() {
 		UserDAO.getInstance().deleteUser(this.getId().toString());
 	}
-	
+
+	public String toString() {
+		return "User[id = "+id+",forname = "+forname+", lastname = "+lastname+", birthdate = "+birthdate+", street = "+address.getStreet()+", zip = "+address.getZip()+", city = "+address.getCity()+"]";
+	}
 }
