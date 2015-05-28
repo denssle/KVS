@@ -6,6 +6,7 @@
 package agiletrack.swing;
 
 import agiletrack.swing.JCalendar.BasicDate;
+
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -73,7 +75,8 @@ public class JDatePicker extends JPanel {
     private Color colorSelectedRange = Color.GREEN;
     /** Construct a JDatePicker with no current selected date.  The month and
      * year defeault to the current month and year. */
-    public JDatePicker() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public JDatePicker() {
         monthComboBox = new JComboBox();
         yearSpinner = new JSpinner();
         calendarComponent = new JCalendar();

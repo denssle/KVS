@@ -33,9 +33,7 @@ public class SearchUserView implements Observer{
 		searchUserPanel.add(button);
 		searchUserPanel.setVisible(true);
 	}
-	private String getInput() {
-		return textfield.getText();
-	}
+
 	public static JPanel getPanel() {
 		ShowUserController.setUserNull();
 		return searchUserPanel;
