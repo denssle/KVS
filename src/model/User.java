@@ -1,24 +1,36 @@
 package model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import dao.UserDAO;
+import statics.CacheUser;
 
 public class User {
-
 	private UUID id;
 	private String forname;
 	private String lastname;
 	private Address address;
 	private Date birthdate;
+	private static UserDAO userDAO;
 	
 	public User() {
 		this.id = UUID.randomUUID();
 	}
-
+	
+	public User(CacheUser cache) {
+		this.id = UUID.randomUUID();
+		this.forname = cache.getForname();
+		this.lastname = cache.getLastname();
+		this.address.setCity(cache.getCity());
+		this.address.setStreet(cache.getStreet());
+		this.address.setZip(cache.getZip());
+		this.birthdate = cache.getBirthday();
+	}
 	
 	public User(UUID id, String forname, String lastname, Date birthdate, Address address) {
 		this.id = id;
@@ -37,6 +49,7 @@ public class User {
 		this.address = new Address(street,zip,city);
 		statics.debug.debugMessage("User", "User erstellt. "+this.id.toString());
 	}
+	
 	
 	public Map<UUID, User> searchUser(String name) {
 		Map<UUID, User> map = new HashMap<UUID, User>();

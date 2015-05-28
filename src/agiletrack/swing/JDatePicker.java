@@ -30,12 +30,7 @@ import javax.swing.event.ChangeListener;
  * as selecting the date.  It also provides an internal date change tracking to show a feedback background
  * color indicating the date has change, or to be queried by other containers. */
 public class JDatePicker extends JPanel {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/** Number of days in each month.  Used to adjust the day of the month near the boundary dates when
+    /** Number of days in each month.  Used to adjust the day of the month near the boundary dates when
      * switching the selected month. */ 
     private static int[] DAYS_IN_MONTH_LIST = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     
@@ -60,7 +55,7 @@ public class JDatePicker extends JPanel {
     private Date date = null;
     
     /** Combo box to select the month */
-    private JComboBox<?> monthComboBox;
+    private JComboBox monthComboBox;
     
     /** Spinner to select the year */
     private JSpinner yearSpinner;
@@ -70,7 +65,10 @@ public class JDatePicker extends JPanel {
 
     private Color colorBackground = Color.WHITE;
     private Color colorBackgroundChanged = new Color(0xFFFFAA);
+    private Color colorNewRange = Color.CYAN;
     private Color colorSelectedRange = Color.GREEN;
+    private Color colorCursor = Color.BLUE;
+    
     /** Construct a JDatePicker with no current selected date.  The month and
      * year defeault to the current month and year. */
     public JDatePicker() {

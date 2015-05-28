@@ -1,7 +1,7 @@
 package util;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
@@ -13,10 +13,10 @@ import dao.UserDAO;
 
 public class UserGenerator {
 
-	private static String[] GIVEN_NAMES = {"Inge", "Rolf", "Martina", "Wolfgang", "Walter", "Frank", "Hans", "Jörg", "Andreas", "Wilhelm", "Horst", "Josef", "Günter", "Marianne", "Sabine", "Christine", "Marion", "Thomas", "Willi", "Gertrud", "Matthias", "Joachim", "Ute", "Anna", "Norbert", "Barbara", "Brigitte", "Edith", "Ingeborg", "Sandra", "Ulrike", "Irmgard", "Hermann", "Birgit", "Christa", "Stefan", "Claudia", "Bernhard", "Gisela", "Kerstin", "Markus", "Gabriele", "Ingrid", "Petra", "Susanne", "Heinrich", "Bernd", "Heinz", "Elke", "Klaus", "Erich", "Heike", "Anja", "Elfriede", "Waltraud", "Johann", "Hildegard", "Renate", "Andrea", "Georg", "Rainer", "Monika", "Martin", "Ursula", "Uwe", "Manfred", "Rudolf", "Herbert", "Anneliese", "Christian", "Dieter", "Hannelore", "Doris", "Helmut", "Ulrich", "Karl", "Peter", "Siegfried", "Gerhard", "Alexander", "Beate", "Jürgen", "Michael", "Erika", "Karl-Heinz", "Maria", "Ruth", "Margarete", "Ilse", "Ralf", "Gerda", "Kurt", "Elisabeth", "Franz", "Helga", "Angelika", "Jutta", "Werner", "Alfred", "Karin"};
-	private static String[] FAMILY_NAMES = {"Müller", "Schmidt", "Schneider", "Fischer", "Weber", "Meyer", "Wagner", "Becker", "Schulz", "Hoffmann", "Schäfer", "Bauer", "Koch", "Richter", "Klein", "Wolf", "Schröder", "Neumann", "Schwarz", "Braun", "Hofmann", "Zimmermann", "Schmitt", "Hartmann", "Krüger", "Schmid", "Werner", "Lange", "Schmitz", "Meier", "Krause", "Maier", "Lehmann", "Huber", "Mayer", "Herrmann", "Köhler", "Walter", "König", "Schulze", "Fuchs", "Kaiser", "Lang", "Weiß", "Peters", "Scholz", "Jung", "Möller", "Hahn", "Keller"};
-	private static String[] STREET_NAMES = {"Hauptstraße", "Dorfstraße", "Schulstraße", "Bahnhofstraße", "Gartenstraße", "Bergstraße", "Lindenstraße", "Birkenweg", "Waldstraße", "Kirchstraße", "Ringstraße", "Wiesenweg", "Schillerstraße", "Goethestraße", "Mühlenweg", "Amselweg", "Feldstraße", "Wiesenstraße", "Jahnstraße", "Am Sportplatz", "Buchenweg", "Friedhofstraße", "Eichenweg", "Finkenweg", "Ahornweg", "Mühlenstraße", "Rosenstraße", "Talstraße", "Erlenweg", "Blumenstraße", "Brunnenstraße", "Kirchweg", "Lindenweg", "Raiffeisenstraße", "Bachstraße", "Industriestraße", "Tannenweg", "Mittelstraße", "Gartenweg", "Rosenweg", "Mozartstraße", "Am Bahnhof", "Lerchenweg", "Waldweg", "Drosselweg", "Poststraße", "Schlossstraße", "Neue Straße", "Mühlweg", "Kirchplatz"};
-	private static String[] CITY_NAMES = {"Berlin", "Hamburg", "München", "Köln", "Frankfurt(Main)", "Stuttgart", "Düsseldorf", "Dortmund", "Essen", "Bremen", "Dresden", "Leipzig", "Hannover", "Nürnberg", "Duisburg", "Bochum", "Wuppertal", "Bonn", "Bielefeld", "Mannheim", "Karlsruhe", "Münster", "Wiesbaden", "Augsburg", "Aachen", "Mönchengladbach", "Gelsenkirchen", "Braunschweig", "Chemnitz", "Kiel", "Krefeld", "Halle(Saale)", "Magdeburg", "Freiburg im Breisgau", "Oberhausen", "Lübeck", "Erfurt", "Rostock", "Mainz", "Kassel", "Hagen", "Hamm", "Saarbrücken", "Mülheim an der Ruhr", "Herne", "Ludwigshafen am Rhein", "Osnabrück", "Oldenburg", "Leverkusen", "Solingen"};
+	private static String[] GIVEN_NAMES = {"Inge", "Rolf", "Martina", "Wolfgang", "Walter", "Frank", "Hans", "Jï¿½rg", "Andreas", "Wilhelm", "Horst", "Josef", "Gï¿½nter", "Marianne", "Sabine", "Christine", "Marion", "Thomas", "Willi", "Gertrud", "Matthias", "Joachim", "Ute", "Anna", "Norbert", "Barbara", "Brigitte", "Edith", "Ingeborg", "Sandra", "Ulrike", "Irmgard", "Hermann", "Birgit", "Christa", "Stefan", "Claudia", "Bernhard", "Gisela", "Kerstin", "Markus", "Gabriele", "Ingrid", "Petra", "Susanne", "Heinrich", "Bernd", "Heinz", "Elke", "Klaus", "Erich", "Heike", "Anja", "Elfriede", "Waltraud", "Johann", "Hildegard", "Renate", "Andrea", "Georg", "Rainer", "Monika", "Martin", "Ursula", "Uwe", "Manfred", "Rudolf", "Herbert", "Anneliese", "Christian", "Dieter", "Hannelore", "Doris", "Helmut", "Ulrich", "Karl", "Peter", "Siegfried", "Gerhard", "Alexander", "Beate", "Jï¿½rgen", "Michael", "Erika", "Karl-Heinz", "Maria", "Ruth", "Margarete", "Ilse", "Ralf", "Gerda", "Kurt", "Elisabeth", "Franz", "Helga", "Angelika", "Jutta", "Werner", "Alfred", "Karin"};
+	private static String[] FAMILY_NAMES = {"Mï¿½ller", "Schmidt", "Schneider", "Fischer", "Weber", "Meyer", "Wagner", "Becker", "Schulz", "Hoffmann", "Schï¿½fer", "Bauer", "Koch", "Richter", "Klein", "Wolf", "Schrï¿½der", "Neumann", "Schwarz", "Braun", "Hofmann", "Zimmermann", "Schmitt", "Hartmann", "Krï¿½ger", "Schmid", "Werner", "Lange", "Schmitz", "Meier", "Krause", "Maier", "Lehmann", "Huber", "Mayer", "Herrmann", "Kï¿½hler", "Walter", "Kï¿½nig", "Schulze", "Fuchs", "Kaiser", "Lang", "Weiï¿½", "Peters", "Scholz", "Jung", "Mï¿½ller", "Hahn", "Keller"};
+	private static String[] STREET_NAMES = {"Hauptstraï¿½e", "Dorfstraï¿½e", "Schulstraï¿½e", "Bahnhofstraï¿½e", "Gartenstraï¿½e", "Bergstraï¿½e", "Lindenstraï¿½e", "Birkenweg", "Waldstraï¿½e", "Kirchstraï¿½e", "Ringstraï¿½e", "Wiesenweg", "Schillerstraï¿½e", "Goethestraï¿½e", "Mï¿½hlenweg", "Amselweg", "Feldstraï¿½e", "Wiesenstraï¿½e", "Jahnstraï¿½e", "Am Sportplatz", "Buchenweg", "Friedhofstraï¿½e", "Eichenweg", "Finkenweg", "Ahornweg", "Mï¿½hlenstraï¿½e", "Rosenstraï¿½e", "Talstraï¿½e", "Erlenweg", "Blumenstraï¿½e", "Brunnenstraï¿½e", "Kirchweg", "Lindenweg", "Raiffeisenstraï¿½e", "Bachstraï¿½e", "Industriestraï¿½e", "Tannenweg", "Mittelstraï¿½e", "Gartenweg", "Rosenweg", "Mozartstraï¿½e", "Am Bahnhof", "Lerchenweg", "Waldweg", "Drosselweg", "Poststraï¿½e", "Schlossstraï¿½e", "Neue Straï¿½e", "Mï¿½hlweg", "Kirchplatz"};
+	private static String[] CITY_NAMES = {"Berlin", "Hamburg", "Mï¿½nchen", "Kï¿½ln", "Frankfurt(Main)", "Stuttgart", "Dï¿½sseldorf", "Dortmund", "Essen", "Bremen", "Dresden", "Leipzig", "Hannover", "Nï¿½rnberg", "Duisburg", "Bochum", "Wuppertal", "Bonn", "Bielefeld", "Mannheim", "Karlsruhe", "Mï¿½nster", "Wiesbaden", "Augsburg", "Aachen", "Mï¿½nchengladbach", "Gelsenkirchen", "Braunschweig", "Chemnitz", "Kiel", "Krefeld", "Halle(Saale)", "Magdeburg", "Freiburg im Breisgau", "Oberhausen", "Lï¿½beck", "Erfurt", "Rostock", "Mainz", "Kassel", "Hagen", "Hamm", "Saarbrï¿½cken", "Mï¿½lheim an der Ruhr", "Herne", "Ludwigshafen am Rhein", "Osnabrï¿½ck", "Oldenburg", "Leverkusen", "Solingen"};
 	
 	
 	private static Random rnd = new Random();
@@ -31,14 +31,13 @@ public class UserGenerator {
 		return names[rnd.nextInt(names.length)];
 	}
 	
-	private static Date getRandomBirthdate()
-	{
+	private static Date getRandomBirthdate() {
 		GregorianCalendar gc = new GregorianCalendar();
         int year = randBetween(1946, 1996);
         gc.set(Calendar.YEAR, year);
         int dayOfYear = randBetween(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
         gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
-		return new Date(gc.getTimeInMillis());		
+		return gc.getTime();
 	}
 	
     private static int randBetween(int start, int end) {

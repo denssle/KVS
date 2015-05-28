@@ -13,7 +13,9 @@ import javax.swing.JTextField;
 import statics.CacheUser;
 import agiletrack.swing.JDateChooser;
 import model.User;
+import controller.CreateUserController;
 import controller.ShowUserController;
+import model.User;
 import controller.UpdateUserController;
 
 public class UpdateUserView implements Observer{
@@ -46,37 +48,37 @@ public class UpdateUserView implements Observer{
 		
 		cache = new CacheUser();
 		
-		label = new JLabel(statics.label.userLabels[0]);
+		label = new JLabel(statics.label.forname);
 		textfield = new JTextField(user.getForname());
 		cache.setFornameField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[1]);
+		label = new JLabel(statics.label.lastname);
 		textfield = new JTextField(user.getLastname());
 		cache.setLastnameField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[2]);
+		label = new JLabel(statics.label.street);
 		textfield = new JTextField(user.getStreet());
 		cache.setStreetField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[3]);
+		label = new JLabel(statics.label.zip);
 		textfield = new JTextField(user.getZip());
 		cache.setZipField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[4]);
+		label = new JLabel(statics.label.city);
 		textfield = new JTextField(user.getCity());
 		cache.setCityField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[5]);
+		label = new JLabel(statics.label.birthdate);
 		JDateChooser chooser = new JDateChooser();
 		chooser.setLocale(Locale.GERMANY);
 		chooser.setDate(user.getBirthdate());

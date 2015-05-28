@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +36,10 @@ public class UserDAO {
 			preparedStatement.setString(1, user.getId().toString());
 			preparedStatement.setString(2, user.getForname());
 			preparedStatement.setString(3, user.getLastname());
-			preparedStatement.setDate(4, new Date(user.getBirthdate().getTime()));
+			java.util.Date d = user.getBirthdate();
+			long milliseconds = d.getTime();
+			Date date = new Date(milliseconds);
+			preparedStatement.setDate(4, date);
 			preparedStatement.setString(5, user.getStreet());
 			preparedStatement.setString(6, user.getZip());
 			preparedStatement.setString(7, user.getCity());
@@ -107,7 +112,10 @@ public class UserDAO {
 							+"where UUID=?");
 			preparedStatement.setString(1, user.getForname());
 			preparedStatement.setString(2, user.getLastname());
-			preparedStatement.setDate(3, new Date(user.getBirthdate().getTime()));
+			java.util.Date d = user.getBirthdate();
+			long milliseconds = d.getTime();
+			Date date = new Date(milliseconds);
+			preparedStatement.setDate(3, date);
 			preparedStatement.setString(4, user.getStreet());
 			preparedStatement.setString(5, user.getZip());
 			preparedStatement.setString(6, user.getCity());

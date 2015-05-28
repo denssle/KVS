@@ -32,12 +32,7 @@ import javax.swing.JPanel;
  * cell changes.  It is intended to be used in more complex components to provide date selection, or
  * presentation capability. */
 public class JCalendar extends JPanel {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/** This action event name indicates that the cursor has moved between date cells
+    /** This action event name indicates that the cursor has moved between date cells
      * within the calendar. */
     public static final String ACTION_CURSOR_MOVED = "cursorMoved";
     
@@ -48,11 +43,7 @@ public class JCalendar extends JPanel {
      * I effectively strips time out of the date and compares the simple text representation,
      * but can return a Date object if necessary. */
     public static class BasicDate implements Serializable {
-        /**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-		private SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        private SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         private String textDate;
         public BasicDate(Date date) { textDate = format.format(date == null ? new Date(0) : date); }
         public Date getDate() { 
@@ -97,8 +88,10 @@ public class JCalendar extends JPanel {
     /** Internal state variable - a map that describes which date cells should be displayed using a custom color */
     private HashMap<BasicDate, Color> dateHighlightMap = new HashMap<BasicDate, Color>();
 
+    private Color colorNeighborMonthBackground = Color.WHITE;
     private Color colorNeighborDayLabel = Color.LIGHT_GRAY;
     private Color colorMonthBorderBackground = Color.GRAY;
+    private Color colorMonthBackground = Color.WHITE;
     private Color colorDayHighlightBackground = Color.BLUE;
     private Color colorDayLabel = Color.BLACK;
     private Color colorDayHighlightLabel = Color.WHITE;

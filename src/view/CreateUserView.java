@@ -3,15 +3,20 @@
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import statics.CacheUser;
 import agiletrack.swing.JDateChooser;
+import controller.CreateUserController;
 import controller.ShowUserController;
 
 public class CreateUserView implements Observer{
@@ -97,8 +102,11 @@ public class CreateUserView implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg.equals(statics.label.ok)) {
-			//TODO: Valdidierungsergebnis durch DIC implementieren
-			createUserPanel.setVisible(false);
+			if(CreateUserController.createUser(cache) == false) {
+				JOptionPane.showMessageDialog(null, "Validierung gescheitert!");
+			} else {
+				createUserPanel.setVisible(false);
+			}
 		}
 	}
 }
