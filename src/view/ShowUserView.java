@@ -6,10 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.UUID;
-import java.util.Map.Entry;
-
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -59,26 +56,24 @@ public class ShowUserView {
 	/*
 	 * Zeigt die Erbenisse einer Suche an. 
 	 */
-	public static void showUser(Map<UUID, User> userMap) {
+	public static void showUser(List<User> userMap) {
 		showUserPanel.removeAll();
 		JPanel subArtikelPanel = new JPanel();
 		
 		showUserPanel.add(subArtikelPanel, BorderLayout.PAGE_START);
 		subArtikelPanel.setLayout(new GridLayout(userMap.size(),3));
 
-		Iterator<Entry<UUID, User>> iterator = userMap.entrySet().iterator();
+		Iterator<User> iterator = userMap.iterator();
 		
 		while(iterator.hasNext()) {	
-			Map.Entry<UUID, User> pairs = iterator.next();
-	        UUID uuid = (UUID) pairs.getKey();
-	        User user = (User) pairs.getValue();
+	        User user = iterator.next();
 			
 			subArtikelPanel.add(new JLabel(user.getForname()));
 			subArtikelPanel.add(new JLabel(user.getLastname()));
 			
 			JButton showButton = new JButton(statics.label.showClient);
 			showButton.addActionListener(getActionListener());
-			showButton.setName(uuid.toString());
+			showButton.setName(user.getId().toString());
 	        subArtikelPanel.add(showButton);
 		}
 	}

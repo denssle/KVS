@@ -1,4 +1,4 @@
-	package view;
+package view;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
