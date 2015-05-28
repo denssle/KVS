@@ -24,33 +24,9 @@ public class MainFrameController extends Observable implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		statics.debug.debugMessage("MainFrameController",command);
-		JPanel panel = null;
-		
-		//Beenden
-		if(command.equals(statics.label.quit)) {
-			setChanged(); 
-			notifyObservers(statics.label.quit); 
-		}
-		//Neuer Klient
-		if(command.equals(statics.label.newClient)) {
-			panel = CreateUserView.getPanel();
-		}
-		//Client suchen
-		if(command.equals(statics.label.searchClient)) {
-			panel = SearchUserView.getPanel();
-		}
-		//Client löschen
-		if(command.equals(statics.label.deleteClient)) {
-			DeleteUserController.deleteUser();
-			panel = new JPanel();
-		}
-		//Client bearbeiten. 
-		if(command.equals(statics.label.updateClient)) {
-			panel = UpdateUserView.getPanel();
-		}
+		statics.debug.debugMessage("MainFrameController",command);		
 		setChanged(); 
-		notifyObservers(panel); 
+		notifyObservers(command); 
 	}
 }
 	

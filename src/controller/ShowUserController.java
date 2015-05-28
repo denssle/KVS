@@ -35,7 +35,7 @@ public class ShowUserController extends Observable implements ActionListener {
 			actualUser = user;
 			ShowUserView.showUser(user);
 			setChanged(); 
-			notifyObservers(ShowUserView.getPanel());
+			notifyObservers(statics.label.showClient);
 		}
 	}
 	public static User getUser() {
@@ -45,6 +45,7 @@ public class ShowUserController extends Observable implements ActionListener {
 		actualUser = null;
 	}
 	public static void setUser(User user) {
+		statics.debug.debugMessage("ShowUserController", "Aktueller User: "+user.getForname());
 		actualUser = user;
 	}
 }

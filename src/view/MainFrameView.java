@@ -11,6 +11,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import controller.DeleteUserController;
+
 
 @SuppressWarnings("serial")
 public class MainFrameView extends JFrame implements Observer{
@@ -74,7 +76,7 @@ public class MainFrameView extends JFrame implements Observer{
 		this.setVisible(true);
 	}
 	
-	public void quit() {
+	private void quit() {
 		this.dispose();
 	}
 	
@@ -92,16 +94,31 @@ public class MainFrameView extends JFrame implements Observer{
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		try {
-			if(arg.equals(statics.label.quit)) {
-				this.quit();
-			} else {
-				updatePanel((JPanel) arg);
-			}
-		} catch(NullPointerException e) {
-			statics.debug.errorMessage("MainFrameView", e.toString());
-		} catch(ClassCastException e) {
-			statics.debug.errorMessage("MainFrameView", e.toString());
+		JPanel panel = new JPanel();
+		//Beenden
+		if(arg.equals(statics.label.quit)) {
+			quit();
 		}
+		//Neuer Klient
+		if(arg.equals(statics.label.newClient)) {
+			panel = CreateUserView.getPanel();
+		}
+		//Client suchen
+		if(arg.equals(statics.label.searchClient)) {
+			panel = SearchUserView.getPanel();
+		}
+		//Client löschen
+		if(arg.equals(statics.label.deleteClient)) {
+			panel = DeleteUserView.getPanel();
+		}
+		//Client bearbeiten. 
+		if(arg.equals(statics.label.updateClient)) {
+			panel = UpdateUserView.getPanel();
+		}
+		//Client anzeigen
+		if(arg.equals(statics.label.showClient)) {
+			panel = ShowUserView.getPanel();
+		}
+		updatePanel(panel);
 	}
 }

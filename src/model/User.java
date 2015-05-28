@@ -1,12 +1,15 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
+
+import statics.CacheUser;
 
 @SuppressWarnings("serial")
 public class User implements Serializable {
@@ -14,24 +17,24 @@ public class User implements Serializable {
 	private String forname;
 	private String lastname;
 	private Address address;
-	private String birthdate;
+	private Date birthdate;
 	private static UserDAO userDAO;
 	
 	public User() {
 		this.id = UUID.randomUUID();
 		userDAO = new UserDAO();
 	}
-	public User(String[] inputs) {
+	public User(CacheUser cache) {
 		this.id = UUID.randomUUID();
-		forname = inputs[0];
-		lastname = inputs[1];
-		address = new Address();
-		address.setStreet(inputs[2]);
-		address.setZip(inputs[3]);
-		address.setCity(inputs[4]);
-		
 		userDAO = new UserDAO();
-		statics.debug.debugMessage("User", "User erstellt.");
+		address = new Address();
+		
+		this.setForname(cache.getForname());
+		this.setLastName(cache.getLastname());
+		this.setStreet(cache.getStreet());
+		this.setZip(cache.getZip());
+		this.setCity(cache.getCity());
+		this.setBirthdate(cache.getBirthday());
 	}
 	
 	public Map<UUID, User> searchUser(String name) {
@@ -103,10 +106,23 @@ public class User implements Serializable {
 	public UUID getId() {
 		return id;
 	}
-	public String getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(String input) {
+	/*
+	 * Returns date without the time. As String.
+	 */
+	public String getNiceBirthday() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(birthdate);
+
+		int month = cal.get(Calendar.MONTH)+1;
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+		int year = cal.get(Calendar.YEAR);
+		
+		return day+"."+month+"."+year;
+	}
+	public void setBirthdate(Date input) {
 		this.birthdate = input;
 	}
 	public String getStreet() {
