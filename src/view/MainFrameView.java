@@ -119,7 +119,7 @@ public class MainFrameView extends JFrame implements Observer{
 		}
 		//Client löschen
 		if(arg.equals(statics.label.deleteClient)) {
-			panel = DeleteUserView.getPanel();
+			DeleteUserView.deleteUser();
 		}
 		//Client bearbeiten. 
 		if(arg.equals(statics.label.updateClient)) {
