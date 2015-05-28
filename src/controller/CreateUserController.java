@@ -3,15 +3,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.JPanel;
-
-import dao.UserDAO;
 import model.User;
-import view.CreateUserView;
-import view.MainFrameView;
 import view.ShowUserView;
+import dao.UserDAO;
 
 public class CreateUserController extends Observable implements ActionListener {
 	private static User newUser;

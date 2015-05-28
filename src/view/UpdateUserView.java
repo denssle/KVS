@@ -5,14 +5,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import model.User;
-import controller.CreateUserController;
 import controller.UpdateUserController;
 
 public class UpdateUserView implements Observer{

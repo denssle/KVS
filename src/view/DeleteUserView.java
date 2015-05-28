@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
-import controller.DeleteUserController;
 
 public class DeleteUserView implements Observer{
 	public DeleteUserView (ActionListener controller) {

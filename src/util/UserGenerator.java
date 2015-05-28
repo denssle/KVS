@@ -1,12 +1,10 @@
 package util;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-
 import model.User;
 import dao.UserDAO;
 

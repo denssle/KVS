@@ -3,13 +3,9 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
-import view.ShowUserView;
 import model.User;
+import view.ShowUserView;
 
 public class ShowUserController extends Observable implements ActionListener {	
 	private static User actualUser;

@@ -2,17 +2,11 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.UUID;
-
-import javax.swing.JPanel;
-
 import model.User;
-import view.SearchUserView;
 import view.ShowUserView;
 
 public class SearchUserController extends Observable implements ActionListener {
