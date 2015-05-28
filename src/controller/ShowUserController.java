@@ -3,7 +3,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+
 import javax.swing.JButton;
+
+import dao.UserDAO;
 import model.User;
 import view.ShowUserView;
 
@@ -27,7 +30,7 @@ public class ShowUserController extends Observable implements ActionListener {
 		statics.debug.debugMessage("ShowUserController", command);
 		if(command.equals(statics.label.showClient)) {
 			User user = new User();
-			user = user.getUserByID(pressdButton.getName());
+			user = UserDAO.getInstance().getUserById(pressdButton.getName());
 			actualUser = user;
 			ShowUserView.showUser(user);
 			setChanged(); 

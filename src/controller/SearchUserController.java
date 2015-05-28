@@ -23,12 +23,9 @@ public class SearchUserController extends Observable implements ActionListener {
 		if(command.equals(statics.label.ok)) {
 			setChanged(); 
 			notifyObservers(statics.label.ok); 
-			
-			if(user != null) {
 				ShowUserView.showUser(UserDAO.getInstance().getUserByTag(command));
 				setChanged(); 
 				notifyObservers(statics.label.showClient);
-			}
 		}
 	}
 }

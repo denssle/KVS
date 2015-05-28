@@ -3,6 +3,7 @@ package statics;
 public final class label {
 	public final static String ok = "Ok";
 	public final static String clients = "Klienten";
+	public final static String messages = "Letzte Meldungen";
 	public final static String newClient = "Neuen Klienten anlegen";
 	public final static String searchClient = "Klient suchen";
 	public final static String quit = "Beenden";
