@@ -29,7 +29,9 @@ public class ShowUserView {
 		showUserPanel.setLayout(new FlowLayout());
 		showUserPanel.setVisible(true);
 	}
-
+	/*
+	 * Zeigt einen User an. 
+	 */
 	public static void showUser(User user) {
 		if(user != null) {
 			showUserPanel.removeAll();
@@ -53,7 +55,9 @@ public class ShowUserView {
 			showUserPanel.add(table);
 		}
 	}
-
+	/*
+	 * Zeigt die Erbenisse einer Suche an. 
+	 */
 	public static void showUser(Map<UUID, User> userMap) {
 		showUserPanel.removeAll();
 		JPanel subArtikelPanel = new JPanel();

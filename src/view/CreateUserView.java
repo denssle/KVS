@@ -89,14 +89,16 @@ public class CreateUserView implements Observer{
 		line.add(cancelButton);
 		createUserPanel.add(line);
 	}
-	
+	/*
+	 * Gibt das Panel für die MainFrameView zurück und setzt aktuellen User auf null. 
+	 */
 	public static JPanel getPanel() {
 		buildView();
 		createUserPanel.setVisible(true);
 		ShowUserController.setUserNull();
 		return createUserPanel;
 	}
-
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg.equals(statics.label.ok)) {

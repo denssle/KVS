@@ -23,21 +23,26 @@ public class UpdateUserController extends Observable implements ActionListener {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("UpdateUserController",command);
 		if(command.equals(statics.label.ok)) {
+			//Informiert die View, welche dann die updateUser Methode aufruft. 
 			setChanged(); 
 			notifyObservers(statics.label.ok);
 			
 			if(updateUser != null) {
+				//Der geänderte User wird angezeigt. 
 				ShowUserView.showUser(updateUser);
 				setChanged(); 
 				notifyObservers(statics.label.showClient);
 			}
 		}
 		if(command.equals(statics.label.cancel)) {
+			//Bei Abbruch wird der User nicht verändert aber auch nicht geschlossen.
 			setChanged(); 
 			notifyObservers(statics.label.showClient);
 		}
 	}
-
+	/*
+	 * nimmt die Änderungen, die in die Textfelder eingetragen wurden, von der View entgegen und ändert den User. 
+	 */
 	public static void updateUser(CacheUser cache) {
 		updateUser = ShowUserController.getUser();
 		updateUser.setForname(cache.getForname());
