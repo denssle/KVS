@@ -5,7 +5,6 @@
  */
 package agiletrack.swing;
 
-import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -14,7 +13,6 @@ import java.awt.Frame;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Rectangle;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -43,7 +41,12 @@ import javax.swing.plaf.basic.BasicArrowButton;
  * picker.  The text date parsing is unique in that numerous date formats can be handled by the
  * text date parser. */
 public class JDateChooser extends JPanel {
-    /** Stores the last date formatter that successfully parsed a date */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/** Stores the last date formatter that successfully parsed a date */
     protected static DateFormat lastDateFormat = new SimpleDateFormat("MM/dd/yyyy");
     
     /** A set of date formatters that could be used for parsing dates */
@@ -138,7 +141,12 @@ public class JDateChooser extends JPanel {
     
     // UI FUNCTIONALITY    
     private Action onComboButtonClick = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void actionPerformed(ActionEvent e) {
             if (datePickerVisible == false) {
                 showDatePicker();
             } else {
@@ -148,7 +156,12 @@ public class JDateChooser extends JPanel {
     };
 
     private Action onSelectDate = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void actionPerformed(ActionEvent e) {
             Date date = datePicker.getDate();
             dateField.setText(currentDateFormat.format(date));
             if (e.getActionCommand().equalsIgnoreCase("Clicked")) {
@@ -393,20 +406,5 @@ public class JDateChooser extends JPanel {
             }
             return new Dimension(w, h);
         }
-    }
-    
-    /** Try to determine if an event is within the popup window so that it
-     * can be automatically closed if an event occurs outside of it.
-     * @param source source component
-     * @return true is source component is a descendent of the JDateChooser */
-    private static boolean isInPopup(Component source) {
-        for (Component component = source; component != null; component = component.getParent()) {
-            if (component instanceof Applet || component instanceof Window) {
-                break;
-            } else if (component instanceof JDateChooser) {
-                return true;
-            }
-        }
-        return false;
     }
 }

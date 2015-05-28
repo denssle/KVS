@@ -3,14 +3,10 @@ package view;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JOptionPane;
-<<<<<<< HEAD
 import javax.swing.JPanel;
-
 import controller.ShowUserController;
-=======
->>>>>>> origin/reskes-branch
+
 
 public class DeleteUserView implements Observer{
 	private static JPanel panel;

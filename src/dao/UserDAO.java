@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,16 +34,12 @@ public class UserDAO {
 			preparedStatement.setString(1, user.getId().toString());
 			preparedStatement.setString(2, user.getForname());
 			preparedStatement.setString(3, user.getLastname());
-			SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
-			java.util.Date d = f.parse(user.getBirthdate());
-			long milliseconds = d.getTime();
-			Date date = new Date(milliseconds);
-			preparedStatement.setDate(4, date);
+			preparedStatement.setDate(4, new Date(user.getBirthdate().getTime()));
 			preparedStatement.setString(5, user.getStreet());
 			preparedStatement.setString(6, user.getZip());
 			preparedStatement.setString(7, user.getCity());
 			preparedStatement.executeUpdate();
-		} catch (SQLException | ParseException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
@@ -71,7 +65,7 @@ public class UserDAO {
 				user.setId(rs.getString("UUID"));
 				user.setForname(rs.getString("FORENAME"));
 				user.setLastName(rs.getString("LASTNAME"));
-				user.setBirthdate(rs.getString("BIRTHDATE"));
+				user.setBirthdate(rs.getDate("BIRTHDATE"));
 				user.setStreet(rs.getString("STREET"));
 				user.setZip(rs.getString("ZIP"));
 				user.setCity(rs.getString("CITY"));
@@ -95,7 +89,7 @@ public class UserDAO {
 				user.setId(rs.getString("UUID"));
 				user.setForname(rs.getString("FORENAME"));
 				user.setLastName(rs.getString("LASTNAME"));
-				user.setBirthdate(rs.getString("BIRTHDATE"));
+				user.setBirthdate(rs.getDate("BIRTHDATE"));
 				user.setStreet(rs.getString("STREET"));
 				user.setZip(rs.getString("ZIP"));
 				user.setCity(rs.getString("CITY"));
@@ -113,17 +107,13 @@ public class UserDAO {
 							+"where UUID=?");
 			preparedStatement.setString(1, user.getForname());
 			preparedStatement.setString(2, user.getLastname());
-			SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
-			java.util.Date d = f.parse(user.getBirthdate());
-			long milliseconds = d.getTime();
-			Date date = new Date(milliseconds);
-			preparedStatement.setDate(3, date);
+			preparedStatement.setDate(3, new Date(user.getBirthdate().getTime()));
 			preparedStatement.setString(4, user.getStreet());
 			preparedStatement.setString(5, user.getZip());
 			preparedStatement.setString(6, user.getCity());
 			preparedStatement.setString(7, user.getId().toString());
 			preparedStatement.executeUpdate();
-		} catch (SQLException | ParseException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

@@ -11,11 +11,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import controller.DeleteUserController;
-
-
-@SuppressWarnings("serial")
 public class MainFrameView extends JFrame implements Observer{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JMenuItem menuItem;
 	private JPanel mainPanel;
 	

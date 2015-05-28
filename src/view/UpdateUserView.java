@@ -3,7 +3,6 @@ package view;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
@@ -11,16 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-<<<<<<< HEAD
-
 import statics.CacheUser;
 import agiletrack.swing.JDateChooser;
 import model.User;
-import controller.CreateUserController;
 import controller.ShowUserController;
-=======
-import model.User;
->>>>>>> origin/reskes-branch
 import controller.UpdateUserController;
 
 public class UpdateUserView implements Observer{

@@ -2,22 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.Observable;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/reskes-branch
-import javax.swing.JPanel;
 import model.User;
-<<<<<<< HEAD
-import statics.CacheUser;
-import view.CreateUserView;
-import view.MainFrameView;
-=======
->>>>>>> origin/reskes-branch
-import view.ShowUserView;
-import dao.UserDAO;
 
 public class CreateUserController extends Observable implements ActionListener {	
 	private static User user;
@@ -53,35 +39,5 @@ public class CreateUserController extends Observable implements ActionListener {
 			setChanged(); 
 			notifyObservers(statics.label.cancel);
 		}
-	}
-	/*
-	 * Erstellt neuen User; gibt true bei Erfolg zurück. 
-	 * Bei gescheiterter Validierung false. 
-	 */
-	public static boolean createUser(CacheUser cacheUser) {
-		if(validation(cacheUser)) {
-			user = new User(cacheUser);
-			user.saveUser();
-			statics.debug.debugMessage("CreateUserController", "New User: "+user.getForname()+" "+user.getBirthdate());
-			return true;
-		}
-		return false;
-	}
-<<<<<<< HEAD
-	/*
-	 * Validiert die Eingaben und gibt true zurück wenn alles in Ordnung ist. 
-	 */
-	private static boolean validation(CacheUser cacheUser) {
-		if(cacheUser.getBirthday() != null) {
-			return true;
-		}
-		return false;
-=======
-	
-	public static void createUser(String[] input) {
-		newUser = new User(input);
-		UserDAO.getInstance().addUser(newUser);
-		statics.debug.debugMessage("CreateUserController", newUser.getForname());
->>>>>>> origin/reskes-branch
 	}
 }

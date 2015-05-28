@@ -1,10 +1,12 @@
 package util;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+
 import model.User;
 import dao.UserDAO;
 
@@ -29,14 +31,14 @@ public class UserGenerator {
 		return names[rnd.nextInt(names.length)];
 	}
 	
-	private static String getRandomBirthdate()
+	private static Date getRandomBirthdate()
 	{
 		GregorianCalendar gc = new GregorianCalendar();
         int year = randBetween(1946, 1996);
         gc.set(Calendar.YEAR, year);
         int dayOfYear = randBetween(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
         gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
-		return String.format("%02d",gc.get(Calendar.DAY_OF_MONTH)) + "." + String.format("%02d",gc.get(Calendar.MONTH)) + "." + gc.get(Calendar.YEAR);		
+		return new Date(gc.getTimeInMillis());		
 	}
 	
     private static int randBetween(int start, int end) {
