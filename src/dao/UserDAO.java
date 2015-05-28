@@ -36,8 +36,7 @@ public class UserDAO {
 			preparedStatement.setString(1, user.getId().toString());
 			preparedStatement.setString(2, user.getForname());
 			preparedStatement.setString(3, user.getLastname());
-			SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
-			java.util.Date d = f.parse(user.getBirthdate());
+			java.util.Date d = user.getBirthdate();
 			long milliseconds = d.getTime();
 			Date date = new Date(milliseconds);
 			preparedStatement.setDate(4, date);
@@ -45,7 +44,7 @@ public class UserDAO {
 			preparedStatement.setString(6, user.getZip());
 			preparedStatement.setString(7, user.getCity());
 			preparedStatement.executeUpdate();
-		} catch (SQLException | ParseException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
@@ -71,7 +70,7 @@ public class UserDAO {
 				user.setId(rs.getString("UUID"));
 				user.setForname(rs.getString("FORENAME"));
 				user.setLastName(rs.getString("LASTNAME"));
-				user.setBirthdate(rs.getString("BIRTHDATE"));
+				user.setBirthdate(rs.getDate("BIRTHDATE"));
 				user.setStreet(rs.getString("STREET"));
 				user.setZip(rs.getString("ZIP"));
 				user.setCity(rs.getString("CITY"));
@@ -95,7 +94,7 @@ public class UserDAO {
 				user.setId(rs.getString("UUID"));
 				user.setForname(rs.getString("FORENAME"));
 				user.setLastName(rs.getString("LASTNAME"));
-				user.setBirthdate(rs.getString("BIRTHDATE"));
+				user.setBirthdate(rs.getDate("BIRTHDATE"));
 				user.setStreet(rs.getString("STREET"));
 				user.setZip(rs.getString("ZIP"));
 				user.setCity(rs.getString("CITY"));
@@ -113,8 +112,7 @@ public class UserDAO {
 							+"where UUID=?");
 			preparedStatement.setString(1, user.getForname());
 			preparedStatement.setString(2, user.getLastname());
-			SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
-			java.util.Date d = f.parse(user.getBirthdate());
+			java.util.Date d = user.getBirthdate();
 			long milliseconds = d.getTime();
 			Date date = new Date(milliseconds);
 			preparedStatement.setDate(3, date);
@@ -123,7 +121,7 @@ public class UserDAO {
 			preparedStatement.setString(6, user.getCity());
 			preparedStatement.setString(7, user.getId().toString());
 			preparedStatement.executeUpdate();
-		} catch (SQLException | ParseException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

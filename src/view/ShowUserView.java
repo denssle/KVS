@@ -23,11 +23,8 @@ public class ShowUserView {
 	private static ActionListener actionListener;
 	
 	public ShowUserView(ActionListener showUserController) {
-<<<<<<< HEAD
 		actionListener = showUserController;
-=======
 		ShowUserView.setActionListener(showUserController);
->>>>>>> origin/reskes-branch
 		showUserPanel = new JPanel();
 		showUserPanel.setName(statics.label.showClient);
 		showUserPanel.setLayout(new FlowLayout());

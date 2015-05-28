@@ -1,44 +1,38 @@
 package model;
 
-<<<<<<< HEAD
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-=======
->>>>>>> origin/reskes-branch
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import dao.UserDAO;
-
-<<<<<<< HEAD
 import statics.CacheUser;
 
-@SuppressWarnings("serial")
-public class User implements Serializable {
-=======
 public class User {
->>>>>>> origin/reskes-branch
 	private UUID id;
 	private String forname;
 	private String lastname;
 	private Address address;
-<<<<<<< HEAD
 	private Date birthdate;
 	private static UserDAO userDAO;
-=======
-	private String birthdate;
->>>>>>> origin/reskes-branch
 	
 	public User() {
 		this.id = UUID.randomUUID();
 	}
-<<<<<<< HEAD
-	public User(CacheUser cache) {
-=======
 	
-	public User(UUID id, String forname, String lastname, String birthdate, Address address) {
+	public User(CacheUser cache) {
+		this.id = UUID.randomUUID();
+		this.forname = cache.getForname();
+		this.lastname = cache.getLastname();
+		this.address.setCity(cache.getCity());
+		this.address.setStreet(cache.getStreet());
+		this.address.setZip(cache.getZip());
+		this.birthdate = cache.getBirthday();
+	}
+	
+	public User(UUID id, String forname, String lastname, Date birthdate, Address address) {
 		this.id = id;
 		this.forname = forname;
 		this.lastname = lastname;
@@ -47,7 +41,7 @@ public class User {
 		statics.debug.debugMessage("User", "User erstellt. "+this.id.toString());
 	}
 	
-	public User(UUID id, String forname, String lastname, String birthdate, String street, String zip, String city) {
+	public User(UUID id, String forname, String lastname, Date birthdate, String street, String zip, String city) {
 		this.id = id;
 		this.forname = forname;
 		this.lastname = lastname;
@@ -56,28 +50,6 @@ public class User {
 		statics.debug.debugMessage("User", "User erstellt. "+this.id.toString());
 	}
 	
-	public User(String[] inputs) {
->>>>>>> origin/reskes-branch
-		this.id = UUID.randomUUID();
-		userDAO = new UserDAO();
-		address = new Address();
-<<<<<<< HEAD
-		
-		this.setForname(cache.getForname());
-		this.setLastName(cache.getLastname());
-		this.setStreet(cache.getStreet());
-		this.setZip(cache.getZip());
-		this.setCity(cache.getCity());
-		this.setBirthdate(cache.getBirthday());
-=======
-		address.setStreet(inputs[2]);
-		address.setZip(inputs[3]);
-		address.setCity(inputs[4]);
-		//TODO: Geburtstag reibringen ?!
-		birthdate = "01.01.1990";
-		statics.debug.debugMessage("User", "User erstellt. "+this.id.toString());
->>>>>>> origin/reskes-branch
-	}
 	
 	public Map<UUID, User> searchUser(String name) {
 		Map<UUID, User> map = new HashMap<UUID, User>();

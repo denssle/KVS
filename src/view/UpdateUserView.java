@@ -11,16 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-<<<<<<< HEAD
-
 import statics.CacheUser;
 import agiletrack.swing.JDateChooser;
 import model.User;
 import controller.CreateUserController;
 import controller.ShowUserController;
-=======
 import model.User;
->>>>>>> origin/reskes-branch
 import controller.UpdateUserController;
 
 public class UpdateUserView implements Observer{
