@@ -35,6 +35,7 @@ public class CreateUserController extends Observable implements ActionListener {
 		}
 		
 		if(command.equals(statics.label.cancel)) {
+			ShowUserController.setUserNull();
 			setChanged(); 
 			notifyObservers(statics.label.cancel);
 		}

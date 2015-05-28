@@ -34,18 +34,12 @@ public class UpdateUserController extends Observable implements ActionListener {
 		}
 		if(command.equals(statics.label.cancel)) {
 			setChanged(); 
-			JPanel panel = new JPanel();
-			panel.setVisible(true);
-			notifyObservers(panel);
+			notifyObservers(statics.label.showClient);
 		}
-	}
-	
-	public static User getUser() {
-		return ShowUserController.getUser();
 	}
 
 	public static void updateUser(CacheUser cache) {
-		updateUser = getUser();
+		updateUser = ShowUserController.getUser();
 		updateUser.setForname(cache.getForname());
 		updateUser.setLastName(cache.getLastname());
 		updateUser.setStreet(cache.getStreet());
