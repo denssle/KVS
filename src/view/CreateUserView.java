@@ -22,52 +22,57 @@ import controller.ShowUserController;
 public class CreateUserView implements Observer{
 	private static JPanel createUserPanel;
 	private static CacheUser cache;
+	private static ActionListener actionListener;
+	
 	public CreateUserView(ActionListener createUserController) {
 		cache = new CacheUser();
+		actionListener = createUserController;
 		createUserPanel = new JPanel();
-		createUserPanel.setName(statics.label.newClient);
-		createUserPanel.setLayout(new FlowLayout());
-		buildView(createUserController);
+		buildView();
 		createUserPanel.setVisible(true);
 	}
 	
-	private void buildView(ActionListener actionListener) {
+	private static void buildView() {
+		createUserPanel.removeAll();
+		createUserPanel.setName(statics.label.newClient);
+		createUserPanel.setLayout(new FlowLayout());
+		
 		JPanel line = new JPanel();
 		JLabel label;
 		JTextField textfield;
 		line.setLayout(new GridLayout(statics.label.userLabels.length+1,2)); //Spalten, Zeilen
 		
-		label = new JLabel(statics.label.userLabels[0]);
+		label = new JLabel(statics.label.forname);
 		textfield = new JTextField();
 		cache.setFornameField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[1]);
+		label = new JLabel(statics.label.lastname);
 		textfield = new JTextField();
 		cache.setLastnameField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[2]);
+		label = new JLabel(statics.label.street);
 		textfield = new JTextField();
 		cache.setStreetField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[3]);
+		label = new JLabel(statics.label.zip);
 		textfield = new JTextField();
 		cache.setZipField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[4]);
+		label = new JLabel(statics.label.city);
 		textfield = new JTextField();
 		cache.setCityField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.userLabels[5]);
+		label = new JLabel(statics.label.birthdate);
 		JDateChooser chooser = new JDateChooser();
 		chooser.setLocale(Locale.GERMANY);
 		cache.setBirthdayChooser(chooser);
@@ -84,18 +89,21 @@ public class CreateUserView implements Observer{
 		line.add(cancelButton);
 		createUserPanel.add(line);
 	}
-	
+	/*
+	 * Gibt das Panel für die MainFrameView zurück und setzt aktuellen User auf null. 
+	 */
 	public static JPanel getPanel() {
+		buildView();
 		createUserPanel.setVisible(true);
 		ShowUserController.setUserNull();
 		return createUserPanel;
 	}
-
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg.equals(statics.label.ok)) {
 			if(CreateUserController.createUser(cache) == false) {
-				JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+				JOptionPane.showMessageDialog(null, "Validierung gescheitert!");
 			} else {
 				createUserPanel.setVisible(false);
 			}

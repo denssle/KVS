@@ -17,6 +17,7 @@ import statics.CacheUser;
 import agiletrack.swing.JDateChooser;
 import model.User;
 import controller.CreateUserController;
+import controller.ShowUserController;
 import controller.UpdateUserController;
 
 public class UpdateUserView implements Observer{
@@ -93,8 +94,8 @@ public class UpdateUserView implements Observer{
 	}
 	
 	public static JPanel getPanel() {
-		if(UpdateUserController.getUser() != null) {
-			buildView(UpdateUserController.getUser());
+		if(ShowUserController.getUser() != null) {
+			buildView(ShowUserController.getUser());
 		}
 		return updateUserPanel;
 	}

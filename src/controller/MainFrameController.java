@@ -20,7 +20,9 @@ public class MainFrameController extends Observable implements ActionListener {
 	
 	public MainFrameController() {
 	}
-
+	/*
+	 * Nimmt gedrückte Buttons in der Navigation entgegen und informiert die MainFrameView darüber; via notifyObservers.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
