@@ -9,4 +9,7 @@
 
 .classpath
 
-*.odt#
+*.odt
+/bin/
+/bin/
+/bin/

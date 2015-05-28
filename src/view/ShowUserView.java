@@ -23,7 +23,11 @@ public class ShowUserView {
 	private static ActionListener actionListener;
 	
 	public ShowUserView(ActionListener showUserController) {
+<<<<<<< HEAD
 		actionListener = showUserController;
+=======
+		ShowUserView.setActionListener(showUserController);
+>>>>>>> origin/reskes-branch
 		showUserPanel = new JPanel();
 		showUserPanel.setName(statics.label.showClient);
 		showUserPanel.setLayout(new FlowLayout());
@@ -76,7 +80,7 @@ public class ShowUserView {
 			subArtikelPanel.add(new JLabel(user.getLastname()));
 			
 			JButton showButton = new JButton(statics.label.showClient);
-			showButton.addActionListener(actionListener);
+			showButton.addActionListener(getActionListener());
 			showButton.setName(uuid.toString());
 	        subArtikelPanel.add(showButton);
 		}
@@ -85,5 +89,13 @@ public class ShowUserView {
 	public static JPanel getPanel() {
 		showUser(ShowUserController.getUser());
 		return showUserPanel;
+	}
+
+	public static ActionListener getActionListener() {
+		return actionListener;
+	}
+
+	public static void setActionListener(ActionListener actionListener) {
+		ShowUserView.actionListener = actionListener;
 	}
 }

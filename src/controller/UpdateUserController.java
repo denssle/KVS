@@ -4,14 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.JPanel;
-
 import model.User;
 import statics.CacheUser;
 import view.ShowUserView;
-import view.UpdateUserView;
 
 public class UpdateUserController extends Observable implements ActionListener {	
 	private static User updateUser;
