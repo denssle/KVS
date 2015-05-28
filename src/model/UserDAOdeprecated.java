@@ -14,12 +14,12 @@ import java.util.Map;
 import java.util.UUID;
 
 @SuppressWarnings("serial")
-public class UserDAO implements Serializable {
+public class UserDAOdeprecated implements Serializable {
 	private String path;
 	private File userFile;
 	private Map<UUID, User> allUsersMap;
 	
-	public UserDAO() {
+	public UserDAOdeprecated() {
 		path = statics.label.path;
 		userFile = new File(path);
 		allUsersMap = readUserOutFromSaveFile();
