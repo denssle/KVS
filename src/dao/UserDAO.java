@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import com.mysql.jdbc.CommunicationsException;
@@ -79,13 +80,35 @@ public class UserDAO {
 		return users;
 	}
 	
+	public List<User> getUserByTags(String[] tags) {
+		List<User> users = new ArrayList<User>();
+		for (String tag : tags) {
+			users.addAll(getUserByTag(tag));
+		}
+		return removeDuplicates(users);
+	}
+	
+    static <E> List<E> removeDuplicates(List<E> list) {
+		ArrayList<E> result = new ArrayList<E>();
+		HashSet<E> set = new HashSet<E>();
+		for (E item : list) {
+		    if (!set.contains(item)) {
+			result.add(item);
+			set.add(item);
+		    }
+		}
+		return result;
+    }
+	
 	public List<User> getUserByTag(String tag) {
 		List<User> users = new ArrayList<User>();
 		try {
 			PreparedStatement preparedStatement = DBUtil.getConnection()
-					.prepareStatement("select * from Users where FORENAME like ?");
+					.prepareStatement("select * from Users where FORENAME like ? or LASTNAME like ? or CITY like ?");
 			preparedStatement.setString(1, tag);
-			//preparedStatement.setString(2, tag);
+			preparedStatement.setString(2, tag);
+			preparedStatement.setString(3, tag);
+			preparedStatement.execute();
 			ResultSet rs = preparedStatement.getResultSet();
 			while (rs.next()) {
 				User user = new User();
