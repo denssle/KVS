@@ -17,10 +17,13 @@ public class User {
 	
 	public User() {
 		this.id = UUID.randomUUID();
+		this.address = new Address();
 	}
 	
 	public User(CacheUser cache) {
 		this.id = UUID.randomUUID();
+		this.address = new Address();
+		
 		this.forname = cache.getForname();
 		this.lastname = cache.getLastname();
 		this.address.setCity(cache.getCity());
