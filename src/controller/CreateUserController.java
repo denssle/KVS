@@ -10,7 +10,7 @@ public class CreateUserController extends Observable implements ActionListener {
 	private static User user;
 	public CreateUserController() {
 	}
-	/*
+	/**
 	 * nimmt ActionEvents von der CreateUserView entgegen und informiert die View über notifyObservers über Änderungen. 
 	 */
 	@Override
@@ -41,7 +41,7 @@ public class CreateUserController extends Observable implements ActionListener {
 			notifyObservers(statics.label.cancel);
 		}
 	}
-	/*
+	/**
 	 * Erstellt neuen User; gibt true bei Erfolg zurück. 
 	 * Bei gescheiterter Validierung false. 
 	 */
@@ -54,7 +54,7 @@ public class CreateUserController extends Observable implements ActionListener {
 		}
 		return false;
 	}
-	/*
+	/**
 	 * Validiert die Eingaben und gibt true zurück wenn alles in Ordnung ist. 
 	 */
 	private static boolean validation(CacheUser cacheUser) {

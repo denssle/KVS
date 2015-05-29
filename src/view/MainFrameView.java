@@ -34,7 +34,7 @@ public class MainFrameView extends JFrame implements Observer{
 		this.setLayout(new BorderLayout());
 		
 	}
-	/*
+	/**
 	 * Erstellt erstes, linkes JMenu. Hier kann KVS neue Klienten erstellen, suchen oder beendet werden.
 	 */
 	private JMenu createUserMenu(ActionListener mainControll) {
@@ -56,7 +56,7 @@ public class MainFrameView extends JFrame implements Observer{
 		userMenu.add(menuItem);
 		return userMenu;
 	}
-	/*
+	/**
 	 *  Erstellt das zweite JMenu, hier kann ein offener Klient bearbeitet oder gelöscht werden. 
 	 */
 	private JMenu createEditMenu(ActionListener mainControll) {
@@ -82,7 +82,7 @@ public class MainFrameView extends JFrame implements Observer{
 		this.dispose();
 	}
 	
-	/*
+	/**
 	 * Nimmt ein JPanel, das eine View per getPanel zur Verfügung stellt, entgegen und setzt sie als Mainview ein. 
 	 */
 	private void updatePanel(JPanel newPanel) {
@@ -96,7 +96,7 @@ public class MainFrameView extends JFrame implements Observer{
 			this.validate();
 		}
 	}
-	/*
+	/**
 	 * Nimmt Änderungen von Controllern entgegen, vor allem in Bezug auf Viewwechsel.
 	 */
 	@Override

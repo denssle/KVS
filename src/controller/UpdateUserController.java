@@ -34,7 +34,7 @@ public class UpdateUserController extends Observable implements ActionListener {
 			notifyObservers(statics.label.showClient);
 		}
 	}
-	/*
+	/**
 	 * nimmt die Änderungen, die in die Textfelder eingetragen wurden, von der View entgegen und ändert den User. 
 	 */
 	public static void updateUser(CacheUser cache) {
@@ -47,6 +47,5 @@ public class UpdateUserController extends Observable implements ActionListener {
 		updateUser.setBirthdate(cache.getBirthday());
 		updateUser.updateUser();
 		statics.debug.debugMessage("CreateUserController", updateUser.getForname());
-		
 	}
 }

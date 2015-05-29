@@ -15,7 +15,7 @@ public class SearchUserController extends Observable implements ActionListener {
 	
 	public SearchUserController() {
 	}
-	/*
+	/**
 	 *Nimmt Ok von der View entgegen und informiert die View darüber. Diese ruft die searchUser Methode auf, welche die userMap füllt. 
 	 *Die Map wird an die ShowUserView geschickt, die alle passenden User anzeigt. 
 	 */
@@ -33,7 +33,7 @@ public class SearchUserController extends Observable implements ActionListener {
 			}
 		}
 	}
-	/*
+	/**
 	 * Sucht einen User nach Vor und Nachname, wenn eins von beiden passt kommt er in die Map. 
 	 */
 	public static void searchUser(String name) {

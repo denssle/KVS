@@ -30,7 +30,7 @@ public class ShowUserView {
 		showUserPanel.setLayout(new FlowLayout());
 		showUserPanel.setVisible(true);
 	}
-	/*
+	/**
 	 * Zeigt einen User an. 
 	 */
 	public static void showUser(User user) {
@@ -56,8 +56,8 @@ public class ShowUserView {
 			showUserPanel.add(table);
 		}
 	}
-	/*
-	 * Zeigt die Erbenisse einer Suche an. 
+	/**
+	 * Zeigt die Erbenisse einer Suche an. Nimmt Map entgegen. 
 	 */
 	public static void showUser(Map<UUID, User> userMap) {
 		showUserPanel.removeAll();
