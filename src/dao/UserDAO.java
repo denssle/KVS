@@ -23,7 +23,6 @@ public class UserDAO {
 	public static UserDAO getInstance() {
 		if(userDAO == null)
 			userDAO = new UserDAO();
-
 		return userDAO;
 	}
 

@@ -55,6 +55,7 @@ public class User {
 		Map<UUID, User> map = new HashMap<UUID, User>();
 		User user;
 		for(User e :  UserDAO.getInstance().getAllUsers()) {
+			statics.debug.debugMessage("User", "Gesucht: "+name+" Aktuell untersucht wird: "+ e.getForname() +" "+ e.getLastname());
 			user = e;
 			if(user.getForname().equals(name) || user.getLastname().equals(name)) {
 				map.put(user.getId(), user);
@@ -63,8 +64,7 @@ public class User {
 		return map;
 	}
 	
-	public void setId(String id)
-	{
+	public void setId(String id) {
 		this.id = UUID.fromString(id);
 	}
 	
@@ -126,6 +126,7 @@ public class User {
 	public Date getBirthdate() {
 		return birthdate;
 	}
+	
 	/*
 	 * Returns date without the time. As String.
 	 */
