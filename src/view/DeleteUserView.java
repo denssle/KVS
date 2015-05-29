@@ -3,12 +3,11 @@ package view;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import controller.DeleteUserController;
+import statics.Message;
 import controller.ShowUserController;
+import controller.DeleteUserController;
 
 public class DeleteUserView implements Observer{
 	private static JPanel panel;
@@ -18,7 +17,13 @@ public class DeleteUserView implements Observer{
 	}
 	
 	public static JPanel getPanel() {
-		return panel;
+		if(ShowUserController.getUser() != null) {
+			JOptionPane.showConfirmDialog(null, "Sie sind dabei den gewählten Kunden zu löschen!",statics.label.deleteClient,JOptionPane.YES_NO_CANCEL_OPTION);
+			return panel;
+		} else {
+			Message.getInstance().display(panel.getParent(),"Kein User zum löschen offen. Bitte öffnen Sie erst einen User um ihn zu löschen. ",statics.label.deleteClient);
+			return panel;
+		}
 	}
 	
 	@Override

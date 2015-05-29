@@ -2,15 +2,13 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Observable;
-import java.util.UUID;
+
+import dao.UserDAO;
 import model.User;
 import view.ShowUserView;
 
 public class SearchUserController extends Observable implements ActionListener {
-	private static Map<UUID, User> userMap;
 	private static User user;
 	
 	public SearchUserController() {
@@ -25,24 +23,9 @@ public class SearchUserController extends Observable implements ActionListener {
 		if(command.equals(statics.label.ok)) {
 			setChanged(); 
 			notifyObservers(statics.label.ok); 
-			
-			if(user != null) {
-				ShowUserView.showUser(userMap);
+				ShowUserView.showUser(UserDAO.getInstance().getUserByTag(command));
 				setChanged(); 
 				notifyObservers(statics.label.showClient);
-			}
-		}
-	}
-	/*
-	 * Sucht einen User nach Vor und Nachname, wenn eins von beiden passt kommt er in die Map. 
-	 */
-	public static void searchUser(String name) {
-		user = new User();
-		userMap = new HashMap<UUID, User>();
-		
-		String[] splited = name.split("\\s+");
-		for(int i = 0; i < splited.length; i++) {
-			userMap.putAll(user.searchUser(splited[i]));
 		}
 	}
 }

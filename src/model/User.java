@@ -2,9 +2,8 @@ package model;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
+
 import dao.UserDAO;
 import statics.CacheUser;
 
@@ -50,20 +49,6 @@ public class User {
 		statics.debug.debugMessage("User", "User erstellt. "+this.id.toString());
 	}
 	
-	
-	public Map<UUID, User> searchUser(String name) {
-		Map<UUID, User> map = new HashMap<UUID, User>();
-		User user;
-		for(User e :  UserDAO.getInstance().getAllUsers()) {
-			statics.debug.debugMessage("User", "Gesucht: "+name+" Aktuell untersucht wird: "+ e.getForname() +" "+ e.getLastname());
-			user = e;
-			if(user.getForname().equals(name) || user.getLastname().equals(name)) {
-				map.put(user.getId(), user);
-			}
-		}
-		return map;
-	}
-	
 	public void setId(String id) {
 		this.id = UUID.fromString(id);
 	}
@@ -73,25 +58,7 @@ public class User {
 		return true;	
 	}
 	
-	public User getUserByLastame(String name) {
-		for(User e : UserDAO.getInstance().getAllUsers()) {
-			statics.debug.debugMessage("User", "Aktueller User: "+e);
-			if(name.equals(e.getLastname())) {
-				return e;
-			}
-		}
-		return null;
-	}
-	public User getUserByForname(String name) {
-		for(User e : UserDAO.getInstance().getAllUsers()) {
-			statics.debug.debugMessage("User", "Aktueller User: "+e);
-			if(name.equals(e.getLastname())) {
-				return e;
-			}
-		}
-		return null;
-	}
-	
+	@Deprecated
 	public User getUserByID(String string) {
 		return UserDAO.getInstance().getUserById(string);	
 	}

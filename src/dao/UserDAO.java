@@ -78,6 +78,30 @@ public class UserDAO {
 		}
 		return users;
 	}
+	
+	public List<User> getUserByTag(String tag) {
+		List<User> users = new ArrayList<User>();
+		try {
+			PreparedStatement preparedStatement = connection.
+					prepareStatement("select * from Users where forename like %?%");
+			preparedStatement.setString(1, tag);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setId(rs.getString("UUID"));
+				user.setForname(rs.getString("FORENAME"));
+				user.setLastName(rs.getString("LASTNAME"));
+				user.setBirthdate(rs.getDate("BIRTHDATE"));
+				user.setStreet(rs.getString("STREET"));
+				user.setZip(rs.getString("ZIP"));
+				user.setCity(rs.getString("CITY"));
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
 
 	public User getUserById(String userId) {
 
