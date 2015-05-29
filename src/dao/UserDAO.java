@@ -9,15 +9,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.CommunicationsException;
+
 import model.User;
 import util.DBUtil;
 
 public class UserDAO {
-	private Connection connection;
 	private static UserDAO userDAO;
 
 	private UserDAO() {
-		connection = DBUtil.getConnection();
 	}
 	
 	public static UserDAO getInstance() {
@@ -28,7 +28,7 @@ public class UserDAO {
 
 	public void addUser(User user) {
 		try {
-			PreparedStatement preparedStatement = connection
+			PreparedStatement preparedStatement = DBUtil.getConnection()
 					.prepareStatement("insert into Users(UUID,FORENAME,LASTNAME,BIRTHDATE,STREET,ZIP,CITY) values (?, ?, ?, ?, ?, ?, ?)");
 			preparedStatement.setString(1, user.getId().toString());
 			preparedStatement.setString(2, user.getForname());
@@ -48,7 +48,7 @@ public class UserDAO {
 
 	public void deleteUser(String userId) {
 		try {
-			PreparedStatement preparedStatement = connection
+			PreparedStatement preparedStatement = DBUtil.getConnection()
 					.prepareStatement("delete from Users where UUID=?");
 			preparedStatement.setString(1, userId);
 			preparedStatement.executeUpdate();
@@ -60,7 +60,7 @@ public class UserDAO {
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<User>();
 		try {
-			Statement statement = connection.createStatement();
+			Statement statement = DBUtil.getConnection().createStatement();
 			ResultSet rs = statement.executeQuery("select * from Users");
 			while (rs.next()) {
 				User user = new User();
@@ -82,10 +82,11 @@ public class UserDAO {
 	public List<User> getUserByTag(String tag) {
 		List<User> users = new ArrayList<User>();
 		try {
-			PreparedStatement preparedStatement = connection.
-					prepareStatement("select * from Users where forename like %?%");
+			PreparedStatement preparedStatement = DBUtil.getConnection()
+					.prepareStatement("select * from Users where FORENAME like ?");
 			preparedStatement.setString(1, tag);
-			ResultSet rs = preparedStatement.executeQuery();
+			//preparedStatement.setString(2, tag);
+			ResultSet rs = preparedStatement.getResultSet();
 			while (rs.next()) {
 				User user = new User();
 				user.setId(rs.getString("UUID"));
@@ -95,6 +96,7 @@ public class UserDAO {
 				user.setStreet(rs.getString("STREET"));
 				user.setZip(rs.getString("ZIP"));
 				user.setCity(rs.getString("CITY"));
+				statics.debug.debugMessage("DB", "getUserByTag("+tag+") : "+user);
 				users.add(user);
 			}
 		} catch (SQLException e) {
@@ -107,7 +109,7 @@ public class UserDAO {
 
 		User user = new User();
 		try {
-			PreparedStatement preparedStatement = connection.
+			PreparedStatement preparedStatement = DBUtil.getConnection().
 					prepareStatement("select * from Users where UUID=?");
 			preparedStatement.setString(1, userId);
 			ResultSet rs = preparedStatement.executeQuery();
@@ -128,9 +130,9 @@ public class UserDAO {
 
 	public void updateUser(User user) {
 		try {
-			PreparedStatement preparedStatement = connection
+			PreparedStatement preparedStatement = DBUtil.getConnection()
 					.prepareStatement("update Users set FORENAME=?, LASTNAME=?, BIRTHDATE=?, STREET=?, ZIP=?, CITY=?"
-							+"where UUID=?");
+							+" where UUID=?");
 			preparedStatement.setString(1, user.getForname());
 			preparedStatement.setString(2, user.getLastname());
 			java.util.Date d = user.getBirthdate();

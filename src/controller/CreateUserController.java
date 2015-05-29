@@ -12,10 +12,8 @@ import view.MainFrameView;
 import view.ShowUserView;
 import dao.UserDAO;
 
-public class CreateUserController extends Observable implements ActionListener {	
+public class CreateUserController extends Observable implements ActionListener {
 	private static User user;
-	public CreateUserController() {
-	}
 	/*
 	 * nimmt ActionEvents von der CreateUserView entgegen und informiert die View über notifyObservers über Änderungen. 
 	 */

@@ -2,10 +2,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Observable;
 
 import dao.UserDAO;
 import model.User;
+import view.SearchUserView;
 import view.ShowUserView;
 
 public class SearchUserController extends Observable implements ActionListener {
@@ -23,9 +25,13 @@ public class SearchUserController extends Observable implements ActionListener {
 		if(command.equals(statics.label.ok)) {
 			setChanged(); 
 			notifyObservers(statics.label.ok); 
-				ShowUserView.showUser(UserDAO.getInstance().getUserByTag(command));
-				setChanged(); 
-				notifyObservers(statics.label.showClient);
+			List<User> userMap = UserDAO.getInstance().getUserByTag(SearchUserView.getInput());
+			if(userMap.isEmpty())
+				statics.Message.getInstance().display(null, "Für das gegebene Suchwort wurde kein Nutzer gefunden.", "Suchergebnis");
+			
+        	ShowUserView.showUser(userMap);
+			setChanged(); 
+			notifyObservers(statics.label.showClient);
 		}
 	}
 }

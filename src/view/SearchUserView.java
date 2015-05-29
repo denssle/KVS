@@ -13,7 +13,7 @@ import controller.ShowUserController;
 
 public class SearchUserView implements Observer{
 	private static JPanel searchUserPanel;
-	private JTextField textfield;
+	private static JTextField textfield;
 	
 	public SearchUserView(ActionListener actionListener) {
 		searchUserPanel = new JPanel();
@@ -37,6 +37,10 @@ public class SearchUserView implements Observer{
 	public static JPanel getPanel() {
 		ShowUserController.setUserNull();
 		return searchUserPanel;
+	}
+	
+	public static String getInput() {
+		return textfield.getText();
 	}
 
 	@Override

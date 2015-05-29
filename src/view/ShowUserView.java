@@ -64,7 +64,6 @@ public class ShowUserView {
 		
 		showUserPanel.add(subArtikelPanel, BorderLayout.PAGE_START);
 		subArtikelPanel.setLayout(new GridLayout(userMap.size(),3));
-
 		Iterator<User> iterator = userMap.iterator();
 		
 		while(iterator.hasNext()) {	
@@ -78,6 +77,7 @@ public class ShowUserView {
 			showButton.setName(user.getId().toString());
 	        subArtikelPanel.add(showButton);
 		}
+		
 	}
 	
 	public static JPanel getPanel() {
