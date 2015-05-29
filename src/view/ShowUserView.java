@@ -9,10 +9,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 
+import javax.print.attribute.standard.JobHoldUntil;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 import controller.ShowUserController;
 import model.User;
@@ -62,21 +68,36 @@ public class ShowUserView {
 		showUserPanel.removeAll();
 		JPanel subArtikelPanel = new JPanel();
 		
-		showUserPanel.add(subArtikelPanel, BorderLayout.PAGE_START);
-		subArtikelPanel.setLayout(new GridLayout(userMap.size(),3));
 		Iterator<User> iterator = userMap.iterator();
+		
+		if(userMap.size() == 1)
+		{
+			showUser(iterator.next());
+		}
+		else
+		{
+			subArtikelPanel.setLayout(new GridLayout(userMap.size(),1));			
+		}
 		
 		while(iterator.hasNext()) {	
 	        User user = iterator.next();
-			
-			subArtikelPanel.add(new JLabel(user.getForname()));
-			subArtikelPanel.add(new JLabel(user.getLastname()));
-			
+	        JPanel userPanel = new JPanel();
+	        userPanel.setLayout(new GridLayout(1,3));
+	        userPanel.add(new JLabel(user.getForname()));
+	        userPanel.add(new JLabel(user.getLastname()));
 			JButton showButton = new JButton(statics.label.showClient);
 			showButton.addActionListener(getActionListener());
 			showButton.setName(user.getId().toString());
-	        subArtikelPanel.add(showButton);
+			userPanel.add(showButton);
+			
+			subArtikelPanel.add(userPanel);
 		}
+		subArtikelPanel.setBorder(new EmptyBorder(5, 5, 5, 5) );	
+		JScrollPane scrollPanel = new JScrollPane(subArtikelPanel);;
+
+		scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPanel.setPreferredSize(new Dimension( 460, 620));
+		showUserPanel.add(scrollPanel, BorderLayout.PAGE_START);
 		
 	}
 	
