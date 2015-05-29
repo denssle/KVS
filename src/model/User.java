@@ -69,10 +69,12 @@ public class User {
 	}
 	
 	public boolean saveUser() {
-		UserDAO.getInstance().updateUser(this);
+		UserDAO.getInstance().addUser(this);
 		return true;	
 	}
-	
+	public void updateUser() {
+		UserDAO.getInstance().updateUser(this);
+	}
 	public User getUserByLastame(String name) {
 		for(User e : UserDAO.getInstance().getAllUsers()) {
 			statics.debug.debugMessage("User", "Aktueller User: "+e);

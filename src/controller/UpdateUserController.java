@@ -47,7 +47,7 @@ public class UpdateUserController extends Observable implements ActionListener {
 		updateUser.setZip(cache.getZip());
 		updateUser.setCity(cache.getCity());
 		updateUser.setBirthdate(cache.getBirthday());
-		updateUser.saveUser();
+		updateUser.updateUser();
 		statics.debug.debugMessage("CreateUserController", updateUser.getForname());
 		
 	}
