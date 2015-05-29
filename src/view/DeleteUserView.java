@@ -18,10 +18,10 @@ public class DeleteUserView implements Observer{
 	
 	public static JPanel getPanel() {
 		if(ShowUserController.getUser() != null) {
-			JOptionPane.showConfirmDialog(null, "Sie sind dabei den gew�hlten Kunden zu l�schen!",statics.label.deleteClient,JOptionPane.YES_NO_CANCEL_OPTION);
+			JOptionPane.showConfirmDialog(null, "Sie sind dabei den gewählten Kunden zu löschen!",statics.label.deleteClient,JOptionPane.YES_NO_CANCEL_OPTION);
 			return panel;
 		} else {
-			Message.getInstance().display(panel.getParent(),"Kein User zum l�schen offen. Bitte �ffnen Sie erst einen User um ihn zu l�schen. ",statics.label.deleteClient);
+			Message.getInstance().display(panel.getParent(),"Kein User zum löschen offen. Bitte öffnen Sie erst einen User um ihn zu löschen. ",statics.label.deleteClient);
 			return panel;
 		}
 	}
@@ -45,7 +45,7 @@ public class DeleteUserView implements Observer{
         }
 			DeleteUserController.deleteUser(res);
 		} else {
-			JOptionPane.showMessageDialog(null, "Kein User zum löschen offen; bitte öffnen Sie erst einen User um ihn zu löschen. ");
+			Message.getInstance().display(panel.getParent(),"Kein User zum löschen offen. Bitte �ffnen Sie erst einen User um ihn zu löschen. ",statics.label.deleteClient);
 		}
 	}
 }

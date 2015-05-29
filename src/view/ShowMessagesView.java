@@ -12,7 +12,7 @@ import statics.Message;
 
 public class ShowMessagesView implements Observer{
 	private static JPanel messagePanel;
-	private JList messageList;
+	private JList<String> messageList;
 	
 	public ShowMessagesView() {
 		messagePanel = new JPanel();
@@ -25,7 +25,7 @@ public class ShowMessagesView implements Observer{
 			listContent.add(set.getKey()+": "+set.getValue());
 		}
 		
-		messageList = new JList(listContent.toArray());
+		messageList = new JList<String>((String[]) listContent.toArray());
 		messagePanel.add(messageList);
 		messagePanel.setVisible(true);
 	}
