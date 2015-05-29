@@ -9,7 +9,6 @@ public class Address implements Serializable{
 	private String city;
 	
 	public Address() {
-		
 	}
 	
 	public Address(String street, String zip, String city) {
@@ -23,7 +22,11 @@ public class Address implements Serializable{
 	}
 
 	public void setStreet(String street) {
-		this.street = street;
+		if(street != null) {
+			this.street = street;
+		}else {
+			this.street = " ";
+		}
 	}
 
 	public String getZip() {
@@ -31,7 +34,11 @@ public class Address implements Serializable{
 	}
 
 	public void setZip(String zip) {
-		this.zip = zip;
+		if(zip != null) {
+			this.zip = zip;
+		} else {
+			this.zip = " ";
+		}
 	}
 
 	public String getCity() {
@@ -39,6 +46,10 @@ public class Address implements Serializable{
 	}
 
 	public void setCity(String city) {
-		this.city = city;
+		if(city != null) {
+			this.city = city;
+		} else {
+			this.city = " ";
+		}
 	}
 }

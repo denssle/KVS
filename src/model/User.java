@@ -1,7 +1,5 @@
 package model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,14 +14,16 @@ public class User {
 	private String lastname;
 	private Address address;
 	private Date birthdate;
-	private static UserDAO userDAO;
 	
 	public User() {
 		this.id = UUID.randomUUID();
+		this.address = new Address();
 	}
 	
 	public User(CacheUser cache) {
 		this.id = UUID.randomUUID();
+		this.address = new Address();
+		
 		this.forname = cache.getForname();
 		this.lastname = cache.getLastname();
 		this.address.setCity(cache.getCity());
@@ -55,6 +55,7 @@ public class User {
 		Map<UUID, User> map = new HashMap<UUID, User>();
 		User user;
 		for(User e :  UserDAO.getInstance().getAllUsers()) {
+			statics.debug.debugMessage("User", "Gesucht: "+name+" Aktuell untersucht wird: "+ e.getForname() +" "+ e.getLastname());
 			user = e;
 			if(user.getForname().equals(name) || user.getLastname().equals(name)) {
 				map.put(user.getId(), user);
@@ -63,8 +64,7 @@ public class User {
 		return map;
 	}
 	
-	public void setId(String id)
-	{
+	public void setId(String id) {
 		this.id = UUID.fromString(id);
 	}
 	
@@ -101,15 +101,24 @@ public class User {
 	}
 
 	public void setForname(String forname) {
-		this.forname = forname;
+		if(forname != null) {
+			this.forname = forname;
+		} else {
+			this.forname = "";
+		}
+		
 	}
 
 	public String getLastname() {
 		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastname = lastName;
+	public void setLastName(String lastname) {
+		if(lastname != null) {
+			this.lastname = lastname;
+		} else {
+			this.lastname = "";
+		}
 	}
 	public UUID getId() {
 		return id;
@@ -117,6 +126,7 @@ public class User {
 	public Date getBirthdate() {
 		return birthdate;
 	}
+	
 	/*
 	 * Returns date without the time. As String.
 	 */
@@ -130,15 +140,21 @@ public class User {
 		
 		return day+"."+month+"."+year;
 	}
+	
 	public void setBirthdate(Date input) {
 		this.birthdate = input;
 	}
+	
 	public String getStreet() {
 		return address.getStreet();
 	}
 
 	public void setStreet(String street) {
-		address.setStreet(street);
+		if(street != null) {
+			address.setStreet(street);
+		} else {
+			address.setStreet("");
+		}
 	}
 
 	public String getZip() {
@@ -146,7 +162,11 @@ public class User {
 	}
 
 	public void setZip(String zip) {
-		address.setZip(zip);
+		if(zip != null) {
+			address.setZip(zip);
+		} else {
+			address.setZip("");;
+		}
 	}
 
 	public String getCity() {
@@ -154,7 +174,11 @@ public class User {
 	}
 
 	public void setCity(String city) {
-		address.setCity(city);
+		if(city != null) {
+			address.setCity(city);
+		} else {
+			address.setCity("");;
+		}
 	}
 	public void deleteUser() {
 		UserDAO.getInstance().deleteUser(this.getId().toString());
