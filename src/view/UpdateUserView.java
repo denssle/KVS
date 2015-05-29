@@ -13,9 +13,7 @@ import javax.swing.JTextField;
 import statics.CacheUser;
 import agiletrack.swing.JDateChooser;
 import model.User;
-import controller.CreateUserController;
 import controller.ShowUserController;
-import model.User;
 import controller.UpdateUserController;
 
 public class UpdateUserView implements Observer{

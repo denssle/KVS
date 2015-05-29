@@ -11,9 +11,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import controller.DeleteUserController;
-
-
 @SuppressWarnings("serial")
 public class MainFrameView extends JFrame implements Observer{
 	private JMenuItem menuItem;
