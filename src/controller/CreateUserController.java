@@ -2,15 +2,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.Observable;
-import javax.swing.JPanel;
 import model.User;
 import statics.CacheUser;
-import view.CreateUserView;
-import view.MainFrameView;
-import view.ShowUserView;
-import dao.UserDAO;
 
 public class CreateUserController extends Observable implements ActionListener {	
 	private static User user;
