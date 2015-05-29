@@ -4,7 +4,6 @@ public class DatabaseIntegrityCheck {
 
 	public DatabaseIntegrityCheck() {
 		//TODO: Klasse zum checken ob Datenbank: erreichbar && struktur vorhanden && struktur richtig && notwendige rechte vorhanden && bereits daten vorhanden sind
-		//TODO: Zusätzlich Methoden zum erstellen (initialisieren) und optional befüllen, säubern, löschen der Datenbank
+		//TODO: Zusï¿½tzlich Methoden zum erstellen (initialisieren) und optional befï¿½llen, sï¿½ubern, lï¿½schen der Datenbank
 	}
-
 }

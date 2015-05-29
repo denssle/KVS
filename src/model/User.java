@@ -134,7 +134,7 @@ public class User {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(birthdate);
 
-		int month = cal.get(Calendar.MONTH)+1;
+		int month = cal.get(Calendar.MONTH)+1;//Calender startet bei 0, nicht sonderlich gut lesbar. 
 		int day = cal.get(Calendar.DAY_OF_MONTH);
 		int year = cal.get(Calendar.YEAR);
 		
