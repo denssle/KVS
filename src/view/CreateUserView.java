@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import statics.CacheUser;
+import statics.Message;
 import agiletrack.swing.JDateChooser;
 import controller.CreateUserController;
 import controller.ShowUserController;
@@ -103,7 +104,7 @@ public class CreateUserView implements Observer{
 	public void update(Observable o, Object arg) {
 		if(arg.equals(statics.label.ok)) {
 			if(CreateUserController.createUser(cache) == false) {
-				JOptionPane.showMessageDialog(null, "Validierung gescheitert!");
+				Message.getInstance().display(null, statics.label.createValidation, statics.label.newClient);
 			} else {
 				createUserPanel.setVisible(false);
 			}

@@ -27,7 +27,7 @@ public class SearchUserController extends Observable implements ActionListener {
 			notifyObservers(statics.label.ok); 
 			List<User> userMap = UserDAO.getInstance().getUserByTags(SearchUserView.getInput().split("\\s+"));
 			if(userMap.isEmpty())
-				statics.Message.getInstance().display(null, "Für das gegebene Suchwort wurde kein Nutzer gefunden.", statics.label.searchClient);
+				statics.Message.getInstance().display(null, statics.label.searchNone, statics.label.searchClient);
 			
         	ShowUserView.showUser(userMap);
 			setChanged(); 

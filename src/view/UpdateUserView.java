@@ -96,7 +96,7 @@ public class UpdateUserView implements Observer{
 			buildView(ShowUserController.getUser());
 		}
 		else
-			statics.Message.getInstance().display(null, "Es ist kein Kunde ausgewählt worden.", statics.label.updateClient);
+			statics.Message.getInstance().display(null, statics.label.updateNone, statics.label.updateClient);
 		return updateUserPanel;
 	}
 	@Override

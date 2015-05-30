@@ -18,10 +18,10 @@ public class DeleteUserView implements Observer{
 	
 	public static JPanel getPanel() {
 		if(ShowUserController.getUser() != null) {
-			JOptionPane.showConfirmDialog(null, "Sie sind dabei den gewählten Kunden zu löschen!",statics.label.deleteClient,JOptionPane.YES_NO_CANCEL_OPTION);
+			JOptionPane.showConfirmDialog(null, statics.label.deleteTitleConfirm, statics.label.deleteTextConfirm,JOptionPane.YES_NO_CANCEL_OPTION);
 			return panel;
 		} else {
-			Message.getInstance().display(panel.getParent(),"Kein User zum löschen offen. Bitte öffnen Sie erst einen User um ihn zu löschen. ",statics.label.deleteClient);
+			Message.getInstance().display(panel.getParent(), statics.label.deleteNone, statics.label.deleteClient);
 			return panel;
 		}
 	}
@@ -34,7 +34,7 @@ public class DeleteUserView implements Observer{
 	public static void deleteUser() {
 		if(ShowUserController.getUser() != null) {
 			// 0 = delete, 1 = Nicht löschen, 2 = cancel
-			int res = JOptionPane.showConfirmDialog(null, "Sicher?", "User löschen.",JOptionPane.YES_NO_CANCEL_OPTION);
+			int res = JOptionPane.showConfirmDialog(null, statics.label.deleteTitleConfirm, statics.label.deleteTextConfirm,JOptionPane.YES_NO_CANCEL_OPTION);
 			switch (res) {
             case 0:
             	statics.debug.debugMessage("DeleteUserView", "User soll gelöscht werden");
@@ -45,7 +45,7 @@ public class DeleteUserView implements Observer{
         }
 			DeleteUserController.deleteUser(res);
 		} else {
-			Message.getInstance().display(panel.getParent(),"Kein User zum löschen offen. Bitte �ffnen Sie erst einen User um ihn zu löschen. ",statics.label.deleteClient);
+			Message.getInstance().display(panel.getParent(), statics.label.deleteNone, statics.label.deleteClient);
 		}
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 public class Message {
 
@@ -32,7 +33,12 @@ public class Message {
 	}
 	
 	public void display(Component parent, String text, String title) {
-		JOptionPane.showMessageDialog(parent, text, title, 0);
+		display(parent, text, title, JOptionPane.DEFAULT_OPTION);
+		messageStack.put(new Date().toString()+" | "+title, text);
+	}
+	
+	public void display(Component parent, String text, String title, int type) {
+		JOptionPane.showMessageDialog(parent, text, title, type);
 		messageStack.put(new Date().toString()+" | "+title, text);
 	}
 	
