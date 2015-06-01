@@ -27,6 +27,7 @@ public class KVS {
 	private static SearchUserView searchUserView;
 	private static UpdateUserView updateUserView;
 	private static DeleteUserView deleteUserView;
+	private static ShowMessagesView showMessagesView;
 	
 	public static void main(String[] args){
 		mainControll = new MainFrameController();
@@ -58,7 +59,7 @@ public class KVS {
 		deleteUserController = new DeleteUserController();
 		deleteUserView = new DeleteUserView(deleteUserController);
 		deleteUserController.addObserver(deleteUserView);
-		
+				
 		mainFrameView.start();
 	}
 }

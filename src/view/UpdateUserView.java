@@ -92,9 +92,9 @@ public class UpdateUserView implements Observer{
 	public static JPanel getPanel() {
 		if(ShowUserController.getUser() != null) {
 			buildView(ShowUserController.getUser());
-		}
-		else
+		} else {
 			statics.Message.getInstance().display(null, statics.label.updateNone, statics.label.updateClient);
+		}
 		return updateUserPanel;
 	}
 	@Override

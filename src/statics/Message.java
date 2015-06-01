@@ -12,8 +12,7 @@ public class Message {
 	private static Message message;
 	private static HashMap<String, String> messageStack = new HashMap<String, String>(); 
 	
-	private Message() {
-		
+	private Message() {	
 	}
 	
 	public static Message getInstance() {
@@ -34,6 +33,7 @@ public class Message {
 	
 	public void display(Component parent, String text, String title) {
 		display(parent, text, title, JOptionPane.DEFAULT_OPTION);
+		statics.debug.debugMessage("Message", text);
 		messageStack.put(new Date().toString()+" | "+title, text);
 	}
 	
@@ -44,7 +44,6 @@ public class Message {
 	
 	public HashMap<String, String> getLastMessages() {
 		return messageStack;
-	
 	}
 
 }

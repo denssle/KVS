@@ -1,23 +1,15 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Observable;
-
-import javax.print.attribute.standard.JobHoldUntil;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import controller.ShowUserController;
@@ -72,15 +64,14 @@ public class ShowUserView {
 		
 		if(userMap.size() == 1) {
 			showUser(iterator.next());
-		}
-		else {
+		} else {
 			subArtikelPanel.setLayout(new GridLayout(userMap.size(),1));			
 		}
 		
 		while(iterator.hasNext()) {	
 	        User user = iterator.next();
 	        JPanel userPanel = new JPanel();
-	        userPanel.setLayout(new GridLayout(1,3));
+	        userPanel.setLayout(new FlowLayout());
 	        userPanel.add(new JLabel(user.getForname()));
 	        userPanel.add(new JLabel(user.getLastname()));
 			JButton showButton = new JButton(statics.label.showClient);
@@ -91,12 +82,7 @@ public class ShowUserView {
 			subArtikelPanel.add(userPanel);
 		}
 		subArtikelPanel.setBorder(new EmptyBorder(5, 5, 5, 5) );	
-		JScrollPane scrollPanel = new JScrollPane(subArtikelPanel);;
-
-		scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPanel.setPreferredSize(new Dimension( 460, 620));
-		showUserPanel.add(scrollPanel, BorderLayout.PAGE_START);
-		
+		showUserPanel.add(subArtikelPanel);
 	}
 	
 	public static JPanel getPanel() {

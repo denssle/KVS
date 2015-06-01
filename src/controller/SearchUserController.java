@@ -10,9 +10,7 @@ import model.User;
 import view.SearchUserView;
 import view.ShowUserView;
 
-public class SearchUserController extends Observable implements ActionListener {
-	private static User user;
-	
+public class SearchUserController extends Observable implements ActionListener {	
 	public SearchUserController() {
 	}
 	/**

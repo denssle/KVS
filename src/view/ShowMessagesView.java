@@ -6,17 +6,19 @@ import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 
+import controller.ShowUserController;
 import statics.Message;
 
 public class ShowMessagesView implements Observer{
 	private static JPanel messagePanel;
-	private JList<String> messageList;
+	private static JList<String> messageList;
 	
-	public ShowMessagesView() {
+	private static void buildView() {
 		messagePanel = new JPanel();
 		messagePanel.setName(statics.label.messages);
 		messagePanel.setLayout(new FlowLayout());
@@ -29,20 +31,21 @@ public class ShowMessagesView implements Observer{
 			i++;
 		}
 		
-		messageList = new JList();
+		messageList = new JList<String>();
 		messageList.setListData(listContent);
 		messagePanel.add(messageList);
 		messagePanel.setVisible(true);
 	}
 
 	public static JPanel getPanel() {
+		ShowUserController.setUserNull();
+		buildView();
 		return messagePanel;
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
