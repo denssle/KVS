@@ -28,7 +28,6 @@ public class ShowMessagesView implements Observer{
 		int i = 0;
 		for(Entry<String,String> set: Message.getInstance().getLastMessages().entrySet()) {
 			listContent[i] = set.getKey()+": "+set.getValue();
-			
 			i++;
 		}
 		
