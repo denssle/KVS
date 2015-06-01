@@ -2,15 +2,15 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Observable;
-import java.util.UUID;
+
+import dao.UserDAO;
 import model.User;
+import view.SearchUserView;
 import view.ShowUserView;
 
 public class SearchUserController extends Observable implements ActionListener {
-	private static Map<UUID, User> userMap;
 	private static User user;
 	
 	public SearchUserController() {
@@ -25,7 +25,11 @@ public class SearchUserController extends Observable implements ActionListener {
 		if(command.equals(statics.label.ok)) {
 			setChanged(); 
 			notifyObservers(statics.label.ok); 
+			List<User> userMap = UserDAO.getInstance().getUserByTags(SearchUserView.getInput().split("\\s+"));
+			if(userMap.isEmpty())
+				statics.Message.getInstance().display(null, statics.label.searchNone, statics.label.searchClient);
 			
+<<<<<<< HEAD
 			if(user != null) {
 				ShowUserView.showUser(userMap);
 				setChanged(); 
@@ -43,6 +47,11 @@ public class SearchUserController extends Observable implements ActionListener {
 		String[] splited = name.split("\\s+");
 		for(int i = 0; i < splited.length; i++) {
 			userMap.putAll(user.searchUser(splited[i]));
+=======
+        	ShowUserView.showUser(userMap);
+			setChanged(); 
+			notifyObservers(statics.label.showClient);
+>>>>>>> master
 		}
 	}
 }

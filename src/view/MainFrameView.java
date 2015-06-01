@@ -50,6 +50,11 @@ public class MainFrameView extends JFrame implements Observer{
 		
 		userMenu.addSeparator();
 		
+		// Klient Suchen
+		menuItem = new JMenuItem(statics.label.messages);
+		menuItem.addActionListener(mainControll);
+		userMenu.add(menuItem);
+		
 		menuItem = new JMenuItem(statics.label.quit);
 		menuItem.getAccessibleContext().setAccessibleDescription(statics.label.quit);
 		menuItem.addActionListener(mainControll);
@@ -125,6 +130,9 @@ public class MainFrameView extends JFrame implements Observer{
 		//Client anzeigen
 		if(arg.equals(statics.label.showClient)) {
 			panel = ShowUserView.getPanel();
+		}
+		if(arg.equals(statics.label.messages)) {
+			panel = ShowMessagesView.getPanel();
 		}
 		updatePanel(panel);
 	}

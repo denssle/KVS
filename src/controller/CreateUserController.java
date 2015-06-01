@@ -6,11 +6,15 @@ import java.util.Observable;
 import model.User;
 import statics.CacheUser;
 
-public class CreateUserController extends Observable implements ActionListener {	
+public class CreateUserController extends Observable implements ActionListener {
 	private static User user;
+<<<<<<< HEAD
 	public CreateUserController() {
 	}
 	/**
+=======
+	/*
+>>>>>>> master
 	 * nimmt ActionEvents von der CreateUserView entgegen und informiert die View über notifyObservers über Änderungen. 
 	 */
 	@Override

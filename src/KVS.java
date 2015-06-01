@@ -2,6 +2,7 @@ import view.CreateUserView;
 import view.DeleteUserView;
 import view.MainFrameView;
 import view.SearchUserView;
+import view.ShowMessagesView;
 import view.ShowUserView;
 import view.UpdateUserView;
 import controller.CreateUserController;
@@ -21,6 +22,7 @@ public class KVS {
 	private static DeleteUserController deleteUserController;
 	
 	private static CreateUserView createUserView;
+	private static ShowMessagesView showMessageView;
 	private static MainFrameView mainFrameView;
 	private static SearchUserView searchUserView;
 	private static UpdateUserView updateUserView;
@@ -30,6 +32,9 @@ public class KVS {
 		mainControll = new MainFrameController();
 		mainFrameView = new MainFrameView(mainControll);
 		mainControll.addObserver(mainFrameView);
+		
+		showMessageView = new ShowMessagesView();
+		mainControll.addObserver(showMessageView);
 		
 		createUserController = new CreateUserController();
 		createUserController.addObserver(mainFrameView);
