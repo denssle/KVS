@@ -57,7 +57,7 @@ public class User {
 		UserDAO.getInstance().addUser(this);
 		return true;	
 	}
-<<<<<<< HEAD
+
 	public void updateUser() {
 		UserDAO.getInstance().updateUser(this);
 	}
@@ -80,10 +80,6 @@ public class User {
 		return null;
 	}
 	
-=======
-	
-	@Deprecated
->>>>>>> master
 	public User getUserByID(String string) {
 		return UserDAO.getInstance().getUserById(string);	
 	}
