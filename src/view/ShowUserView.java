@@ -70,12 +70,10 @@ public class ShowUserView {
 		
 		Iterator<User> iterator = userMap.iterator();
 		
-		if(userMap.size() == 1)
-		{
+		if(userMap.size() == 1) {
 			showUser(iterator.next());
 		}
-		else
-		{
+		else {
 			subArtikelPanel.setLayout(new GridLayout(userMap.size(),1));			
 		}
 		
