@@ -2,18 +2,15 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.Observable;
-import javax.swing.JPanel;
 import model.User;
 import statics.CacheUser;
-import view.CreateUserView;
-import view.MainFrameView;
-import view.ShowUserView;
-import dao.UserDAO;
 
 public class CreateUserController extends Observable implements ActionListener {
 	private static User user;
+	public CreateUserController() {
+	}
+	/**
 	/*
 	 * nimmt ActionEvents von der CreateUserView entgegen und informiert die View über notifyObservers über Änderungen. 
 	 */
@@ -25,8 +22,7 @@ public class CreateUserController extends Observable implements ActionListener {
 		if(command.equals(statics.label.ok)) {
 			setChanged(); 
 			notifyObservers(statics.label.ok);
-			/*
-			 * Infomiert View darüber das ein neuer User erstellt werden soll. 
+			/* Infomiert View darüber das ein neuer User erstellt werden soll. 
 			 * Bei Erfolg nutzt die View die createUser Methode und setzt damit den User auf != null. 
 			 */
 			
@@ -45,7 +41,7 @@ public class CreateUserController extends Observable implements ActionListener {
 			notifyObservers(statics.label.cancel);
 		}
 	}
-	/*
+	/**
 	 * Erstellt neuen User; gibt true bei Erfolg zurück. 
 	 * Bei gescheiterter Validierung false. 
 	 */
@@ -58,7 +54,7 @@ public class CreateUserController extends Observable implements ActionListener {
 		}
 		return false;
 	}
-	/*
+	/**
 	 * Validiert die Eingaben und gibt true zurück wenn alles in Ordnung ist. 
 	 */
 	private static boolean validation(CacheUser cacheUser) {

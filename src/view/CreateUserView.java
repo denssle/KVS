@@ -3,7 +3,6 @@ package view;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
@@ -90,7 +89,7 @@ public class CreateUserView implements Observer{
 		line.add(cancelButton);
 		createUserPanel.add(line);
 	}
-	/*
+	/**
 	 * Gibt das Panel für die MainFrameView zurück und setzt aktuellen User auf null. 
 	 */
 	public static JPanel getPanel() {

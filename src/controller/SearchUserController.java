@@ -15,7 +15,7 @@ public class SearchUserController extends Observable implements ActionListener {
 	
 	public SearchUserController() {
 	}
-	/*
+	/**
 	 *Nimmt Ok von der View entgegen und informiert die View darüber. Diese ruft die searchUser Methode auf, welche die userMap füllt. 
 	 *Die Map wird an die ShowUserView geschickt, die alle passenden User anzeigt. 
 	 */
@@ -26,10 +26,9 @@ public class SearchUserController extends Observable implements ActionListener {
 			setChanged(); 
 			notifyObservers(statics.label.ok); 
 			List<User> userMap = UserDAO.getInstance().getUserByTags(SearchUserView.getInput().split("\\s+"));
-			if(userMap.isEmpty())
-				statics.Message.getInstance().display(null, statics.label.searchNone, statics.label.searchClient);
+			if(userMap.isEmpty())statics.Message.getInstance().display(null, statics.label.searchNone, statics.label.searchClient);
 			
-        	ShowUserView.showUser(userMap);
+			ShowUserView.showUser(userMap);;
 			setChanged(); 
 			notifyObservers(statics.label.showClient);
 		}

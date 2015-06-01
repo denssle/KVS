@@ -54,11 +54,32 @@ public class User {
 	}
 	
 	public boolean saveUser() {
-		UserDAO.getInstance().updateUser(this);
+		UserDAO.getInstance().addUser(this);
 		return true;	
 	}
+
+	public void updateUser() {
+		UserDAO.getInstance().updateUser(this);
+	}
+	public User getUserByLastame(String name) {
+		for(User e : UserDAO.getInstance().getAllUsers()) {
+			statics.debug.debugMessage("User", "Aktueller User: "+e);
+			if(name.equals(e.getLastname())) {
+				return e;
+			}
+		}
+		return null;
+	}
+	public User getUserByForname(String name) {
+		for(User e : UserDAO.getInstance().getAllUsers()) {
+			statics.debug.debugMessage("User", "Aktueller User: "+e);
+			if(name.equals(e.getLastname())) {
+				return e;
+			}
+		}
+		return null;
+	}
 	
-	@Deprecated
 	public User getUserByID(String string) {
 		return UserDAO.getInstance().getUserById(string);	
 	}
@@ -101,7 +122,7 @@ public class User {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(birthdate);
 
-		int month = cal.get(Calendar.MONTH)+1;
+		int month = cal.get(Calendar.MONTH)+1;//Calender startet bei 0, nicht sonderlich gut lesbar. 
 		int day = cal.get(Calendar.DAY_OF_MONTH);
 		int year = cal.get(Calendar.YEAR);
 		

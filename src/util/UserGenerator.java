@@ -18,7 +18,6 @@ public class UserGenerator {
 	private static String[] STREET_NAMES = {"Hauptstraße", "Dorfstraße", "Schulstraße", "Bahnhofstraße", "Gartenstraße", "Bergstra�e", "Lindenstra�e", "Birkenweg", "Waldstra�e", "Kirchstra�e", "Ringstra�e", "Wiesenweg", "Schillerstra�e", "Goethestraße", "Mühlenweg", "Amselweg", "Feldstraße", "Wiesenstraße", "Jahnstraße", "Am Sportplatz", "Buchenweg", "Friedhofstraße", "Eichenweg", "Finkenweg", "Ahornweg", "M�hlenstra�e", "Rosenstra�e", "Talstra�e", "Erlenweg", "Blumenstra�e", "Brunnenstra�e", "Kirchweg", "Lindenweg", "Raiffeisenstraße", "Bachstraße", "Industriestraße", "Tannenweg", "Mittelstraße", "Gartenweg", "Rosenweg", "Mozartstraße", "Am Bahnhof", "Lerchenweg", "Waldweg", "Drosselweg", "Poststraße", "Schlossstraße", "Neue Straße", "Mühlweg", "Kirchplatz"};
 	private static String[] CITY_NAMES = {"Berlin", "Hamburg", "München", "Köln", "Frankfurt(Main)", "Stuttgart", "Düsseldorf", "Dortmund", "Essen", "Bremen", "Dresden", "Leipzig", "Hannover", "N�rnberg", "Duisburg", "Bochum", "Wuppertal", "Bonn", "Bielefeld", "Mannheim", "Karlsruhe", "M�nster", "Wiesbaden", "Augsburg", "Aachen", "M�nchengladbach", "Gelsenkirchen", "Braunschweig", "Chemnitz", "Kiel", "Krefeld", "Halle(Saale)", "Magdeburg", "Freiburg im Breisgau", "Oberhausen", "L�beck", "Erfurt", "Rostock", "Mainz", "Kassel", "Hagen", "Hamm", "Saarbrücken", "Mülheim an der Ruhr", "Herne", "Ludwigshafen am Rhein", "Osnabröck", "Oldenburg", "Leverkusen", "Solingen"};
 	
-	
 	private static Random rnd = new Random();
 	
 	public static void main(String[] args){

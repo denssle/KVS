@@ -35,7 +35,7 @@ public class ShowUserView {
 		showUserPanel.setLayout(new FlowLayout());
 		showUserPanel.setVisible(true);
 	}
-	/*
+	/**
 	 * Zeigt einen User an. 
 	 */
 	public static void showUser(User user) {
@@ -61,8 +61,8 @@ public class ShowUserView {
 			showUserPanel.add(table);
 		}
 	}
-	/*
-	 * Zeigt die Erbenisse einer Suche an. 
+	/**
+	 * Zeigt die Erbenisse einer Suche an. Nimmt Map entgegen. 
 	 */
 	public static void showUser(List<User> userMap) {
 		showUserPanel.removeAll();
@@ -70,12 +70,10 @@ public class ShowUserView {
 		
 		Iterator<User> iterator = userMap.iterator();
 		
-		if(userMap.size() == 1)
-		{
+		if(userMap.size() == 1) {
 			showUser(iterator.next());
 		}
-		else
-		{
+		else {
 			subArtikelPanel.setLayout(new GridLayout(userMap.size(),1));			
 		}
 		

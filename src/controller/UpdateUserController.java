@@ -2,9 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.Observable;
-import javax.swing.JPanel;
 import model.User;
 import statics.CacheUser;
 import view.ShowUserView;
@@ -36,7 +34,7 @@ public class UpdateUserController extends Observable implements ActionListener {
 			notifyObservers(statics.label.showClient);
 		}
 	}
-	/*
+	/**
 	 * nimmt die Änderungen, die in die Textfelder eingetragen wurden, von der View entgegen und ändert den User. 
 	 */
 	public static void updateUser(CacheUser cache) {
@@ -47,8 +45,7 @@ public class UpdateUserController extends Observable implements ActionListener {
 		updateUser.setZip(cache.getZip());
 		updateUser.setCity(cache.getCity());
 		updateUser.setBirthdate(cache.getBirthday());
-		updateUser.saveUser();
+		updateUser.updateUser();
 		statics.debug.debugMessage("CreateUserController", updateUser.getForname());
-		
 	}
 }
