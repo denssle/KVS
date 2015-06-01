@@ -21,8 +21,7 @@ public class CreateUserController extends Observable implements ActionListener {
 		if(command.equals(statics.label.ok)) {
 			setChanged(); 
 			notifyObservers(statics.label.ok);
-			/*
-			 * Infomiert View darüber das ein neuer User erstellt werden soll. 
+			/* Infomiert View darüber das ein neuer User erstellt werden soll. 
 			 * Bei Erfolg nutzt die View die createUser Methode und setzt damit den User auf != null. 
 			 */
 			
