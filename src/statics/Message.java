@@ -12,8 +12,7 @@ public class Message {
 	private static Message message;
 	private static HashMap<String, String> messageStack = new HashMap<String, String>(); 
 	
-	private Message() {
-		
+	private Message() {	
 	}
 	
 	public static Message getInstance() {
@@ -44,7 +43,6 @@ public class Message {
 	
 	public HashMap<String, String> getLastMessages() {
 		return messageStack;
-	
 	}
 
 }

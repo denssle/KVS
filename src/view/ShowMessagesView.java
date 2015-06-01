@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 
+import controller.ShowUserController;
 import statics.Message;
 
 public class ShowMessagesView implements Observer{
@@ -29,13 +30,14 @@ public class ShowMessagesView implements Observer{
 			i++;
 		}
 		
-		messageList = new JList();
+		messageList = new JList<String>();
 		messageList.setListData(listContent);
 		messagePanel.add(messageList);
 		messagePanel.setVisible(true);
 	}
 
 	public static JPanel getPanel() {
+		ShowUserController.setUserNull();
 		return messagePanel;
 	}
 

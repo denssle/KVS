@@ -11,7 +11,6 @@ public class CreateUserController extends Observable implements ActionListener {
 	public CreateUserController() {
 	}
 	/**
-	/*
 	 * nimmt ActionEvents von der CreateUserView entgegen und informiert die View über notifyObservers über Änderungen. 
 	 */
 	@Override

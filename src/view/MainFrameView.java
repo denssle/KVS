@@ -50,7 +50,7 @@ public class MainFrameView extends JFrame implements Observer{
 		
 		userMenu.addSeparator();
 		
-		// Klient Suchen
+		// letzte Meldung
 		menuItem = new JMenuItem(statics.label.messages);
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
