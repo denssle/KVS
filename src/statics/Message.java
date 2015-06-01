@@ -33,6 +33,7 @@ public class Message {
 	
 	public void display(Component parent, String text, String title) {
 		display(parent, text, title, JOptionPane.DEFAULT_OPTION);
+		statics.debug.debugMessage("Message", text);
 		messageStack.put(new Date().toString()+" | "+title, text);
 	}
 	

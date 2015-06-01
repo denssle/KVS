@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
@@ -15,9 +16,9 @@ import statics.Message;
 
 public class ShowMessagesView implements Observer{
 	private static JPanel messagePanel;
-	private JList<String> messageList;
+	private static JList<String> messageList;
 	
-	public ShowMessagesView() {
+	private static void buildView() {
 		messagePanel = new JPanel();
 		messagePanel.setName(statics.label.messages);
 		messagePanel.setLayout(new FlowLayout());
@@ -27,6 +28,7 @@ public class ShowMessagesView implements Observer{
 		int i = 0;
 		for(Entry<String,String> set: Message.getInstance().getLastMessages().entrySet()) {
 			listContent[i] = set.getKey()+": "+set.getValue();
+			
 			i++;
 		}
 		
@@ -38,13 +40,13 @@ public class ShowMessagesView implements Observer{
 
 	public static JPanel getPanel() {
 		ShowUserController.setUserNull();
+		buildView();
 		return messagePanel;
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
