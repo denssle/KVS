@@ -1,16 +1,11 @@
 package view;
 import java.awt.FlowLayout;
-import java.awt.List;
-import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.ListModel;
-
 import controller.ShowUserController;
 import statics.Message;
 

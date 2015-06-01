@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 
 public class Message {
 
