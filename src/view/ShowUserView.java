@@ -48,6 +48,7 @@ public class ShowUserView {
 			//table.setRowHeight(25);
 			table.setRowMargin(2);
 			table.setShowHorizontalLines(true);
+			table.setEnabled(false);
 			table.setPreferredSize(new Dimension(400, 100));
 			ShowUserController.setUser(user);
 			showUserPanel.add(table);

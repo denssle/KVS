@@ -27,7 +27,10 @@ public class KVS {
 	private static SearchUserView searchUserView;
 	private static UpdateUserView updateUserView;
 	private static DeleteUserView deleteUserView;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> master
 	public static void main(String[] args){
 		mainControll = new MainFrameController();
 		mainFrameView = new MainFrameView(mainControll);

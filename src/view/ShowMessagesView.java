@@ -3,9 +3,15 @@ import java.awt.FlowLayout;
 import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
+<<<<<<< HEAD
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+=======
+
+import javax.swing.JList;
+import javax.swing.JPanel;
+>>>>>>> master
 import controller.ShowUserController;
 import statics.Message;
 
