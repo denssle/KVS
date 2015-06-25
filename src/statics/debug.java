@@ -9,9 +9,11 @@ public class debug {
 	public static void debugMessage(String sender, String message) {
 		System.out.println(getCounter()+" DEBUG: "+sender+": "+message);
 	}
+	
 	public static void errorMessage(String sender, String message) {
-		System.out.println(getCounter()+" ERROR: "+sender+": "+message);
+		System.err.println(getCounter()+" ERROR: "+sender+": "+message);
 	}
+	
 	private static String getCounter() {
 		counter += 1;
 		if(counter <10) {
