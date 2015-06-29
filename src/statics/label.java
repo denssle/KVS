@@ -15,7 +15,9 @@ public final class label {
 	public final static String cancel = "Abbrechen";
 	public final static String titel = "KVS";
 	public final static String showClient = "Klient anzeigen";
-	
+	public final static String language = "Sprache";
+	public final static String german = "Deutsch";
+	public final static String english = "English";
 	/* User Labels */
 	public final static String forname = "Vorname";
 	public final static String lastname = "Nachname";
@@ -28,7 +30,7 @@ public final class label {
 	public final static String[] userLabels = {forname, lastname, street, zip, city, birthdate};
 	
 	/* Dialog Labels */
-	public final static String deleteNone = "Kein User zum löschen offen. Bitte öffnen Sie erst einen User um ihn zu löschen.";
+	public final static String deleteNone = "Kein User zum löschen offen.";
 	public final static String deleteTitleConfirm = "Sicher?";
 	public final static String deleteTextConfirm = "Wollen Sie den Kunden wirklich löschen?";
 	public final static String createValidation = "Validierung gescheitert!";

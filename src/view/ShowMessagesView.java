@@ -3,7 +3,6 @@ import java.awt.FlowLayout;
 import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JList;
 import javax.swing.JPanel;
 import controller.ShowUserController;
