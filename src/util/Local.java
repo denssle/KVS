@@ -12,7 +12,7 @@ public class Local {
 		
 	}
 	
-	public Local getInstance() {
+	public static Local getInstance() {
 		if(self == null) self = new Local();
 		
 		return self;
@@ -27,6 +27,11 @@ public class Local {
 			  
 		  Locale locale = new Locale(lang, country);
 	      bundle = ResourceBundle.getBundle("res.lang",locale);
+	}
+	
+	public String[] getUserLabels() {
+		String[] userlabels = {getInstance().getLocalString("forname"),getInstance().getLocalString("lastname"),getInstance().getLocalString("street"),getInstance().getLocalString("zip"),getInstance().getLocalString("city"),getInstance().getLocalString("birthdate")};
+		return userlabels;
 	}
 	
 	public String getLocalString(String label) {

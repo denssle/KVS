@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import statics.CacheUser;
+import util.Local;
 import agiletrack.swing.JDateChooser;
 import model.User;
 import controller.ShowUserController;
@@ -42,41 +45,42 @@ public class UpdateUserView implements Observer{
 		JPanel line = new JPanel();
 		JLabel label;
 		JTextField textfield;
-		line.setLayout(new GridLayout(statics.label.userLabels.length+1,2)); //Spalten, Zeilen
+		Local local = Local.getInstance();
+		line.setLayout(new GridLayout(local.getUserLabels().length+1,2)); //Spalten, Zeilen
 		
 		cache = new CacheUser();
 		
-		label = new JLabel(statics.label.forname);
+		label = new JLabel(local.getLocalString("forname"));
 		textfield = new JTextField(user.getForname());
 		cache.setFornameField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.lastname);
+		label = new JLabel(local.getLocalString("lastname"));
 		textfield = new JTextField(user.getLastname());
 		cache.setLastnameField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.street);
+		label = new JLabel(local.getLocalString("street"));
 		textfield = new JTextField(user.getStreet());
 		cache.setStreetField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.zip);
+		label = new JLabel(local.getLocalString("zip"));
 		textfield = new JTextField(user.getZip());
 		cache.setZipField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.city);
+		label = new JLabel(local.getLocalString("city"));
 		textfield = new JTextField(user.getCity());
 		cache.setCityField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(statics.label.birthdate);
+		label = new JLabel(local.getLocalString("birthdate"));
 		JDateChooser chooser = new JDateChooser();
 		chooser.setLocale(Locale.GERMANY);
 		chooser.setDate(user.getBirthdate());
