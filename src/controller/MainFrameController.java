@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import statics.label;
 import util.Local;
 
 public class MainFrameController extends Observable implements ActionListener {
@@ -15,17 +16,18 @@ public class MainFrameController extends Observable implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		statics.debug.debugMessage("MainFrameController",command);		
+		label l = new label();
 		Local local = Local.getInstance();
-		if(command.equals(Local.getInstance().getLocalString("german"))) {
-			local.init("de", "de");
-			command = Local.getInstance().getLocalString("language");
-		} else if(command.equals(Local.getInstance().getLocalString("english"))) {
-			local.init("en", "en");
-			command = Local.getInstance().getLocalString("language");
-		} else if(command.equals(Local.getInstance().getLocalString("turkish"))) {
-			local.init("tr", "tr");
-			command = Local.getInstance().getLocalString("language");
+		statics.debug.debugMessage("MainFrameController",command);		
+		if(command.equals(l.german)) {
+			local.init("de", "DE");
+			command = l.language;
+		} else if(command.equals(l.english)) {
+			local.init("en", "US");
+			command = l.language;
+		} else if(command.equals(l.turkish)) {
+			local.init("tr", "TR");
+			command = l.language;
 		}
 		setChanged(); 
 		notifyObservers(command); 

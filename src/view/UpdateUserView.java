@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import statics.CacheUser;
+import statics.label;
 import util.Local;
 import agiletrack.swing.JDateChooser;
 import model.User;
@@ -27,13 +28,14 @@ public class UpdateUserView implements Observer{
 	
 	public UpdateUserView(ActionListener actionListener) {
 		updateUserPanel = new JPanel();
-		updateUserPanel.setName(statics.label.updateClient);
+		label l = new label();
+		updateUserPanel.setName(l.editclient);
 		updateUserPanel.setLayout(new FlowLayout());		
 		
-		okButton = new JButton(Local.getInstance().getLocalString("ok"));
+		okButton = new JButton(l.ok);
 		okButton.addActionListener(actionListener);
 		
-		cancelButton = new JButton(statics.label.cancel);
+		cancelButton = new JButton(l.cancel);
 		cancelButton.addActionListener(actionListener);
 		
 		updateUserPanel.setVisible(true);
@@ -45,42 +47,42 @@ public class UpdateUserView implements Observer{
 		JPanel line = new JPanel();
 		JLabel label;
 		JTextField textfield;
-		Local local = Local.getInstance();
-		line.setLayout(new GridLayout(local.getUserLabels().length+1,2)); //Spalten, Zeilen
+		label l = new label();
+		line.setLayout(new GridLayout(l.alluserlabels.length+1,2)); //Spalten, Zeilen
 		
 		cache = new CacheUser();
 		
-		label = new JLabel(local.getLocalString("forname"));
+		label = new JLabel(l.forname);
 		textfield = new JTextField(user.getForname());
 		cache.setFornameField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(local.getLocalString("lastname"));
+		label = new JLabel(l.lastname);
 		textfield = new JTextField(user.getLastname());
 		cache.setLastnameField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(local.getLocalString("street"));
+		label = new JLabel(l.street);
 		textfield = new JTextField(user.getStreet());
 		cache.setStreetField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(local.getLocalString("zip"));
+		label = new JLabel(l.zip);
 		textfield = new JTextField(user.getZip());
 		cache.setZipField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(local.getLocalString("city"));
+		label = new JLabel(l.city);
 		textfield = new JTextField(user.getCity());
 		cache.setCityField(textfield);
 		line.add(label);
 		line.add(textfield);
 		
-		label = new JLabel(local.getLocalString("birthdate"));
+		label = new JLabel(l.birthdate);
 		JDateChooser chooser = new JDateChooser();
 		chooser.setLocale(Locale.GERMANY);
 		chooser.setDate(user.getBirthdate());
@@ -94,16 +96,18 @@ public class UpdateUserView implements Observer{
 	}
 	
 	public static JPanel getPanel() {
+		label l = new label();
 		if(ShowUserController.getUser() != null) {
 			buildView(ShowUserController.getUser());
 		} else {
-			statics.Message.getInstance().display(null, Local.getInstance().getLocalString("updatenonefound"), statics.label.updateClient);
+			statics.Message.getInstance().display(null, l.updatenonefound, l.editclient);
 		}
 		return updateUserPanel;
 	}
 	@Override
 	public void update(Observable o, Object arg) {		
-		if(arg.equals(Local.getInstance().getLocalString("ok"))) {
+		label l = new label();
+		if(arg.equals(l.ok)) {
 			UpdateUserController.updateUser(cache);
 		}
 	}

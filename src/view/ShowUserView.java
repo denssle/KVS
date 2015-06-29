@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import statics.label;
 import util.Local;
 import controller.ShowUserController;
 import model.User;
@@ -23,9 +24,10 @@ public class ShowUserView {
 	
 	public ShowUserView(ActionListener showUserController) {
 		actionListener = showUserController;
+		label l = new label();
 		ShowUserView.setActionListener(showUserController);
 		showUserPanel = new JPanel();
-		showUserPanel.setName(statics.label.showClient);
+		showUserPanel.setName(l.showclient);
 		showUserPanel.setLayout(new FlowLayout());
 		showUserPanel.setVisible(true);
 	}
@@ -35,14 +37,14 @@ public class ShowUserView {
 	public static void showUser(User user) {
 		if(user != null) {
 			showUserPanel.removeAll();
-			Local local = Local.getInstance();
+			label l = new label();
 			String[][] rowData = {
-					{local.getLocalString("forname"), user.getForname() }, 
-					{local.getLocalString("lastname"), user.getLastname() },
-					{local.getLocalString("street"), user.getStreet()},
-					{local.getLocalString("zip"), user.getZip()},
-					{local.getLocalString("city"), user.getCity()},
-					{local.getLocalString("birthdate"), user.getNiceBirthday()}
+					{l.forname, user.getForname() }, 
+					{l.lastname, user.getLastname() },
+					{l.street, user.getStreet()},
+					{l.zip, user.getZip()},
+					{l.city, user.getCity()},
+					{l.birthdate, user.getNiceBirthday()}
 				    };
 			String[] columnNames =  {
 				      "XXX", "YYY"
@@ -63,9 +65,8 @@ public class ShowUserView {
 	public static void showUser(List<User> userMap) {
 		showUserPanel.removeAll();
 		JPanel subArtikelPanel = new JPanel();
-		Local local = Local.getInstance();
 		Iterator<User> iterator = userMap.iterator();
-		
+		label l = new label();
 		if(userMap.size() == 1) {
 			showUser(iterator.next());
 		} else {
@@ -78,7 +79,7 @@ public class ShowUserView {
 	        userPanel.setLayout(new FlowLayout());
 	        userPanel.add(new JLabel(user.getForname()));
 	        userPanel.add(new JLabel(user.getLastname()));
-			JButton showButton = new JButton(local.getLocalString("showclient"));
+			JButton showButton = new JButton(l.showclient);
 			showButton.addActionListener(getActionListener());
 			showButton.setName(user.getId().toString());
 			userPanel.add(showButton);

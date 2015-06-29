@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import statics.label;
 import util.Local;
 import controller.ShowUserController;
 
@@ -19,17 +20,17 @@ public class SearchUserView implements Observer{
 	private static JTextField textfield;
 	
 	public SearchUserView(ActionListener actionListener) {
-		Local local = Local.getInstance();
+		label l = new label();
 		searchUserPanel = new JPanel();
-		searchUserPanel.setName(local.getLocalString("searchClient"));
+		searchUserPanel.setName(l.searchclient);
 		searchUserPanel.setLayout(new FlowLayout());
 		
-		JLabel label = new JLabel(local.getLocalString("searchClient"));
-		textfield = new JTextField(local.getLocalString("searchplaceholder"));
-		textfield.setToolTipText(local.getLocalString("searchdescription"));
+		JLabel label = new JLabel(l.searchclient);
+		textfield = new JTextField(l.searchplaceholder);
+		textfield.setToolTipText(l.searchdescription);
 		textfield.setPreferredSize( new Dimension( 200, 20 ) );
 		
-		JButton button = new JButton(Local.getInstance().getLocalString("ok"));
+		JButton button = new JButton(l.ok);
 		button.addActionListener(actionListener);
 		
 		searchUserPanel.add(label);
