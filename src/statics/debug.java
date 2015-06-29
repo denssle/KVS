@@ -1,7 +1,6 @@
 package statics;
 
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
@@ -17,10 +16,12 @@ public class debug {
 		//System.out.println(getCounter()+" DEBUG: "+sender+": "+message);
 		log.log( Level.INFO, sender+" : "+message, getCounter()+message);
 	}
+	
 	public static void errorMessage(String sender, String message) {
 		//System.out.println(getCounter()+" ERROR: "+sender+": "+message);
 		log.log( Level.WARNING, sender+" : "+message, getCounter()+message);
 	}
+	
 	private static String getCounter() {
 		counter += 1;
 		if(counter <10) {
