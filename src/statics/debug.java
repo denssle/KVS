@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class debug {
 	private static Integer counter = 0;
-	private static final Logger log = Logger.getLogger("confLogger");
+	private static final Logger log = Logger.getLogger("Logger");
 	
 	public static void debugMessage(String sender, String message) {
 		
