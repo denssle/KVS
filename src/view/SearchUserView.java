@@ -29,7 +29,7 @@ public class SearchUserView implements Observer{
 		textfield.setToolTipText(local.getLocalString("searchdescription"));
 		textfield.setPreferredSize( new Dimension( 200, 20 ) );
 		
-		JButton button = new JButton(statics.label.ok);
+		JButton button = new JButton(Local.getInstance().getLocalString("ok"));
 		button.addActionListener(actionListener);
 		
 		searchUserPanel.add(label);

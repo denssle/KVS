@@ -5,7 +5,6 @@ import util.Local;
 public class label {
 	static Local local = Local.getInstance();
 	/* Menu Labels */
-	public static String ok = local.getLocalString("ok");
 	public static String clients = "Klienten";
 	public static String messages = local.getLocalString("lastmessages");
 	public static String newClient = local.getLocalString("createnewclient");

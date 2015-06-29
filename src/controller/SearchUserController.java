@@ -21,9 +21,9 @@ public class SearchUserController extends Observable implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("SearchUserController", command);
-		if(command.equals(statics.label.ok)) {
+		if(command.equals(Local.getInstance().getLocalString("ok"))) {
 			setChanged(); 
-			notifyObservers(statics.label.ok); 
+			notifyObservers(Local.getInstance().getLocalString("ok")); 
 			List<User> userMap = UserDAO.getInstance().getUserByTags(SearchUserView.getInput().split("\\s+"));
 			if(userMap.isEmpty())statics.Message.getInstance().display(null, Local.getInstance().getLocalString("searchnonefound"), statics.label.searchClient);
 			
