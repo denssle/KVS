@@ -31,15 +31,15 @@ public class CreateUserController extends Observable implements ActionListener {
 				// Hier wird auf die ShowUserView gewechselt, der neu erstellte User wird angezeigt. 
 				ShowUserController.setUser(user);
 				setChanged(); 
-				notifyObservers(statics.label.showClient);
+				notifyObservers(Local.getInstance().getLocalString("showclient"));
 			}
 		}
 		
-		if(command.equals(statics.label.cancel)) {
+		if(command.equals(Local.getInstance().getLocalString("cancel"))) {
 			//Schließt die Usererstellung. 
 			ShowUserController.setUserNull();
 			setChanged(); 
-			notifyObservers(statics.label.cancel);
+			notifyObservers(Local.getInstance().getLocalString("cancel"));
 		}
 	}
 	/**

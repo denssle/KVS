@@ -63,7 +63,7 @@ public class ShowUserView {
 	public static void showUser(List<User> userMap) {
 		showUserPanel.removeAll();
 		JPanel subArtikelPanel = new JPanel();
-		
+		Local local = Local.getInstance();
 		Iterator<User> iterator = userMap.iterator();
 		
 		if(userMap.size() == 1) {
@@ -78,7 +78,7 @@ public class ShowUserView {
 	        userPanel.setLayout(new FlowLayout());
 	        userPanel.add(new JLabel(user.getForname()));
 	        userPanel.add(new JLabel(user.getLastname()));
-			JButton showButton = new JButton(statics.label.showClient);
+			JButton showButton = new JButton(local.getLocalString("showclient"));
 			showButton.addActionListener(getActionListener());
 			showButton.setName(user.getId().toString());
 			userPanel.add(showButton);

@@ -33,14 +33,14 @@ public class CreateUserView implements Observer{
 	}
 	
 	private static void buildView() {
+		Local local = Local.getInstance();
 		createUserPanel.removeAll();
-		createUserPanel.setName(statics.label.newClient);
+		createUserPanel.setName(local.getLocalString("newClient"));
 		createUserPanel.setLayout(new FlowLayout());
 		
 		JPanel line = new JPanel();
 		JLabel label;
 		JTextField textfield;
-		Local local = Local.getInstance();
 		
 		line.setLayout(new GridLayout(local.getUserLabels().length+1,2)); //Spalten, Zeilen
 		label = new JLabel(local.getLocalString("forname"));
@@ -83,7 +83,7 @@ public class CreateUserView implements Observer{
 		JButton okButton = new JButton(Local.getInstance().getLocalString("ok"));
 		okButton.addActionListener(actionListener);
 		
-		JButton cancelButton = new JButton(statics.label.cancel);
+		JButton cancelButton = new JButton(local.getLocalString("cancel"));
 		cancelButton.addActionListener(actionListener);
 		
 		line.add(okButton);

@@ -11,25 +11,29 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import util.Local;
+
 @SuppressWarnings("serial")
 public class MainFrameView extends JFrame implements Observer{
 	private JMenuItem menuItem;
 	private JPanel mainPanel;
+	private ActionListener actionListener;
 	
 	public MainFrameView(ActionListener mainControll) {
 		this.setSettings();
 		
 		mainPanel = new JPanel();
 		this.add(mainPanel, BorderLayout.NORTH);
-		
+		actionListener = mainControll;
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.add(createUserMenu(mainControll));
-		menuBar.add(createEditMenu(mainControll));
-		menuBar.add(createLangMenu(mainControll));
+		menuBar.add(createUserMenu(actionListener));
+		menuBar.add(createEditMenu(actionListener));
+		menuBar.add(createLangMenu(actionListener));
 		this.setJMenuBar(menuBar);
 	}
+	
 	private void setSettings() {
-		this.setTitle(statics.label.titel);
+		this.setTitle(Local.getInstance().getLocalString("title"));
 		this.setSize(700, 700);//java.awt.Toolkit.getDefaultToolkit().getScreenSize()
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
@@ -39,25 +43,26 @@ public class MainFrameView extends JFrame implements Observer{
 	 * Erstellt erstes, linkes JMenu. Hier kann KVS neue Klienten erstellen, suchen oder beendet werden.
 	 */
 	private JMenu createUserMenu(ActionListener mainControll) {
-		JMenu userMenu = new JMenu(statics.label.clients);
+		Local local = Local.getInstance();
+		JMenu userMenu = new JMenu(local.getLocalString("clients"));
 		//Neuer Klient
-		menuItem = new JMenuItem(statics.label.newClient);
+		menuItem = new JMenuItem(local.getLocalString("newClient"));
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		// Klient Suchen
-		menuItem = new JMenuItem(statics.label.searchClient);
+		menuItem = new JMenuItem(local.getLocalString("searchClient"));
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		
 		userMenu.addSeparator();
 		
 		// letzte Meldung
-		menuItem = new JMenuItem(statics.label.messages);
+		menuItem = new JMenuItem(local.getLocalString("messages"));
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		
-		menuItem = new JMenuItem(statics.label.quit);
-		menuItem.getAccessibleContext().setAccessibleDescription(statics.label.quit);
+		menuItem = new JMenuItem(local.getLocalString("quit"));
+		menuItem.getAccessibleContext().setAccessibleDescription(Local.getInstance().getLocalString("quit"));
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		return userMenu;
@@ -66,13 +71,14 @@ public class MainFrameView extends JFrame implements Observer{
 	 *  Erstellt das zweite JMenu, hier kann ein offener Klient bearbeitet oder gelöscht werden. 
 	 */
 	private JMenu createEditMenu(ActionListener mainControll) {
-		JMenu editMenu = new JMenu(statics.label.updateClient);
+		Local local = Local.getInstance();
+		JMenu editMenu = new JMenu(local.getLocalString("updateClient"));
 		//Bearbeiten
-		menuItem = new JMenuItem(statics.label.updateClient);
+		menuItem = new JMenuItem(local.getLocalString("updateClient"));
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		//Löschen
-		menuItem = new JMenuItem(statics.label.deleteClient);
+		menuItem = new JMenuItem(local.getLocalString("deleteClient"));
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		
@@ -82,27 +88,39 @@ public class MainFrameView extends JFrame implements Observer{
 	 * erstellt das Sprachenmenue
 	 */
 	private JMenu createLangMenu(ActionListener mainControll) {
-		JMenu editMenu = new JMenu(statics.label.language);
+		Local local = Local.getInstance();
+		JMenu editMenu = new JMenu(local.getLocalString("language"));
 		//Deutsche Sprache
-		menuItem = new JMenuItem(statics.label.german);
+		menuItem = new JMenuItem(local.getLocalString("german"));
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		//Englische Sprache
-		menuItem = new JMenuItem(statics.label.english);
+		menuItem = new JMenuItem(local.getLocalString("english"));
+		menuItem.addActionListener(mainControll);
+		editMenu.add(menuItem);
+		//Türkische Sprache
+		menuItem = new JMenuItem(local.getLocalString("turkish"));
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		
 		return editMenu;
 	}
-	public void start()
-	{
+	public void start() {
 		this.setVisible(true);
 	}
 	
 	private void quit() {
 		this.dispose();
 	}
-	
+	private void updateFrame() {
+		this.setSettings();
+		this.add(mainPanel, BorderLayout.NORTH);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.add(createUserMenu(actionListener));
+		menuBar.add(createEditMenu(actionListener));
+		menuBar.add(createLangMenu(actionListener));
+		this.setJMenuBar(menuBar);
+	}
 	/**
 	 * Nimmt ein JPanel, das eine View per getPanel zur Verfügung stellt, entgegen und setzt sie als Mainview ein. 
 	 */
@@ -123,32 +141,37 @@ public class MainFrameView extends JFrame implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		JPanel panel = new JPanel();
+		Local local = Local.getInstance();
 		//Beenden
-		if(arg.equals(statics.label.quit)) {
+		if(arg.equals(local.getLocalString("quit"))) {
 			quit();
 		}
 		//Neuer Klient
-		if(arg.equals(statics.label.newClient)) {
+		if(arg.equals(local.getLocalString("newClient"))) {
 			panel = CreateUserView.getPanel();
 		}
 		//Client suchen
-		if(arg.equals(statics.label.searchClient)) {
+		if(arg.equals(local.getLocalString("searchClient"))) {
 			panel = SearchUserView.getPanel();
 		}
 		//Client löschen
-		if(arg.equals(statics.label.deleteClient)) {
+		if(arg.equals(local.getLocalString("deleteClient"))) {
 			DeleteUserView.deleteUser();
 		}
 		//Client bearbeiten. 
-		if(arg.equals(statics.label.updateClient)) {
+		if(arg.equals(local.getLocalString("updateClient"))) {
 			panel = UpdateUserView.getPanel();
 		}
 		//Client anzeigen
-		if(arg.equals(statics.label.showClient)) {
+		if(arg.equals(local.getLocalString("showClient"))) {
 			panel = ShowUserView.getPanel();
 		}
-		if(arg.equals(statics.label.messages)) {
+		if(arg.equals(local.getLocalString("messages"))) {
 			panel = ShowMessagesView.getPanel();
+		}
+		if(arg.equals(local.getLocalString("language"))) {
+			updateFrame();
+			start();
 		}
 		updatePanel(panel);
 	}
