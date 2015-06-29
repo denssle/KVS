@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 
 
 public class Local {
-
 	private ResourceBundle bundle = null;
 	private static Local self = null;
 
@@ -15,7 +14,6 @@ public class Local {
 	
 	public static Local getInstance() {
 		if(self == null) self = new Local();
-		
 		return self;
 	}	
 	
