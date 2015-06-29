@@ -7,6 +7,7 @@ import java.util.Observable;
 
 import dao.UserDAO;
 import model.User;
+import util.Local;
 import view.SearchUserView;
 import view.ShowUserView;
 
@@ -24,7 +25,7 @@ public class SearchUserController extends Observable implements ActionListener {
 			setChanged(); 
 			notifyObservers(statics.label.ok); 
 			List<User> userMap = UserDAO.getInstance().getUserByTags(SearchUserView.getInput().split("\\s+"));
-			if(userMap.isEmpty())statics.Message.getInstance().display(null, statics.label.searchNone, statics.label.searchClient);
+			if(userMap.isEmpty())statics.Message.getInstance().display(null, Local.getInstance().getLocalString("searchnonefound"), statics.label.searchClient);
 			
 			ShowUserView.showUser(userMap);;
 			setChanged(); 

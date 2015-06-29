@@ -1,45 +1,25 @@
 package statics;
 
+import util.Local;
+
 public final class label {
+	static Local local = Local.getInstance();
 	/* Menu Labels */
-	public final static String ok = "Ok";
+	public final static String ok = local.getLocalString("ok");
 	public final static String clients = "Klienten";
-	public final static String messages = "Letzte Meldungen";
-	public final static String newClient = "Neuen Klienten anlegen";
-	public final static String searchClient = "Klient suchen";
-	public final static String quit = "Beenden";
-	public final static String update = "Bearbeiten";
-	public final static String updateClient = "Klient bearbeiten";
-	public final static String delete = "Löschen";
-	public final static String deleteClient = "Klient löschen";
-	public final static String cancel = "Abbrechen";
+	public final static String messages = local.getLocalString("lastmessages");
+	public final static String newClient = local.getLocalString("createnewclient");
+	public final static String searchClient = local.getLocalString("searchclient");
+	public final static String quit = local.getLocalString("quit");
+	public final static String update = local.getLocalString("edit");
+	public final static String updateClient = local.getLocalString("editclient");
+	public final static String delete = local.getLocalString("delete");
+	public final static String deleteClient = local.getLocalString("deleteclient");
+	public final static String cancel = local.getLocalString("cancel");
 	public final static String titel = "KVS";
-	public final static String showClient = "Klient anzeigen";
-	public final static String language = "Sprache";
-	public final static String german = "Deutsch";
-	public final static String english = "English";
-	/* User Labels */
-	public final static String forname = "Vorname";
-	public final static String lastname = "Nachname";
-	public final static String street = "Straße";
-	public final static String zip ="PLZ";
-	public final static String city = "Stadt";
-	public final static String birthdate = "Geburtsdatum";
-	public final static String lastVisit = "Letzter Besuch";
-	public final static String fistVisit = "Erster Besuch";
-	public final static String[] userLabels = {forname, lastname, street, zip, city, birthdate};
-	
-	/* Dialog Labels */
-	public final static String deleteNone = "Kein User zum löschen offen.";
-	public final static String deleteTitleConfirm = "Sicher?";
-	public final static String deleteTextConfirm = "Wollen Sie den Kunden wirklich löschen?";
-	public final static String createValidation = "Validierung gescheitert!";
-	public final static String updateNone = "Es wurde kein Kunde ausgewählt.";
-	public final static String searchNone = "Es wurde kein Kunde gefunden.";
-	
-	/* Form Labels */
-	public final static String searchPlaceholder = "nach Max Mustermann";
-	public final static String searchDescription = "Hier Vor-, Nachname oder Stadt eingeben";	
-	//public final static String path = "/Users/admin/Dropbox/FH/userSaveFile.txt";
+	public final static String showClient = local.getLocalString("showclient");
+	public final static String language = local.getLocalString("language");
+	public final static String german = local.getLocalString("german");
+	public final static String english = local.getLocalString("english");
 }
 

@@ -12,7 +12,7 @@ public class Local {
 		
 	}
 	
-	public Local getInstance() {
+	public static Local getInstance() {
 		if(self == null) self = new Local();
 		
 		return self;
@@ -29,12 +29,27 @@ public class Local {
 	      bundle = ResourceBundle.getBundle("res.lang",locale);
 	}
 	
+	public String[] getUserLabels() {
+		String[] userlabels = {getInstance().getLocalString("forname"),getInstance().getLocalString("lastname"),getInstance().getLocalString("street"),getInstance().getLocalString("zip"),getInstance().getLocalString("city"),getInstance().getLocalString("birthdate")};
+		return userlabels;
+	}
+	
 	public String getLocalString(String label) {
 		if(bundle == null) {
 			init(System.getProperty("user.country"), System.getProperty("user.language"));
 		}
 		
-		return bundle.getString(label);
+		String ls = bundle.getString(label);
+		if(ls == null) {
+			return "{"+label+"}";
+		}
+		else
+		{
+			if(ls == "")
+				return "{"+label+"}";
+			else
+				return ls;
+		}
 	}
 
 }

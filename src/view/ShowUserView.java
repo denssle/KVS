@@ -6,12 +6,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import util.Local;
 import controller.ShowUserController;
 import model.User;
 
@@ -33,13 +35,14 @@ public class ShowUserView {
 	public static void showUser(User user) {
 		if(user != null) {
 			showUserPanel.removeAll();
+			Local local = Local.getInstance();
 			String[][] rowData = {
-					{statics.label.forname, user.getForname() }, 
-					{statics.label.lastname, user.getLastname() },
-					{statics.label.street, user.getStreet()},
-					{statics.label.zip, user.getZip()},
-					{statics.label.city, user.getCity()},
-					{statics.label.birthdate, user.getNiceBirthday()}
+					{local.getLocalString("forname"), user.getForname() }, 
+					{local.getLocalString("lastname"), user.getLastname() },
+					{local.getLocalString("street"), user.getStreet()},
+					{local.getLocalString("zip"), user.getZip()},
+					{local.getLocalString("city"), user.getCity()},
+					{local.getLocalString("birthdate"), user.getNiceBirthday()}
 				    };
 			String[] columnNames =  {
 				      "XXX", "YYY"
