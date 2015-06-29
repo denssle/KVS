@@ -104,7 +104,7 @@ public class CreateUserView implements Observer{
 	public void update(Observable o, Object arg) {
 		if(arg.equals(statics.label.ok)) {
 			if(CreateUserController.createUser(cache) == false) {
-				Message.getInstance().display(null, statics.label.createValidation, statics.label.newClient);
+				Message.getInstance().display(null, Local.getInstance().getLocalString("createvalidation"), statics.label.newClient);
 			} else {
 				createUserPanel.setVisible(false);
 			}

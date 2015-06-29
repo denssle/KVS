@@ -97,7 +97,7 @@ public class UpdateUserView implements Observer{
 		if(ShowUserController.getUser() != null) {
 			buildView(ShowUserController.getUser());
 		} else {
-			statics.Message.getInstance().display(null, statics.label.updateNone, statics.label.updateClient);
+			statics.Message.getInstance().display(null, Local.getInstance().getLocalString("updatenonefound"), statics.label.updateClient);
 		}
 		return updateUserPanel;
 	}

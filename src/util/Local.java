@@ -39,7 +39,17 @@ public class Local {
 			init(System.getProperty("user.country"), System.getProperty("user.language"));
 		}
 		
-		return bundle.getString(label);
+		String ls = bundle.getString(label);
+		if(ls == null) {
+			return "{"+label+"}";
+		}
+		else
+		{
+			if(ls == "")
+				return "{"+label+"}";
+			else
+				return ls;
+		}
 	}
 
 }
