@@ -52,6 +52,9 @@ public class UpdateUserView implements Observer{
 		
 		cache = new CacheUser();
 		
+		okButton.setText(l.ok);
+		cancelButton.setText(l.cancel);
+		
 		label = new JLabel(l.forname);
 		textfield = new JTextField(user.getForname());
 		cache.setFornameField(textfield);
