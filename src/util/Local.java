@@ -34,7 +34,11 @@ public class Local {
 		  }
 			  
 		  Locale locale = new Locale(lang, country);
+		  try {
 	      bundle = ResourceBundle.getBundle("res.lang",locale);
+		  } catch(MissingResourceException e){
+			  statics.debug.errorMessage("Local", e.getMessage());
+		  }
 	}
 	
 	/**
