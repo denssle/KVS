@@ -25,6 +25,7 @@ public class MainFrameView extends JFrame implements Observer{
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(createUserMenu(mainControll));
 		menuBar.add(createEditMenu(mainControll));
+		menuBar.add(createLangMenu(mainControll));
 		this.setJMenuBar(menuBar);
 	}
 	private void setSettings() {
@@ -77,7 +78,22 @@ public class MainFrameView extends JFrame implements Observer{
 		
 		return editMenu;
 	}
-	
+	/**
+	 * erstellt das Sprachenmenue
+	 */
+	private JMenu createLangMenu(ActionListener mainControll) {
+		JMenu editMenu = new JMenu(statics.label.language);
+		//Deutsche Sprache
+		menuItem = new JMenuItem(statics.label.german);
+		menuItem.addActionListener(mainControll);
+		editMenu.add(menuItem);
+		//Englische Sprache
+		menuItem = new JMenuItem(statics.label.english);
+		menuItem.addActionListener(mainControll);
+		editMenu.add(menuItem);
+		
+		return editMenu;
+	}
 	public void start()
 	{
 		this.setVisible(true);

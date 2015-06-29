@@ -15,7 +15,9 @@ public final class label {
 	public final static String cancel = "Abbrechen";
 	public final static String titel = "KVS";
 	public final static String showClient = "Klient anzeigen";
-	
+	public final static String language = "Sprache";
+	public final static String german = "Deutsch";
+	public final static String english = "English";
 	/* User Labels */
 	public final static String forname = "Vorname";
 	public final static String lastname = "Nachname";
