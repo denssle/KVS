@@ -11,6 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import statics.label;
 import util.Local;
 
 @SuppressWarnings("serial")
@@ -33,7 +34,8 @@ public class MainFrameView extends JFrame implements Observer{
 	}
 	
 	private void setSettings() {
-		this.setTitle(Local.getInstance().getLocalString("title"));
+		label l = new label();
+		this.setTitle(l.title);
 		this.setSize(700, 700);//java.awt.Toolkit.getDefaultToolkit().getScreenSize()
 		this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
@@ -43,26 +45,26 @@ public class MainFrameView extends JFrame implements Observer{
 	 * Erstellt erstes, linkes JMenu. Hier kann KVS neue Klienten erstellen, suchen oder beendet werden.
 	 */
 	private JMenu createUserMenu(ActionListener mainControll) {
-		Local local = Local.getInstance();
-		JMenu userMenu = new JMenu(local.getLocalString("clients"));
+		label l = new label();
+		JMenu userMenu = new JMenu(l.clients);
 		//Neuer Klient
-		menuItem = new JMenuItem(local.getLocalString("newClient"));
+		menuItem = new JMenuItem(l.createnewclient);
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		// Klient Suchen
-		menuItem = new JMenuItem(local.getLocalString("searchClient"));
+		menuItem = new JMenuItem(l.searchclient);
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		
 		userMenu.addSeparator();
 		
 		// letzte Meldung
-		menuItem = new JMenuItem(local.getLocalString("messages"));
+		menuItem = new JMenuItem(l.lastmessages);
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		
-		menuItem = new JMenuItem(local.getLocalString("quit"));
-		menuItem.getAccessibleContext().setAccessibleDescription(Local.getInstance().getLocalString("quit"));
+		menuItem = new JMenuItem(l.quit);
+		menuItem.getAccessibleContext().setAccessibleDescription(l.quit);
 		menuItem.addActionListener(mainControll);
 		userMenu.add(menuItem);
 		return userMenu;
@@ -71,14 +73,14 @@ public class MainFrameView extends JFrame implements Observer{
 	 *  Erstellt das zweite JMenu, hier kann ein offener Klient bearbeitet oder gelöscht werden. 
 	 */
 	private JMenu createEditMenu(ActionListener mainControll) {
-		Local local = Local.getInstance();
-		JMenu editMenu = new JMenu(local.getLocalString("updateClient"));
+		label l = new label();
+		JMenu editMenu = new JMenu(l.editclient);
 		//Bearbeiten
-		menuItem = new JMenuItem(local.getLocalString("updateClient"));
+		menuItem = new JMenuItem(l.editclient);
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		//Löschen
-		menuItem = new JMenuItem(local.getLocalString("deleteClient"));
+		menuItem = new JMenuItem(l.deleteclient);
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		
@@ -88,18 +90,18 @@ public class MainFrameView extends JFrame implements Observer{
 	 * erstellt das Sprachenmenue
 	 */
 	private JMenu createLangMenu(ActionListener mainControll) {
-		Local local = Local.getInstance();
-		JMenu editMenu = new JMenu(local.getLocalString("language"));
+		label l = new label();
+		JMenu editMenu = new JMenu(l.language);
 		//Deutsche Sprache
-		menuItem = new JMenuItem(local.getLocalString("german"));
+		menuItem = new JMenuItem(l.german);
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		//Englische Sprache
-		menuItem = new JMenuItem(local.getLocalString("english"));
+		menuItem = new JMenuItem(l.english);
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		//Türkische Sprache
-		menuItem = new JMenuItem(local.getLocalString("turkish"));
+		menuItem = new JMenuItem(l.turkish);
 		menuItem.addActionListener(mainControll);
 		editMenu.add(menuItem);
 		
@@ -113,6 +115,8 @@ public class MainFrameView extends JFrame implements Observer{
 		this.dispose();
 	}
 	private void updateFrame() {
+		label l = new label();
+		l.update();
 		this.setSettings();
 		this.add(mainPanel, BorderLayout.NORTH);
 		JMenuBar menuBar = new JMenuBar();
@@ -141,35 +145,35 @@ public class MainFrameView extends JFrame implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		JPanel panel = new JPanel();
-		Local local = Local.getInstance();
+		label l = new label();
 		//Beenden
-		if(arg.equals(local.getLocalString("quit"))) {
+		if(arg.equals(l.quit)) {
 			quit();
 		}
 		//Neuer Klient
-		if(arg.equals(local.getLocalString("newClient"))) {
+		if(arg.equals(l.createnewclient)) {
 			panel = CreateUserView.getPanel();
 		}
 		//Client suchen
-		if(arg.equals(local.getLocalString("searchClient"))) {
+		if(arg.equals(l.searchclient)) {
 			panel = SearchUserView.getPanel();
 		}
 		//Client löschen
-		if(arg.equals(local.getLocalString("deleteClient"))) {
+		if(arg.equals(l.deleteclient)) {
 			DeleteUserView.deleteUser();
 		}
 		//Client bearbeiten. 
-		if(arg.equals(local.getLocalString("updateClient"))) {
+		if(arg.equals(l.editclient)) {
 			panel = UpdateUserView.getPanel();
 		}
 		//Client anzeigen
-		if(arg.equals(local.getLocalString("showClient"))) {
+		if(arg.equals(l.showclient)) {
 			panel = ShowUserView.getPanel();
 		}
-		if(arg.equals(local.getLocalString("messages"))) {
+		if(arg.equals(l.lastmessages)) {
 			panel = ShowMessagesView.getPanel();
 		}
-		if(arg.equals(local.getLocalString("language"))) {
+		if(arg.equals(l.language)) {
 			updateFrame();
 			start();
 		}

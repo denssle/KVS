@@ -11,25 +11,30 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import statics.label;
 import util.Local;
 import controller.ShowUserController;
 
 public class SearchUserView implements Observer{
 	private static JPanel searchUserPanel;
 	private static JTextField textfield;
-	
+	private static ActionListener actionListener;
 	public SearchUserView(ActionListener actionListener) {
-		Local local = Local.getInstance();
+		this.actionListener = actionListener;
 		searchUserPanel = new JPanel();
-		searchUserPanel.setName(local.getLocalString("searchClient"));
+		buildView();
+	}
+	private static void buildView() {
+		label l = new label();
+		searchUserPanel.setName(l.searchclient);
 		searchUserPanel.setLayout(new FlowLayout());
 		
-		JLabel label = new JLabel(local.getLocalString("searchClient"));
-		textfield = new JTextField(local.getLocalString("searchplaceholder"));
-		textfield.setToolTipText(local.getLocalString("searchdescription"));
+		JLabel label = new JLabel(l.searchclient);
+		textfield = new JTextField(l.searchplaceholder);
+		textfield.setToolTipText(l.searchdescription);
 		textfield.setPreferredSize( new Dimension( 200, 20 ) );
 		
-		JButton button = new JButton(Local.getInstance().getLocalString("ok"));
+		JButton button = new JButton(l.ok);
 		button.addActionListener(actionListener);
 		
 		searchUserPanel.add(label);
@@ -37,8 +42,9 @@ public class SearchUserView implements Observer{
 		searchUserPanel.add(button);
 		searchUserPanel.setVisible(true);
 	}
-
 	public static JPanel getPanel() {
+		searchUserPanel.removeAll();
+		buildView();
 		ShowUserController.setUserNull();
 		return searchUserPanel;
 	}

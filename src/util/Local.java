@@ -1,6 +1,7 @@
 package util;
 
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 
@@ -51,21 +52,25 @@ public class Local {
 	 * @return String In übersetzter Sprache
 	 */	
 	public String getLocalString(String label) {
-		if(bundle == null) {
-			init(System.getProperty("user.country"), System.getProperty("user.language"));
-		}
-		
-		String ls = bundle.getString(label);
-		if(ls == null) {
-			return "{"+label+"}";
-		}
-		else
-		{
-			if(ls == "")
+		try {
+			if(bundle == null) {
+				init(System.getProperty("user.country"), System.getProperty("user.language"));
+			}
+			
+			String ls = bundle.getString(label);
+			if(ls == null) {
 				return "{"+label+"}";
+			}
 			else
-				return ls;
+			{
+				if(ls == "")
+					return "{"+label+"}";
+				else
+					return ls;
+			}
+		} catch (MissingResourceException e) {
+			statics.debug.errorMessage("Local", e.getMessage());
+			return null;
 		}
 	}
-
 }

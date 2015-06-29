@@ -8,6 +8,7 @@ import javax.swing.JButton;
 
 import dao.UserDAO;
 import model.User;
+import statics.label;
 import view.ShowUserView;
 
 public class ShowUserController extends Observable implements ActionListener {	
@@ -28,13 +29,14 @@ public class ShowUserController extends Observable implements ActionListener {
 		String command = e.getActionCommand();
 		JButton pressdButton = (JButton) e.getSource();
 		statics.debug.debugMessage("ShowUserController", command);
-		if(command.equals(statics.label.showClient)) {
+		label l = new label();
+		if(command.equals(l.showclient)) {
 			User user = new User();
 			user = UserDAO.getInstance().getUserById(pressdButton.getName());
 			actualUser = user;
 			ShowUserView.showUser(user);
 			setChanged(); 
-			notifyObservers(statics.label.showClient);
+			notifyObservers(l.showclient);
 		}
 	}
 	public static User getUser() {

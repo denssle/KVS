@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import statics.Message;
+import statics.label;
 import util.Local;
 import controller.ShowUserController;
 import controller.DeleteUserController;
@@ -20,12 +21,12 @@ public class DeleteUserView implements Observer{
 	}
 	
 	public static JPanel getPanel() {
-		Local local = Local.getInstance();
+		label l = new label();
 		if(ShowUserController.getUser() != null) {
-			JOptionPane.showConfirmDialog(null, local.getLocalString("deleteconfirmtitle"), local.getLocalString("deleteconfirmtext"),JOptionPane.YES_NO_CANCEL_OPTION);
+			JOptionPane.showConfirmDialog(null, l.deleteconfirmtitle, l.deleteconfirmtext, JOptionPane.YES_NO_CANCEL_OPTION);
 			return panel;
 		} else {
-			Message.getInstance().display(panel.getParent(), local.getLocalString("deletenonefound"), statics.label.deleteClient);
+			Message.getInstance().display(panel.getParent(), l.deletenonefound, l.deleteclient);
 			return panel;
 		}
 	}
@@ -36,10 +37,10 @@ public class DeleteUserView implements Observer{
 	}
 
 	public static void deleteUser() {
-		Local local = Local.getInstance();
+		label l = new label();
 		if(ShowUserController.getUser() != null) {
 			// 0 = delete, 1 = Nicht löschen, 2 = cancel
-			int res = JOptionPane.showConfirmDialog(null, local.getLocalString("deleteconfirmtitle"), local.getLocalString("deleteconfirmtext"),JOptionPane.YES_NO_CANCEL_OPTION);
+			int res = JOptionPane.showConfirmDialog(null, l.deleteconfirmtitle, l.deleteconfirmtext, JOptionPane.YES_NO_CANCEL_OPTION);
 			switch (res) {
             case 0:
             	statics.debug.debugMessage("DeleteUserView", "User soll gelöscht werden");
@@ -50,7 +51,7 @@ public class DeleteUserView implements Observer{
         }
 			DeleteUserController.deleteUser(res);
 		} else {
-			Message.getInstance().display(panel.getParent(), local.getLocalString("deletenonefound"), statics.label.deleteClient);
+			Message.getInstance().display(panel.getParent(), l.deletenonefound, l.deleteclient);
 		}
 	}
 }

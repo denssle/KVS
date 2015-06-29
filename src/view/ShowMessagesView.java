@@ -3,10 +3,13 @@ import java.awt.FlowLayout;
 import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JList;
 import javax.swing.JPanel;
+
 import controller.ShowUserController;
 import statics.Message;
+import statics.label;
 
 public class ShowMessagesView implements Observer{
 	private static JPanel messagePanel;
@@ -14,7 +17,8 @@ public class ShowMessagesView implements Observer{
 	
 	private static void buildView() {
 		messagePanel = new JPanel();
-		messagePanel.setName(statics.label.messages);
+		label l = new label();
+		messagePanel.setName(l.lastmessages);
 		messagePanel.setLayout(new FlowLayout());
 		
 		String[] listContent = new String[Message.getInstance().getLastMessages().entrySet().size()];

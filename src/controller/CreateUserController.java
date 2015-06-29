@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import model.User;
 import statics.CacheUser;
+import statics.label;
 import util.Local;
 
 public class CreateUserController extends Observable implements ActionListener {
@@ -19,10 +20,10 @@ public class CreateUserController extends Observable implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("CreateUserController",command);
-		
-		if(command.equals(Local.getInstance().getLocalString("ok"))) {
+		label l = new label();
+		if(command.equals(l.ok)) {
 			setChanged(); 
-			notifyObservers(Local.getInstance().getLocalString("ok"));
+			notifyObservers(l.ok);
 			/* Infomiert View darüber das ein neuer User erstellt werden soll. 
 			 * Bei Erfolg nutzt die View die createUser Methode und setzt damit den User auf != null. 
 			 */
@@ -31,15 +32,15 @@ public class CreateUserController extends Observable implements ActionListener {
 				// Hier wird auf die ShowUserView gewechselt, der neu erstellte User wird angezeigt. 
 				ShowUserController.setUser(user);
 				setChanged(); 
-				notifyObservers(Local.getInstance().getLocalString("showclient"));
+				notifyObservers(l.showclient);
 			}
 		}
 		
-		if(command.equals(Local.getInstance().getLocalString("cancel"))) {
+		if(command.equals(l.cancel)) {
 			//Schließt die Usererstellung. 
 			ShowUserController.setUserNull();
 			setChanged(); 
-			notifyObservers(Local.getInstance().getLocalString("cancel"));
+			notifyObservers(l.cancel);
 		}
 	}
 	/**

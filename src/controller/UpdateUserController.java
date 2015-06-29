@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import model.User;
 import statics.CacheUser;
+import statics.label;
 import util.Local;
 import view.ShowUserView;
 
@@ -18,22 +19,23 @@ public class UpdateUserController extends Observable implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("UpdateUserController",command);
-		if(command.equals(Local.getInstance().getLocalString("ok"))) {
+		label l = new label();
+		if(command.equals(l.ok)) {
 			//Informiert die View, welche dann die updateUser Methode aufruft. 
 			setChanged(); 
-			notifyObservers(Local.getInstance().getLocalString("ok"));
+			notifyObservers(l.ok);
 			
 			if(updateUser != null) {
 				//Der geänderte User wird angezeigt. 
 				ShowUserView.showUser(updateUser);
 				setChanged(); 
-				notifyObservers(statics.label.showClient);
+				notifyObservers(l.showclient);
 			}
 		}
-		if(command.equals(statics.label.cancel)) {
+		if(command.equals(l.cancel)) {
 			//Bei Abbruch wird der User nicht verändert aber auch nicht geschlossen.
 			setChanged(); 
-			notifyObservers(statics.label.showClient);
+			notifyObservers(l.showclient);
 		}
 	}
 	/**
