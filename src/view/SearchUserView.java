@@ -18,10 +18,14 @@ import controller.ShowUserController;
 public class SearchUserView implements Observer{
 	private static JPanel searchUserPanel;
 	private static JTextField textfield;
-	
+	private static ActionListener actionListener;
 	public SearchUserView(ActionListener actionListener) {
-		label l = new label();
+		this.actionListener = actionListener;
 		searchUserPanel = new JPanel();
+		buildView();
+	}
+	private static void buildView() {
+		label l = new label();
 		searchUserPanel.setName(l.searchclient);
 		searchUserPanel.setLayout(new FlowLayout());
 		
@@ -38,8 +42,9 @@ public class SearchUserView implements Observer{
 		searchUserPanel.add(button);
 		searchUserPanel.setVisible(true);
 	}
-
 	public static JPanel getPanel() {
+		searchUserPanel.removeAll();
+		buildView();
 		ShowUserController.setUserNull();
 		return searchUserPanel;
 	}

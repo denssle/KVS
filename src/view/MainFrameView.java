@@ -115,6 +115,8 @@ public class MainFrameView extends JFrame implements Observer{
 		this.dispose();
 	}
 	private void updateFrame() {
+		label l = new label();
+		l.update();
 		this.setSettings();
 		this.add(mainPanel, BorderLayout.NORTH);
 		JMenuBar menuBar = new JMenuBar();
