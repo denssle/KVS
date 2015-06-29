@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,6 +24,7 @@ public class DeleteUserView implements Observer{
 	public static JPanel getPanel() {
 		label l = new label();
 		if(ShowUserController.getUser() != null) {
+			JOptionPane.setDefaultLocale(Local.getInstance().getLocale());
 			JOptionPane.showConfirmDialog(null, l.deleteconfirmtitle, l.deleteconfirmtext, JOptionPane.YES_NO_CANCEL_OPTION);
 			return panel;
 		} else {
@@ -40,6 +42,7 @@ public class DeleteUserView implements Observer{
 		label l = new label();
 		if(ShowUserController.getUser() != null) {
 			// 0 = delete, 1 = Nicht löschen, 2 = cancel
+			JOptionPane.setDefaultLocale(Local.getInstance().getLocale());
 			int res = JOptionPane.showConfirmDialog(null, l.deleteconfirmtitle, l.deleteconfirmtext, JOptionPane.YES_NO_CANCEL_OPTION);
 			switch (res) {
             case 0:

@@ -1,13 +1,17 @@
 package util;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 
 public class Local {
 	private ResourceBundle bundle = null;
 	private static Local self = null;
+	private static Locale locale = null;
 
 	private Local() {
 		
@@ -33,12 +37,22 @@ public class Local {
 			  // Fallback Sprache
 		  }
 			  
-		  Locale locale = new Locale(lang, country);
+		  locale = new Locale(lang, country);
 		  try {
 	      bundle = ResourceBundle.getBundle("res.lang",locale);
 		  } catch(MissingResourceException e){
 			  statics.debug.errorMessage("Local", e.getMessage());
 		  }
+	}
+	
+	/**
+	 * Holt sich den aktuell gestzten Locale
+	 * 
+	 * @return Local aktuell gewählte Sprache
+	 */	
+	
+	public Locale getLocale() {
+		return locale;
 	}
 	
 	/**
@@ -70,9 +84,12 @@ public class Local {
 				if(ls == "")
 					return "{"+label+"}";
 				else
-					return ls;
+					return new String(ls.getBytes("ISO-8859-1"), "UTF-8");
 			}
 		} catch (MissingResourceException e) {
+			statics.debug.errorMessage("Local", e.getMessage());
+			return null;
+		} catch (UnsupportedEncodingException e) {
 			statics.debug.errorMessage("Local", e.getMessage());
 			return null;
 		}

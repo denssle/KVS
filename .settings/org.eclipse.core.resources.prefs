@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/res/lang_de_DE.properties=UTF-8
+encoding//src/res/lang_en_US.properties=UTF-8
+encoding//src/res/lang_tr_TR.properties=UTF-8
 encoding/<project>=UTF-8

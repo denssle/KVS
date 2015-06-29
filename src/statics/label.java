@@ -40,6 +40,8 @@ public class label {
 	public static String german = local.getLocalString("german");
 	public static String english = local.getLocalString("english");
 	public static String turkish = local.getLocalString("turkish");
+	public static String yes = local.getLocalString("yes");
+	public static String no = local.getLocalString("no");
 	
 	public void update() {
 		Local local = Local.getInstance();
@@ -78,6 +80,8 @@ public class label {
 		language = local.getLocalString("language");
 		german = local.getLocalString("german");
 		english = local.getLocalString("english");
-turkish = local.getLocalString("turkish");
+		turkish = local.getLocalString("turkish");
+		yes = local.getLocalString("yes");
+		no = local.getLocalString("no");
 	}
 }
