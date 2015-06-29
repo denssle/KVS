@@ -8,9 +8,6 @@ public class debug {
 	private static Integer counter = 0;
 	private static final Logger log = Logger.getLogger("confLogger");
 	
-	public debug() {
-	}
-	
 	public static void debugMessage(String sender, String message) {
 		
 		//System.out.println(getCounter()+" DEBUG: "+sender+": "+message);
