@@ -21,10 +21,10 @@ public class SearchUserView implements Observer{
 	public SearchUserView(ActionListener actionListener) {
 		Local local = Local.getInstance();
 		searchUserPanel = new JPanel();
-		searchUserPanel.setName(statics.label.searchClient);
+		searchUserPanel.setName(local.getLocalString("searchClient"));
 		searchUserPanel.setLayout(new FlowLayout());
 		
-		JLabel label = new JLabel(statics.label.searchClient);
+		JLabel label = new JLabel(local.getLocalString("searchClient"));
 		textfield = new JTextField(local.getLocalString("searchplaceholder"));
 		textfield.setToolTipText(local.getLocalString("searchdescription"));
 		textfield.setPreferredSize( new Dimension( 200, 20 ) );

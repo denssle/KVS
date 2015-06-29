@@ -17,10 +17,15 @@ public class MainFrameController extends Observable implements ActionListener {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("MainFrameController",command);		
 		Local local = Local.getInstance();
-		if(command.equals(statics.label.german)) {
+		if(command.equals(Local.getInstance().getLocalString("german"))) {
 			local.init("de", "de");
-		} else if(command.equals(statics.label.english)) {
+			command = Local.getInstance().getLocalString("language");
+		} else if(command.equals(Local.getInstance().getLocalString("english"))) {
 			local.init("en", "en");
+			command = Local.getInstance().getLocalString("language");
+		} else if(command.equals(Local.getInstance().getLocalString("turkish"))) {
+			local.init("tr", "tr");
+			command = Local.getInstance().getLocalString("language");
 		}
 		setChanged(); 
 		notifyObservers(command); 
