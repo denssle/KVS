@@ -19,16 +19,7 @@ public final class label {
 	public final static String german = "Deutsch";
 	public final static String english = "English";
 	/* User Labels */
-	public final static String forname = "Vorname";
-	public final static String lastname = "Nachname";
-	public final static String street = "Straße";
-	public final static String zip ="PLZ";
-	public final static String city = "Stadt";
-	public final static String birthdate = "Geburtsdatum";
-	public final static String lastVisit = "Letzter Besuch";
-	public final static String fistVisit = "Erster Besuch";
-	public final static String[] userLabels = {forname, lastname, street, zip, city, birthdate};
-	
+
 	/* Dialog Labels */
 	public final static String deleteNone = "Kein User zum löschen offen.";
 	public final static String deleteTitleConfirm = "Sicher?";
