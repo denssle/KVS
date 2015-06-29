@@ -3,8 +3,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+
 import model.User;
 import statics.CacheUser;
+import util.Local;
 
 public class CreateUserController extends Observable implements ActionListener {
 	private static User user;
@@ -18,9 +20,9 @@ public class CreateUserController extends Observable implements ActionListener {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("CreateUserController",command);
 		
-		if(command.equals(statics.label.ok)) {
+		if(command.equals(Local.getInstance().getLocalString("ok"))) {
 			setChanged(); 
-			notifyObservers(statics.label.ok);
+			notifyObservers(Local.getInstance().getLocalString("ok"));
 			/* Infomiert View darüber das ein neuer User erstellt werden soll. 
 			 * Bei Erfolg nutzt die View die createUser Methode und setzt damit den User auf != null. 
 			 */

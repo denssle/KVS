@@ -3,8 +3,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+
 import model.User;
 import statics.CacheUser;
+import util.Local;
 import view.ShowUserView;
 
 public class UpdateUserController extends Observable implements ActionListener {	
@@ -16,10 +18,10 @@ public class UpdateUserController extends Observable implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		statics.debug.debugMessage("UpdateUserController",command);
-		if(command.equals(statics.label.ok)) {
+		if(command.equals(Local.getInstance().getLocalString("ok"))) {
 			//Informiert die View, welche dann die updateUser Methode aufruft. 
 			setChanged(); 
-			notifyObservers(statics.label.ok);
+			notifyObservers(Local.getInstance().getLocalString("ok"));
 			
 			if(updateUser != null) {
 				//Der geänderte User wird angezeigt. 

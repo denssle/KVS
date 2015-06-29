@@ -30,7 +30,7 @@ public class UpdateUserView implements Observer{
 		updateUserPanel.setName(statics.label.updateClient);
 		updateUserPanel.setLayout(new FlowLayout());		
 		
-		okButton = new JButton(statics.label.ok);
+		okButton = new JButton(Local.getInstance().getLocalString("ok"));
 		okButton.addActionListener(actionListener);
 		
 		cancelButton = new JButton(statics.label.cancel);
@@ -103,7 +103,7 @@ public class UpdateUserView implements Observer{
 	}
 	@Override
 	public void update(Observable o, Object arg) {		
-		if(arg.equals(statics.label.ok)) {
+		if(arg.equals(Local.getInstance().getLocalString("ok"))) {
 			UpdateUserController.updateUser(cache);
 		}
 	}

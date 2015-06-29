@@ -80,7 +80,7 @@ public class CreateUserView implements Observer{
 		line.add(label);
 		line.add(chooser);
 		
-		JButton okButton = new JButton(statics.label.ok);
+		JButton okButton = new JButton(Local.getInstance().getLocalString("ok"));
 		okButton.addActionListener(actionListener);
 		
 		JButton cancelButton = new JButton(statics.label.cancel);
@@ -102,7 +102,7 @@ public class CreateUserView implements Observer{
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		if(arg.equals(statics.label.ok)) {
+		if(arg.equals(Local.getInstance().getLocalString("ok"))) {
 			if(CreateUserController.createUser(cache) == false) {
 				Message.getInstance().display(null, Local.getInstance().getLocalString("createvalidation"), statics.label.newClient);
 			} else {
